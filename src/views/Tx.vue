@@ -36,10 +36,11 @@ export default {
   },
   methods: {
     checkIfExist() {
-      if (this.currentTx != '') {
+      if (this.currentTx != null && this.currentTx != '') {
         var context = this;
-        console.log('dfhfdshf')
+        console.log('dfhfdshf', this.currentTx)
         this.lib_getTransaction(this.currentTx, false, function(err, tx) {
+        console.log(err, tx)
           if (err || tx == null) {
             context.$router.push({
               path: `/404`,

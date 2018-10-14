@@ -202,6 +202,7 @@ Vue.mixin({
     },
     lib_processSearch(input) {
       var inputType = this.lib_guessInputType(input);
+      // console.log(inputType)
       if (inputType.type == 'tx') {
         this.lib_goToTx(inputType.value)
       } else if (inputType.type == 'block') {

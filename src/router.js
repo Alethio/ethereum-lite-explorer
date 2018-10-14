@@ -34,7 +34,7 @@ export default new Router({
     },
     {
       path: '/404',
-      name: '404',
+      name: 'NotFound',
       component: noFound,
     },
   ],

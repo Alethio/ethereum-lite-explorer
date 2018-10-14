@@ -180,7 +180,6 @@ export default {
 
         // We get the block to iterate all his transactions
         context.lib_getBlock(context.currentBlock, (err, block) => {
-        console.log(block)
           context.block = block;
           const currentBlock = context.currentBlock;
           context.transactions = [];

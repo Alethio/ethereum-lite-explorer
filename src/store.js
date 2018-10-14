@@ -27,7 +27,7 @@ export default new Vuex.Store({
       state.countPending += 1;
     },
     removePending(state, key) {
-      Vue.set(state.pendingQueries, key, null);
+      Vue.delete(state.pendingQueries, key);
       state.countPending -= 1;
     },
     storeBlock(state, block) {
