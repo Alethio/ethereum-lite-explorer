@@ -1,13 +1,20 @@
 <template>
 <div id="app" class="is-fullheight">
-  <div class="columns top-menu" >
-    <router-link :to="{ name: 'home'}" class="column  top-menu-item">
-      SOME BRANDING?
-    </router-link>
+  <div class="columns top-menu">
+    <div class="column">
+      <router-link :to="{ name: 'home'}" class=" top-menu-item">
+        SOME BRANDING?
+      </router-link>
+    </div>
 
-     <p v-on:click="lib_goToBlock(lastBlock)" class="column has-text-right top-menu-item top-menu-item-link" >
-       Best block: {{ lastBlock }}
-     </p>
+    <div class="column has-text-right top-menu-item ">
+    <p  v-on:click="lib_openSearch()" class="top-menu-item-link button" style="margin-right:5px;">
+      Search
+    </p>
+      <p  v-on:click="lib_goToBlock(lastBlock)" class="top-menu-item-link button">
+        Best block: {{ lastBlock }}
+      </p>
+    </div>
   </div>
   <router-view/>
 </div>
@@ -45,8 +52,8 @@ body {
 }
 
 .top-menu {
-  background-color:#151D36;
-  margin:0px;
+  background-color: #151D36;
+  margin: 0px;
 }
 
 .top-menu-item {
@@ -57,7 +64,6 @@ body {
 .top-menu-item-link {
   cursor: pointer;
 }
-
 </style>
 
 <script>

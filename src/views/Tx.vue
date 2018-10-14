@@ -26,12 +26,29 @@ export default {
   },
   mounted() {
     this.currentTx = this.$route.params.hash;
+    this.checkIfExist();
   },
   watch: {
     $route(to, from) {
       this.currentTx = this.$route.params.hash;
+      this.checkIfExist();
     },
   },
+  methods: {
+    checkIfExist() {
+      if (this.currentTx != '') {
+        var context = this;
+        console.log('dfhfdshf')
+        this.lib_getTransaction(this.currentTx, false, function(err, tx) {
+          if (err || tx == null) {
+            context.$router.push({
+              path: `/404`,
+            });
+          }
+        })
+      }
+    }
+  }
 
 };
 </script>

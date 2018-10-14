@@ -85,7 +85,10 @@ Vue.mixin({
       if (context.$store.state.transactions[transactionHash] == null) {
         context.$store.commit('setPending', transactionHash);
         context.$store.state.w3.eth.getTransaction(transactionHash, (err, tx) => {
-          if (withreceipt) {
+          if (err || tx == null) {
+            callback(true, null);
+            context.$store.commit('removePending', transactionHash);
+          } else if (withreceipt) {
             context.$store.state.w3.eth.getTransactionReceipt(transactionHash, (err, receipt) => {
               tx.receipt = receipt;
               context.$store.commit('storeTransaction', context.lib_processTX(tx));
@@ -168,6 +171,55 @@ Vue.mixin({
       });
       setTimeout(this.lib_monitorLastBlock, 4000);
     },
+    lib_guessInputType(input) {
+      if (input == null) {
+        return ({'type': 'none', 'value': input})
+      }
+      input = input.replace(/[^A-Z0-9]+/ig, "");
+      input = input.toLowerCase();
+      if ('' + parseInt(input) == input && !input.startsWith('0x')) {
+        return ({'type': 'block', 'value': parseInt(input)})
+      } else {
+        if (!input.startsWith('0x')) {
+          input = '0x' + input;
+        }
+        if (this.$store.state.w3.utils.isHexStrict(input)) {
+          if (input.length == 42) {
+            return ({'type': 'account', 'value': input})
+          } else if (input.length == 66) {
+            return ({'type': 'tx', 'value': input})
+          } else {
+            return ({'type': 'none', 'value': input})
+          }
+        }
+
+      }
+      return ({'type': 'none', 'value': input})
+    },
+    lib_processSearch(input) {
+      var inputType = this.lib_guessInputType(input);
+      if (inputType.type == 'tx') {
+        this.lib_goToTx(inputType.value)
+      } else if (inputType.type == 'block') {
+        this.lib_goToBlock(inputType.value)
+      } else if (inputType.type == 'account') {
+        this.lib_goToAccount(inputType.value)
+      } else {
+        this.$router.push({
+          path: `/404`,
+        });
+      }
+    },
+    lib_openSearch() {
+      this.$dialog.prompt({
+        message: `Enter a blocknumber, transaction hash or address.`,
+        inputAttrs: {
+          placeholder: 'e.g. 0x45434...',
+          maxlength: 100
+        },
+        onConfirm: (value) => this.lib_processSearch(value)
+      })
+    }
   },
 });
 

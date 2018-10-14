@@ -1,7 +1,7 @@
 <template>
-  <p>
-    {{transfers}}
-  </p>
+<p>
+  {{transfers}}
+</p>
 </template>
 
 <script>
@@ -25,9 +25,11 @@ export default {
       const uid = context.transfers_uid;
       for (let i = 0; i < context.block.transactions.length; i++) {
         context.lib_getTransaction(context.block.transactions[i], true, (err, tx) => {
-          for (let j = 0; j < tx.receipt.logs.length; j++) {
-            if (uid == context.transfers_uid && tx.receipt.logs[j].topics[0] == '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef') {
-              context.transfers += 1;
+          if (tx.receipt != null && tx.receipt.logs != null) {
+            for (let j = 0; j < tx.receipt.logs.length; j++) {
+              if (uid == context.transfers_uid && tx.receipt.logs[j].topics[0] == '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef') {
+                context.transfers += 1;
+              }
             }
           }
         });

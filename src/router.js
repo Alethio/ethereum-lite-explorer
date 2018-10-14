@@ -5,6 +5,7 @@ import Account from './views/Account.vue';
 import Block from './views/Block.vue';
 import Home from './views/Home.vue';
 import Tx from './views/Tx.vue';
+import noFound from './views/404.vue';
 
 
 Vue.use(Router);
@@ -30,6 +31,11 @@ export default new Router({
       path: '/tx/:hash',
       name: 'tx',
       component: Tx,
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: noFound,
     },
   ],
 });
