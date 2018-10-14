@@ -1,0 +1,53 @@
+{
+  "name": "ethstats-light",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "apexcharts": "^2.0.9",
+    "buefy": "^0.6.7",
+    "ethereum-blockies": "^0.1.1",
+    "uuid": "^3.3.2",
+    "v-tooltip": "^2.0.0-rc.33",
+    "vue": "^2.5.17",
+    "vue-apexcharts": "^1.2.1",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1",
+    "web3": "^1.0.0-beta.36"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.4",
+    "@vue/cli-plugin-eslint": "^3.0.4",
+    "@vue/cli-service": "^3.0.4",
+    "@vue/eslint-config-airbnb": "^3.0.4",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "@vue/airbnb"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
