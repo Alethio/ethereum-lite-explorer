@@ -17,6 +17,18 @@
     <div class="column is-12">
       <div class="columns is-mobile">
         <div class="column is-2 has-text-right">
+          <span class="heading is-1 has-text-right">Time</span>
+        </div>
+        <div class="column is-3">
+          <TimeStamp :value="block.timestamp" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column is-12">
+      <div class="columns is-mobile">
+        <div class="column is-2 has-text-right">
           <span class="heading is-1 has-text-right">HASH</span>
         </div>
         <div class="column is-3">
@@ -138,6 +150,7 @@ import BlockHash from '@/components/ui/BlockHash.vue';
 import BlockNumber from '@/components/ui/BlockNumber.vue';
 import AddressLink from '@/components/ui/AddressLink.vue';
 import TransactionLink from '@/components/ui/TransactionLink.vue';
+import TimeStamp from '@/components/ui/TimeStamp.vue';
 
 import ERC20Transfers from '@/components/plugins/ERC20Transfers.vue';
 
@@ -147,7 +160,7 @@ export default {
     currentBlock: Number,
   },
   components: {
-    AddressLink, TransactionLink, Hash, BlockHash, BlockNumber, ERC20Transfers,
+    AddressLink, TransactionLink, Hash, BlockHash, BlockNumber, TimeStamp, ERC20Transfers,
   },
   data() {
     return ({
@@ -167,6 +180,7 @@ export default {
 
         // We get the block to iterate all his transactions
         context.lib_getBlock(context.currentBlock, (err, block) => {
+        console.log(block)
           context.block = block;
           const currentBlock = context.currentBlock;
           context.transactions = [];

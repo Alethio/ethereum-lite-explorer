@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 import uuidv1 from 'uuid/v1';
 import VTooltip from 'v-tooltip';
+import VueTimeago from 'vue-timeago'
 
 import App from './App.vue';
 import router from './router';
@@ -14,6 +15,9 @@ Vue.use(Buefy);
 
 // VTooltip helps us display tooltips easily: https://github.com/Akryum/v-tooltip
 Vue.use(VTooltip);
+
+// Timeago is used to handle timestamp display
+Vue.use(VueTimeago, {name: 'Timeago', locale: 'en'});
 
 /*
  * We define here global functions that are accessible by any instance of Vue
@@ -215,8 +219,9 @@ Vue.mixin({
         message: `Enter a blocknumber, transaction hash or address.`,
         inputAttrs: {
           placeholder: 'e.g. 0x45434...',
-          maxlength: 100
+          maxlength: 100,
         },
+        confirmText: "Search",
         onConfirm: (value) => this.lib_processSearch(value)
       })
     }
