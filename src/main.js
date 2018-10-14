@@ -167,13 +167,13 @@ Vue.mixin({
     },
     lib_monitorLastBlock() {
       const context = this;
-      this.$store.state.w3.eth.getBlock('latest', (err, block) => {
-        // console.log("We get latest block", err, block)
-        if (!err && block != null) {
-          context.$store.commit('setLastBlock', block.number);
+      this.$store.state.w3.eth.getBlockNumber((err, number) => {
+        //console.log("We get latest block", err, number)
+        if (!err) {
+          context.$store.commit('setLastBlock', number);
         }
+        setTimeout(context.lib_monitorLastBlock, 6000);
       });
-      setTimeout(this.lib_monitorLastBlock, 4000);
     },
     lib_guessInputType(input) {
       if (input == null) {
