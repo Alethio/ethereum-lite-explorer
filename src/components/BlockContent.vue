@@ -96,7 +96,7 @@
                         </b-table-column>
                         <b-table-column
                                 field="value_eth"
-                                label="VALUE"
+                                label="VALUE (ETH)"
                                 sortable
                                 class="last-column"
                         >
