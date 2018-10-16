@@ -1,22 +1,22 @@
 <template>
-<div v-if="value != null" class="hash">
-
-  <v-popover
-  trigger="hover"
-  placement="top"
-  >
-  <!-- This will be the popover target (for the events and position) -->
-  <div class="tooltip-target">{{ value | cleanHash }}</div>
-  <template slot="popover">
-    <p>
-    <strong>
-      {{value}}
-    </strong>
-    </p>
-  </template>
-</v-popover>
-
-</div>
+  <div class="wrapper">
+    <div v-if="value != null" class="hash">
+      <!--<v-popover-->
+      <!--trigger="hover"-->
+      <!--placement="top"-->
+      <!--&gt;-->
+      <!-- This will be the popover target (for the events and position) -->
+        <div class="tooltip-target">{{ value | cleanHash }}</div>
+        <template slot="popover">
+          <span>
+            <strong>
+              {{value}}
+            </strong>
+          </span>
+        </template>
+      <!--</v-popover>-->
+    </div>
+  </div>
 </template>
 
 <script>
@@ -49,12 +49,15 @@ export default {
 .hash {
   background-color: rgb(53, 124, 255);
   color: rgb(255, 255, 255);
-  float: left;
-  padding-right: 7px;
-  padding-left: 7px;
+  padding: 1px 8px 3px;
   font-size: 20px;
   line-height: 24px;
   font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.wrapper {
+  padding: 10px 8px;
 }
 
 

@@ -8,7 +8,7 @@
   <!-- This will be the popover target (for the events and position) -->
   <div  v-on:click="showTimeAgo = !showTimeAgo" class="tooltip-target cursor" >
     <Timeago v-if="showTimeAgo" :datetime="value * 1000" />
-    <p v-if="!showTimeAgo">{{value | timestampToText}}</p>
+    <span v-if="!showTimeAgo">{{value | timestampToText}}</span>
   </div>
   <template slot="popover">
     <p>

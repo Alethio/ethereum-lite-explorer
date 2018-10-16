@@ -18,8 +18,8 @@ div {
 
 .blockSidebar {
     width: 240px !important;
+    min-width: 240px !important;
     overflow: hidden;
-    padding-bottom: 80px;
 }
 
 .block-logo-container {
@@ -44,4 +44,31 @@ div {
 .blocks-list {
     margin: 52px 83px 80px 81px;
     max-width: 76px;
+}
+
+.content {
+    width: 100%;
+}
+.block-content {
+    padding-top: 64px;
+    padding-left: 85px;
+}
+.pair {
+    display: flex;
+    align-items: center;
+}
+
+.minW115 {
+    min-width: 115px;
+}
+
+.label {
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: right;
+    padding: 16px;
+    color: #A7B5D1;
 }

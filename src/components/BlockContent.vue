@@ -1,30 +1,27 @@
 
 <template>
-<div style="">
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">BLOCK</span>
-        </div>
-        <div class="column is-3">
-          <BlockNumber :value="block.number" />
-        </div>
-      </div>
+<div class="block-content">
+  <div class="flex-box">
+    <div class="pair">
+      <div class="label minW115">Block</div>
+      <BlockNumber :value="block.number" />
+    </div>
+    <div class="pair">
+      <div class="label">Time</div>
+      <TimeStamp :value="block.timestamp" />
     </div>
   </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Time</span>
-        </div>
-        <div class="column is-3">
-          <TimeStamp :value="block.timestamp" />
-        </div>
-      </div>
+  <div class="flex-box">
+    <div class="pair">
+      <div class="label minW115">Hash</div>
+      <Hash :value="block.hash" />
+    </div>
+    <div class="pair">
+      <div class="label">Parent</div>
+      <BlockHash :number="block.number - 1" :value="block.parentHash" />
     </div>
   </div>
+
   <div class="columns">
     <div class="column is-12">
       <div class="columns is-mobile">

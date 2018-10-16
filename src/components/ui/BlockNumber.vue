@@ -1,10 +1,10 @@
 <template>
-<div>
+<div class="wrapper">
 <div v-if="value != null && !isLink" class="block_number">
-  #{{ value }}
+  # {{ value }}
 </div>
 <router-link  :to="{ name: 'block', params: { blocknumber: value }}" v-if="value != null && isLink" class="block_number">
-  #{{ value }}
+  # {{ value }}
 </router-link>
 </div>
 </template>
@@ -31,13 +31,15 @@ export default {
 .block_number {
   background-color: rgb(53, 124, 255);
   color: rgb(255, 255, 255);
-  float: left;
-  padding-right: 7px;
-  padding-left: 7px;
+  padding: 1px 8px 3px;
   font-size: 20px;
   line-height: 24px;
   font-weight: 500;
+  letter-spacing: 0.2px;
 }
 
+  .wrapper {
+    padding: 10px 8px;
+  }
 
 </style>
