@@ -1,6 +1,6 @@
 
 <template>
-<div>
+<div style="overflow: visible">
   <div class="block-logo-container">
     <div class="block-logo">
       <div class="block-logo-bg">

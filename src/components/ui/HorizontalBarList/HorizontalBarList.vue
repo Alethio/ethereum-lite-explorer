@@ -1,7 +1,8 @@
 <template>
   <div class="blocks-list">
-    <div v-for="elem in elements">
-      <HorizontalBar :label="'#' + elem.id"
+    <div v-for="elem in elements" :key="elem.id" style="overflow: visible">
+      <HorizontalBar :label="'# ' + elem.id"
+                     :value="elem.value"
                      v-on:item_clicked="$emit('item_clicked', elem.id)"
                      v-bind:class="{ item: true, selected: elem.selected,
                      hidden:elem.value === -1 }"

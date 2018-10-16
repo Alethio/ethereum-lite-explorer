@@ -19,7 +19,7 @@ div {
 .blockSidebar {
     width: 240px !important;
     min-width: 240px !important;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .block-logo-container {
@@ -42,8 +42,9 @@ div {
 }
 
 .blocks-list {
-    margin: 52px 83px 80px 81px;
+    margin: 52px 83px 0 81px;
     max-width: 76px;
+    overflow: visible;
 }
 
 .content {

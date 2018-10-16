@@ -52,6 +52,7 @@ export default {
 }
 
 .hash {
+  cursor: pointer;
   background-color: rgb(167, 181, 209);
   color: rgb(255, 255, 255);
   padding: 1px 8px 3px;
