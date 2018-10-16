@@ -1,7 +1,6 @@
 <template>
-  <div v-tooltip.top-center="label"
-       class="elem"
-       :style="{ 'width': percent  + '%', 'height': '100%'}"
+  <div class="elem"
+       :style="{ 'width': percent  + '%', 'height': '8px'}"
        v-on:click="$emit('item_clicked')">
   </div>
 </template>
@@ -34,6 +33,8 @@ export default {
   background-color: #D0DEF2;
   border-color: #D0DEF2;
   border-style: solid;
+  max-width: 72px;
+  box-sizing: border-box;
 }
 
 .elem:hover {
