@@ -58,8 +58,8 @@ div {
     align-items: center;
 }
 
-.minW115 {
-    min-width: 115px;
+.minW130 {
+    min-width: 130px;
 }
 
 .label {
@@ -71,4 +71,122 @@ div {
     text-align: right;
     padding: 16px;
     color: #A7B5D1;
+}
+
+.value {
+    color: #273656;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    padding: 11px 16px 13px;
+}
+.counter-container {
+    padding: 10px 8px;
+}
+.tx-counter {
+    background-color: #273656;
+    padding: 1px 8px 3px;
+    color: white;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    font-weight: 500;
+}
+.erc-counter {
+    background-color: #48E2A2;
+    padding: 1px 8px 3px;
+    color: white;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    font-weight: 500;
+}
+
+.txs-table-container {
+    padding-top: 16px;
+}
+
+tr:nth-child(odd) {
+    background: white;
+}
+
+tr:nth-child(even) {
+    background: #F7F8FA;
+}
+.table {
+    width: 100%;
+    border-bottom: solid 1px #D9E4EF;
+    border-spacing: 0;
+}
+.first-column {
+    padding: 7px 32px 8px;
+    text-align: right;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.2px;
+    color: #273656;
+    border-right: 1px solid #D0DEF2;
+}
+
+.normal-column {
+    padding: 7px 32px 8px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.2px;
+    color: #273656;
+    text-align: center;
+    border-right: 1px solid #D0DEF2;
+}
+
+.last-column {
+    text-align: left;
+    padding: 7px 32px 8px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.2px;
+    color: #273656;
+}
+
+.normal-column a {
+    text-decoration: none;
+    color: #357CFF;
+}
+
+.normal-column a:visited {
+    color: #357CFF;
+}
+.th-wrap {
+    padding: 9px 32px 10px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.4px;
+    color: #A7B5D1;
+    background-color: #F7F8FA;
+    border-right: 1px solid #D0DEF2;
+    border-bottom: 1px solid #D0DEF2;
+    border-spacing: 0;
+    margin: 0;
+    cursor: pointer;
+}
+.is-sortable {
+    padding: 0;
+}
+.is-current-sort .th-wrap {
+    padding: 9px 32px;
+    margin: 0;
+}
+.table-mobile-sort {
+    display: none;
+}
+.pagination {
+    display: flex;
+    align-items: center;
+}
+.is-desc i:before {
+    transform: rotate(180deg);
 }

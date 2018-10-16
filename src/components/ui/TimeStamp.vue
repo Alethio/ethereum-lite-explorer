@@ -1,5 +1,5 @@
 <template>
-<div v-if="value != null" class="hash">
+<div v-if="value != null" class="value">
 
   <v-popover
   trigger="hover"
