@@ -190,3 +190,9 @@ tr:nth-child(even) {
 .is-desc i:before {
     transform: rotate(180deg);
 }
+th:first-child {
+    text-align: right;
+}
+th:last-child {
+    text-align: left;
+}
