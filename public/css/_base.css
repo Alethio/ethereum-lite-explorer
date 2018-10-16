@@ -1,0 +1,47 @@
+html, body {
+    font-family: 'Barlow', sans-serif;
+    margin: 0;
+    overflow: auto;
+}
+
+div {
+    overflow: auto;
+}
+
+#app {
+    overflow: auto;
+}
+
+.flex-box {
+    display: flex;
+}
+
+.blockSidebar {
+    width: 240px !important;
+    overflow: hidden;
+    padding-bottom: 80px;
+}
+
+.block-logo-container {
+    padding: 120px 56px 0 72px;
+}
+
+.block-logo {
+    padding: 18px 27px 18px 9px;
+}
+
+.block-logo-bg {
+    padding: 17px 19px 21px 20px;
+    background-color: #357CFF;
+}
+.block-logo-text {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    color: white;
+}
+
+.blocks-list {
+    margin: 52px 83px 80px 81px;
+    max-width: 76px;
+}

@@ -1,11 +1,13 @@
 
 <template>
-<div style="padding-left: 20%; padding-right: 20%;">
-  <center>
-    <div class="block_box">
-      <div class="block_box_text">Bk</div>
+<div>
+  <div class="block-logo-container">
+    <div class="block-logo">
+      <div class="block-logo-bg">
+        <div class="block-logo-text">Bk</div>
+      </div>
     </div>
-  </center>
+  </div>
   <HorizontalBarList v-on:item_clicked="lib_goToBlock($event)" v-bind:elements="blocks" :maximumValue="maximum" />
 </div>
 </template>
@@ -47,7 +49,7 @@ export default {
   },
   methods: {
     fillSidebebar() {
-      if (this.currentBlock != -1) {
+      if (this.currentBlock !== -1) {
         this.$emit('block_selected', this.currentBlock);
         const tmp = [];
         for (var i = -this.range; i <= this.range; i++) {

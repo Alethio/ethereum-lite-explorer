@@ -1,6 +1,6 @@
 <template>
-<div id="block" class="columns is-fullheight is-mobile">
-  <div class="column is-3 sidebar">
+<div id="block" class="columns is-fullheight is-mobile flex-box">
+  <div class="column is-3 sidebar blockSidebar">
     <BlockSidebarNav :currentBlock="currentBlock" v-on:block_selected="lib_goToBlock($event)" />
   </div>
   <div class="column is-9 content">

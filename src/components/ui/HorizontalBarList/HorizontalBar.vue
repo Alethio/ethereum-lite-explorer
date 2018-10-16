@@ -1,5 +1,8 @@
 <template>
-  <div  v-tooltip.top-center="label" class="elem" :style="{ 'width': percent  + '%', 'height': '100%'}" v-on:click="$emit('item_clicked')">
+  <div v-tooltip.top-center="label"
+       class="elem"
+       :style="{ 'width': percent  + '%', 'height': '100%'}"
+       v-on:click="$emit('item_clicked')">
   </div>
 </template>
 
@@ -26,9 +29,10 @@ export default {
   min-width: 8px;
   margin-bottom: 4px;
   height: 8px;
-  border:2px;
-  background-color: rgb(208, 222, 242);
-  border-color: rgb(208, 222, 242);
+  border: 2px;
+  border-radius: 1px;
+  background-color: #D0DEF2;
+  border-color: #D0DEF2;
   border-style: solid;
 }
 

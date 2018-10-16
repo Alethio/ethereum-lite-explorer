@@ -1,21 +1,5 @@
 <template>
 <div id="app" class="is-fullheight">
-  <div class="columns top-menu">
-    <div class="column">
-      <router-link :to="{ name: 'home'}" class=" top-menu-item">
-        SOME BRANDING?
-      </router-link>
-    </div>
-
-    <div class="column has-text-right top-menu-item ">
-    <p  v-on:click="lib_openSearch()" class="top-menu-item-link button" style="margin-right:5px;">
-      Search
-    </p>
-      <p  v-on:click="lib_goToBlock(lastBlock)" class="top-menu-item-link button">
-        Best block: {{ lastBlock }}
-      </p>
-    </div>
-  </div>
   <router-view/>
 </div>
 </template>
@@ -33,7 +17,7 @@ body {
 .sidebar {
   min-height: 100%;
   background-color: rgb(255, 255, 255);
-  border-right: 1px solid rgb(208, 222, 242);
+  border-right: 1px solid #D0DEF2;
 }
 
 .content {
