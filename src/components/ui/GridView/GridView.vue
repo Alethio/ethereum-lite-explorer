@@ -36,8 +36,8 @@ export default {
 <style scoped>
 .item_container {
   padding: 0;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   display: flex;
   justify-content: space-around;
   align-items: center;
