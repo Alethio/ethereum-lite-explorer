@@ -21,16 +21,6 @@
   </div>
   <div class="flex-box">
     <div class="pair">
-      <div class="label minW130">From</div>
-      <AccountHash :value="tx.from" />
-    </div>
-    <div class="pair">
-      <div class="label">To</div>
-      <AccountHash :value="tx.to" />
-    </div>
-  </div>
-  <div class="flex-box separated">
-    <div class="pair">
       <div class="label minW130">Position</div>
       <div class="value">
         {{ tx.transactionIndex}}
@@ -44,6 +34,16 @@
     </div>
   </div>
   <div class="flex-box">
+    <div class="pair">
+      <div class="label minW130">From</div>
+      <AccountHash :value="tx.from" />
+    </div>
+    <div class="pair">
+      <div class="label">To</div>
+      <AccountHash :value="tx.to" />
+    </div>
+  </div>
+  <div class="flex-box separated">
     <div class="pair">
       <div class="label minW130">Gas limit</div>
       <div class="value">

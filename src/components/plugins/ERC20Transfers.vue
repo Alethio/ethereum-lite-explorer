@@ -17,11 +17,13 @@ export default {
     block: Object,
   },
   watch: {
-    // When the block changes we go through all it's transactions receipts and events to check if it's a ERC20 transfer
+    // When the block changes we go through all it's
+    // transactions receipts and events to check if it's a ERC20 transfer
     block() {
       const context = this;
       context.transfers = 0;
-      context.transfers_uid = this.lib_UID(); // We store a UUID for the current set of request so async callbacks don't polute the result table
+      context.transfers_uid = this.lib_UID(); // We store a UUID for the
+      // current set of request so async callbacks don't polute the result table
       const uid = context.transfers_uid;
       for (let i = 0; i < context.block.transactions.length; i++) {
         context.lib_getTransaction(context.block.transactions[i], true, (err, tx) => {

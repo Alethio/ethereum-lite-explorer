@@ -5,7 +5,7 @@ html, body {
 }
 
 div {
-    overflow: auto;
+    overflow: visible;
 }
 
 #app {
