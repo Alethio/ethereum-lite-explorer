@@ -48,6 +48,12 @@ export default {
   cursor: pointer;
 }
 
+.item_container:hover .item{
+  border-color: rgb(39, 54, 86);
+  background-color: rgb(255, 255, 255);
+}
+
+
 .item {
   border-radius: 50%;
   border: 2px;
