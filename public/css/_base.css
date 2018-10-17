@@ -251,3 +251,9 @@ th:last-child {
     padding-left: 10px;
     color: #FF9F1C;
 }
+.txList {
+    max-width: 144px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -1,6 +1,6 @@
 <template>
-<div style="height:100%; width: 100%" class="hello">
-  <div v-for="elem in elements" style="display:inline-block;">
+<div style="height:100%; width: 100%" class="hello txList">
+  <div v-for="elem in elements">
     <div  v-tooltip.top-center="elem.id" class="item_container" v-on:click="$emit('item_clicked', elem.id)">
       <div v-bind:class="{ item: true, selected: elem.selected }" :style="{} | computeSize(elem.value, maximum)"></div>
     </div>
@@ -23,7 +23,7 @@ export default {
   filters: {
     computeSize(pipe, value, max) {
       return ({
-        margin: `${100 - ((value / max) * 100) / 2}%`,
+        // margin: `${100 - ((value / max) * 100) / 2}%`,
         width: `${(value / max) * 100}%`,
         height: `${(value / max) * 100}%`,
       });
@@ -35,9 +35,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .item_container {
-  padding: 1px;
-  width: 30px;
-  height: 30px;
+  padding: 0;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
 }
 
 .item_container:hover {
@@ -47,9 +51,10 @@ export default {
 .item {
   border-radius: 50%;
   border: 2px;
-  background-color: rgb(39, 54, 86);
-  border-color: rgb(39, 54, 86);
+  background-color: #D0DEF2;
+  border-color: #D0DEF2;
   border-style: solid;
+  box-sizing: border-box;
 }
 
 .item:hover {
@@ -59,7 +64,7 @@ export default {
 }
 
 .selected {
-  background-color: rgb(53, 124, 255);
-  border-color: rgb(53, 124, 255);
+  background-color: rgb(39, 54, 86);
+  border-color: rgb(39, 54, 86);
 }
 </style>
