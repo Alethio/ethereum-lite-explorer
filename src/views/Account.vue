@@ -3,7 +3,9 @@
   <div class="column is-5 flex-box">
     <div class="account-avatar-container">
       <div class="account-avatar">
-        <HashAvatar :hash="currentAddress" />
+        <div class="identicon-container">
+          <HashAvatar :hash="currentAddress" />
+        </div>
       </div>
     </div>
     <div class="block-content">
@@ -65,7 +67,6 @@ export default {
       const context = this;
       this.lib_getAccount(this.currentAddress, (err, account) => {
         context.account = account;
-        console.log(account);
       });
     },
   },

@@ -11,6 +11,7 @@
     "apexcharts": "^2.0.9",
     "buefy": "^0.6.7",
     "ethereum-blockies": "^0.1.1",
+    "identicon.js": "^2.3.3",
     "uuid": "^3.3.2",
     "v-tooltip": "^2.0.0-rc.33",
     "vue": "^2.5.17",
