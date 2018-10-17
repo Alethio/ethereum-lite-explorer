@@ -8,7 +8,7 @@
         </div>
       </div>
     </div>
-    <div class="block-content">
+    <div class="account-content">
       <div class="flex-box">
         <div class="pair">
           <div class="label minW130">Address</div>
@@ -17,7 +17,7 @@
         <div class="pair">
           <div class="label">Type</div>
           <div class="value" v-if="account.isContract">Contract account</div>
-          <div class="value" v-if="account.isContract === false">Account</div>
+          <div class="value" v-if="account.isContract === false">External Account</div>
         </div>
       </div>
       <div class="flex-box">

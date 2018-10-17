@@ -17,7 +17,7 @@ export default {
         foreground: [53, 124, 255, 255],
         background: [255, 255, 255, 255],
         margin: 0.1,
-        size: 72,
+        size: 74,
         format: 'svg',
       };
       const icon = new Identicon(h.replace('0x', ''), opts).toString();

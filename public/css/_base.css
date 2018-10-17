@@ -259,12 +259,16 @@ th:last-child {
 }
 
 .account-avatar-container {
-    padding: 48px 130px 0 72px;
+    padding: 48px 115px 0 72px;
 }
 
 .account-avatar {
-    padding: 12px 27px 18px 9px;
+    padding: 10px 27px 18px 9px;
 }
 .identicon-container {
     border: 1px solid rgb(208, 222, 242);
+    max-height: 74px;
+}
+.account-content {
+    padding-top: 48px;
 }
