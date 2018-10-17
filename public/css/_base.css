@@ -272,3 +272,8 @@ th:last-child {
 .account-content {
     padding-top: 48px;
 }
+.account-code {
+    padding: 12px 60px 40px 17px;
+    font-family: 'Roboto Mono', monospace;
+    word-break: break-all;
+}

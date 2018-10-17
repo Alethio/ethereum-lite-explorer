@@ -26,15 +26,11 @@
           <div class="value">{{ account.balance_eth }} ETH</div>
         </div>
       </div>
+      <div class="flex-box">
+        <div class="label minW130" v-if="account.isContract">Account Code</div>
+        <div class="account-code" v-if="account.isContract">{{account.code}}</div>
+      </div>
     </div>
-  </div>
-  <div class="column is-7">
-    <p v-if="account.isContract">
-      Code: </br>
-      <pre class="code_block">
-      {{account.code}}
-      </pre>
-    </p>
   </div>
 </div>
 </template>
