@@ -1,13 +1,16 @@
 
 <template>
-<div style="padding-left: 20%; padding-right: 20%;">
-  <center>
-    <div class="tx_box">
-      <div class="tx_box_text">Tx</div>
+  <div>
+    <div class="tx-logo-container">
+      <div class="tx-logo">
+        <div class="tx-logo-bg">Tx</div>
+      </div>
     </div>
-  </center>
-  <GridView v-on:item_clicked="lib_goToTx($event)" v-bind:elements="transactions" :maximum="maximum" />
-</div>
+    <GridView v-on:item_clicked="lib_goToTx($event)"
+              v-bind:elements="transactions"
+              :maximum="maximum"
+    />
+  </div>
 </template>
 
 

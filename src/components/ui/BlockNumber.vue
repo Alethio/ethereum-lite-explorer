@@ -37,6 +37,9 @@ export default {
   font-weight: 500;
   letter-spacing: 0.2px;
 }
+  a {
+    text-decoration: none;
+  }
 
   .wrapper {
     padding: 10px 8px;

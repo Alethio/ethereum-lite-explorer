@@ -1,6 +1,6 @@
 <template>
-<div id="block" class="columns is-fullheight is-mobile">
-  <div class="column is-3 sidebar">
+<div id="block" class="columns is-fullheight is-mobile flex-box">
+  <div class="column is-3 sidebar blockSidebar">
     <TxSidebarNav :currentHash="currentTx"  />
   </div>
   <div class="column is-9 content">

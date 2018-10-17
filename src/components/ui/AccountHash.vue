@@ -1,22 +1,18 @@
 <template>
-<div v-if="value != null" class="hash">
-
-  <v-popover
-  trigger="hover"
-  placement="top"
-  >
-  <!-- This will be the popover target (for the events and position) -->
-  <router-link  :to="{ name: 'account', params: { address: value }}" class="tooltip-target">{{ value | cleanHash }}</router-link>
-  <template slot="popover">
-    <p>
-    <strong>
-      {{value}}
-    </strong>
-    </p>
-  </template>
-</v-popover>
-
-</div>
+  <div class="wrapper">
+    <div v-if="value != null" class="hash">
+      <router-link  :to="{ name: 'account', params: { address: value }}"
+                    class="tooltip-target">{{ value | cleanHash }}
+      </router-link>
+      <template slot="popover">
+        <p>
+        <strong>
+          {{value}}
+        </strong>
+        </p>
+      </template>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -34,7 +30,7 @@ export default {
       if (string == null) { return ''; }
       string = string.toLowerCase();
       const midpoint = Math.ceil(string.length / 2);
-      const toremove = string.length - 10;
+      const toremove = string.length - 12;
       const lstrip = Math.ceil(toremove / 2);
       const rstrip = toremove - lstrip;
       return (`${string.substring(0, midpoint - lstrip)} ... ${
@@ -50,16 +46,19 @@ export default {
 .tooltip-target {
   color: rgb(39, 54, 86);
 }
-
+a {
+  text-decoration: none;
+}
 .hash {
   background-color: rgb(208, 222, 242);
-  float: left;
-  padding-right: 7px;
-  padding-left: 7px;
+  padding: 1px 8px 3px;
   font-size: 20px;
   line-height: 24px;
   font-weight: 500;
 }
+  .wrapper {
+    padding: 10px 8px;
+  }
 
 
 </style>

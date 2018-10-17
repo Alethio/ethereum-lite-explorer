@@ -197,3 +197,46 @@ th:first-child {
 th:last-child {
     text-align: left;
 }
+
+.tx-logo-container {
+    padding: 48px 56px 45px 72px;
+}
+.tx-logo {
+    padding: 15px 24px 15px 6px;
+}
+.tx-logo-bg {
+    border-radius: 50%;
+    background-color: #273656;
+    padding: 20px 25px 24px;
+    font-size: 32px;
+    line-height: 38px;
+    letter-spacing: -1px;
+    font-weight: 700;
+    color: white;
+}
+.tx-value-label {
+    margin: 15px 8px;
+    font-size: 12px;
+    line-height: 12px;
+    height: 12px;
+    text-transform: uppercase;
+    background-color: rgb(72, 226, 162);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-right: 10px;
+    color: rgb(255, 255, 255);
+    position: relative;
+    padding: 4px 8px;
+    overflow: visible;
+}
+.tx-value-label:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -10px;
+    transform: scaleX(0.8);
+    transform-origin: left center 0px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid rgb(72, 226, 162);
+}

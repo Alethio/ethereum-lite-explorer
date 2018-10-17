@@ -1,40 +1,32 @@
 
 <template>
-<div style="">
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">BLOCK</span>
-        </div>
-        <div class="column is-3">
-          <BlockNumber :value="tx.blockNumber" :isLink="true"/>
-        </div>
+<div class="block-content">
+  <div class="flex-box">
+    <div class="pair">
+      <div class="label minW130">Hash</div>
+      <TxHash :value="tx.hash" />
+    </div>
+    <div class="pair">
+      <div class="tx-value-label">Value</div>
+      <div class="value">
+        {{ tx.value_eth}} ETH
       </div>
     </div>
   </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">HASH</span>
-        </div>
-        <div class="column is-3">
-          <TxHash :value="tx.hash" />
-        </div>
-      </div>
+  <div class="flex-box">
+    <div class="pair">
+      <div class="label minW130">Block</div>
+      <BlockNumber :value="tx.blockNumber" :isLink="true"/>
     </div>
   </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Value</span>
-        </div>
-        <div class="column is-3">
-          {{ tx.value_eth}} ETH
-        </div>
-      </div>
+  <div class="flex-box">
+    <div class="pair">
+      <div class="label minW130">From</div>
+      <AccountHash :value="tx.from" />
+    </div>
+    <div class="pair">
+      <div class="label">To</div>
+      <AccountHash :value="tx.to" />
     </div>
   </div>
   <div class="columns">
