@@ -51,8 +51,8 @@ div {
     width: 100%;
 }
 .block-content {
-    padding-top: 64px;
-    padding-left: 85px;
+    padding-top: 48px;
+    padding-left: 50px;
 }
 .pair {
     display: flex;
@@ -239,4 +239,15 @@ th:last-child {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     border-left: 10px solid rgb(72, 226, 162);
+}
+.separated {
+    padding-top: 56px;
+}
+
+.gray {
+ color: #A7B5D1;
+}
+.percentage {
+    padding-left: 10px;
+    color: #FF9F1C;
 }

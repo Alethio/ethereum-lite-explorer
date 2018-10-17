@@ -29,88 +29,49 @@
       <AccountHash :value="tx.to" />
     </div>
   </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">FROM</span>
-        </div>
-        <div class="column is-3">
-          <AccountHash :value="tx.from" />
-        </div>
+  <div class="flex-box separated">
+    <div class="pair">
+      <div class="label minW130">Position</div>
+      <div class="value">
+        {{ tx.transactionIndex}}
+      </div>
+    </div>
+    <div class="pair">
+      <div class="label">Nonce</div>
+      <div class="value">
+        {{ tx.nonce}}
       </div>
     </div>
   </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">TO</span>
-        </div>
-        <div class="column is-3">
-          <AccountHash :value="tx.to" />
-        </div>
+  <div class="flex-box">
+    <div class="pair">
+      <div class="label minW130">Gas limit</div>
+      <div class="value">
+        {{ tx.gas}}
+      </div>
+    </div>
+    <div class="pair">
+      <div class="label">Gas price</div>
+      <div class="value">
+        {{ (tx.gasPrice / Math.pow(10, 18)).toFixed(9)}} ETH
+      </div>
+      <div class="value gray">
+        {{ tx.gasPrice / Math.pow(10, 9)}} Gwei
       </div>
     </div>
   </div>
-  <hr>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Position</span>
-        </div>
-        <div class="column is-3">
-          {{ tx.transactionIndex}}
-        </div>
+  <div class="flex-box">
+    <div class="pair">
+      <div class="label minW130">Gas used by tx</div>
+      <div class="value">
+        {{ tx.receipt.gasUsed}}
+        <span class="percentage">{{((tx.receipt.gasUsed / tx.gas) * 100).toFixed(2)}}%</span>
       </div>
     </div>
-  </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Nonce</span>
-        </div>
-        <div class="column is-3">
-          {{ tx.nonce}}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Gas Limit</span>
-        </div>
-        <div class="column is-3">
-          {{ tx.gas}}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Gas price</span>
-        </div>
-        <div class="column is-3">
-          {{ tx.gasPrice}}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Gas used</span>
-        </div>
-        <div v-if="tx.receipt != null" class="column is-3">
-          {{ tx.receipt.gasUsed}}
-        </div>
+    <div class="pair">
+      <div class="label">Tx fee</div>
+      <div class="value">
+        {{ ((tx.receipt.gasUsed * tx.gasPrice) / Math.pow(10, 18)).toFixed(9)}} ETH
       </div>
     </div>
   </div>
