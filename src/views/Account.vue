@@ -1,32 +1,51 @@
 <template>
 <div id="account" class="columns" >
-  <div class="column is-5">
-    <center> <HashAvatar :hash="currentAddress" />
-    <p>{{currentAddress}}</p>
-    <p v-if="account.isContract">Contract account</p>
-    <p v-if="account.isContract === false">Account</p>
-    </center>
+  <div class="column is-5 flex-box">
+    <div class="account-avatar-container">
+      <div class="account-avatar">
+        <HashAvatar :hash="currentAddress" />
+      </div>
+    </div>
+    <div class="block-content">
+      <div class="flex-box">
+        <div class="pair">
+          <div class="label minW130">Address</div>
+          <AccountHash :value="currentAddress" />
+        </div>
+        <div class="pair">
+          <div class="label">Type</div>
+          <div class="value" v-if="account.isContract">Contract account</div>
+          <div class="value" v-if="account.isContract === false">Account</div>
+        </div>
+      </div>
+      <div class="flex-box">
+        <div class="pair">
+          <div class="label minW130">Balance</div>
+          <div class="value">{{ account.balance_eth }} ETH</div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="column is-7">
-  <p>
-  Balance: {{ account.balance_eth }} ETH
-  </p>
-  <p v-if="account.isContract">
-  Code: </br>
-  <pre class="code_block">
-  {{account.code}}
-  </pre>
-  </p>  </div>
+    <p v-if="account.isContract">
+      Code: </br>
+      <pre class="code_block">
+      {{account.code}}
+      </pre>
+    </p>
+  </div>
 </div>
 </template>
 
 <script>
 import HashAvatar from '@/components/ui/HashAvatar.vue';
+import AccountHash from '@/components/ui/AccountHash.vue';
 
 export default {
   name: 'account',
   components: {
     HashAvatar,
+    AccountHash,
   },
   data() {
     return ({
@@ -46,6 +65,7 @@ export default {
       const context = this;
       this.lib_getAccount(this.currentAddress, (err, account) => {
         context.account = account;
+        console.log(account);
       });
     },
   },

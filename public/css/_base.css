@@ -257,3 +257,11 @@ th:last-child {
     display: flex;
     flex-wrap: wrap;
 }
+
+.account-avatar-container {
+    padding: 48px 130px 0 72px;
+}
+
+.account-avatar {
+    padding: 18px 27px 18px 9px;
+}
