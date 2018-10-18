@@ -31,6 +31,7 @@ export default {
 
 .hidden {
   visibility: hidden;
+  display: none;
 }
 
 .elem {
