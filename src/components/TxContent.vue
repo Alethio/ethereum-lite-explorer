@@ -9,7 +9,7 @@
     <div class="pair">
       <div class="tx-value-label">Value</div>
       <div class="value">
-        {{ tx.value_eth}} ETH
+        {{ this.numberWithCommas(tx.value_eth)}} ETH
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@
     <div class="pair">
       <div class="label">Nonce</div>
       <div class="value">
-        {{ tx.nonce}}
+        {{ this.numberWithCommas(tx.nonce)}}
       </div>
     </div>
   </div>
@@ -47,7 +47,7 @@
     <div class="pair">
       <div class="label minW130">Gas limit</div>
       <div class="value">
-        {{ tx.gas}}
+        {{ this.numberWithCommas(tx.gas)}}
       </div>
     </div>
     <div class="pair">
@@ -64,7 +64,7 @@
     <div class="pair">
       <div class="label minW130">Gas used by tx</div>
       <div class="value">
-        {{ tx.receipt.gasUsed}}
+        {{ this.numberWithCommas(tx.receipt.gasUsed)}}
         <span class="percentage">{{((tx.receipt.gasUsed / tx.gas) * 100).toFixed(2)}}%</span>
       </div>
     </div>
@@ -81,6 +81,7 @@
 
 <script>
 import Vue from 'vue';
+import HelpersMixin from '../../src/mixins/Helpers';
 
 import Hash from '@/components/ui/Hash.vue';
 import TxHash from '@/components/ui/TxHash.vue';
@@ -98,6 +99,7 @@ export default {
   components: {
     AddressLink, TransactionLink, Hash, TxHash, AccountHash, BlockNumber,
   },
+  mixins: [HelpersMixin],
   data() {
     return ({
       tx: {},
