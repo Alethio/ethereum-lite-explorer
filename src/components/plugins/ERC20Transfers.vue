@@ -1,10 +1,12 @@
 <template>
 <div class="erc-counter">
-  {{transfers}}
+  {{this.numberWithCommas(transfers)}}
 </div>
 </template>
 
 <script>
+import HelpersMixin from '../../../src/mixins/Helpers';
+
 export default {
   name: 'ERC20Transfers',
   data() {
@@ -13,6 +15,7 @@ export default {
       transfers_uid: '',
     });
   },
+  mixins: [HelpersMixin],
   props: {
     block: Object,
   },

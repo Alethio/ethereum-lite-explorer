@@ -32,7 +32,7 @@
                 <div class="pair">
                     <div class="label">Size</div>
                     <div class="value">
-                        {{ block.size }} bytes
+                        {{ this.numberWithCommas(block.size) }} bytes
                     </div>
                 </div>
             </div>
@@ -41,7 +41,8 @@
                     <div class="label minW130">Transactions</div>
                     <div class="counter-container">
                         <div class="tx-counter">
-                            {{ block.transactions == null ? 0 : block.transactions.length }}
+                            {{ block.transactions == null ? 0 :
+                            this.numberWithCommas(block.transactions.length) }}
                         </div>
                     </div>
                 </div>
@@ -126,6 +127,7 @@
 
 <script>
 import Vue from 'vue';
+import HelpersMixin from '../../src/mixins/Helpers';
 
 import Hash from '@/components/ui/Hash.vue';
 import BlockHash from '@/components/ui/BlockHash.vue';
@@ -144,6 +146,7 @@ export default {
   components: {
     AddressLink, TransactionLink, Hash, BlockHash, BlockNumber, TimeStamp, ERC20Transfers,
   },
+  mixins: [HelpersMixin],
   data() {
     return ({
       block: {},
