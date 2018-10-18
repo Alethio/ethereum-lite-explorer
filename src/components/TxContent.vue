@@ -3,7 +3,7 @@
 <div class="block-content">
   <div class="flex-box">
     <div class="pair">
-      <div class="label minW130">Hash</div>
+      <div class="label minW140">Hash</div>
       <TxHash :value="tx.hash" />
     </div>
     <div class="pair">
@@ -19,13 +19,13 @@
   </div>
   <div class="flex-box">
     <div class="pair">
-      <div class="label minW130">Block</div>
+      <div class="label minW140">Block</div>
       <BlockNumber :value="tx.blockNumber" :isLink="true"/>
     </div>
   </div>
   <div class="flex-box">
     <div class="pair">
-      <div class="label minW130">Position</div>
+      <div class="label minW140">Position</div>
       <div class="value">
         {{ tx.transactionIndex}}
       </div>
@@ -39,7 +39,7 @@
   </div>
   <div class="flex-box">
     <div class="pair">
-      <div class="label minW130">From</div>
+      <div class="label minW140">From</div>
       <AccountHash :value="tx.from" />
     </div>
     <div class="pair">
@@ -49,7 +49,7 @@
   </div>
   <div class="flex-box separated">
     <div class="pair">
-      <div class="label minW130">Gas limit</div>
+      <div class="label minW140">Gas limit</div>
       <div class="value">
         {{ this.numberWithCommas(tx.gas)}}
       </div>
@@ -66,7 +66,7 @@
   </div>
   <div class="flex-box">
     <div class="pair">
-      <div class="label minW130">Gas used by tx</div>
+      <div class="label minW140">Gas used by tx</div>
       <div class="value" v-if="tx.receipt">
         {{ this.numberWithCommas(tx.receipt.gasUsed)}}
         <span class="percentage">{{((tx.receipt.gasUsed / tx.gas) * 100).toFixed(2)}}%</span>
@@ -76,6 +76,14 @@
       <div class="label">Tx fee</div>
       <div class="value" v-if="tx.receipt">
         {{ ((tx.receipt.gasUsed * tx.gasPrice) / Math.pow(10, 18)).toFixed(9)}} ETH
+      </div>
+    </div>
+  </div>
+  <div class="flex-box">
+    <div class="pair">
+      <div class="label minW140">Cummulative gas used</div>
+      <div class="value" v-if="tx.receipt">
+        {{ this.numberWithCommas(tx.receipt.cumulativeGasUsed)}}
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@
         <div class="block-content">
             <div class="flex-box">
                 <div class="pair">
-                    <div class="label minW130">Block</div>
+                    <div class="label minW140">Block</div>
                     <BlockNumber :value="block.number" />
                 </div>
                 <div class="pair">
@@ -14,7 +14,7 @@
             </div>
             <div class="flex-box">
                 <div class="pair">
-                    <div class="label minW130">Hash</div>
+                    <div class="label minW140">Hash</div>
                     <Hash :value="block.hash" />
                 </div>
                 <div class="pair">
@@ -24,7 +24,7 @@
             </div>
             <div class="flex-box">
                 <div class="pair">
-                    <div class="label minW130">Nonce</div>
+                    <div class="label minW140">Nonce</div>
                     <div class="value">
                         {{ block.nonce }}
                     </div>
@@ -38,7 +38,7 @@
             </div>
             <div class="flex-box">
                 <div class="pair">
-                    <div class="label minW130">Transactions</div>
+                    <div class="label minW140">Transactions</div>
                     <div class="counter-container">
                         <div class="tx-counter">
                             {{ block.transactions == null ? 0 :

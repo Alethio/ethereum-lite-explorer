@@ -59,10 +59,9 @@ div {
     align-items: center;
 }
 
-.minW130 {
-    min-width: 130px;
+.minW140 {
+    min-width: 140px;
 }
-
 .label {
     font-size: 12px;
     line-height: 14px;

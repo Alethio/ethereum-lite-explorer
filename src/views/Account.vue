@@ -11,7 +11,7 @@
     <div class="account-content">
       <div class="flex-box">
         <div class="pair">
-          <div class="label minW130">Address</div>
+          <div class="label minW140">Address</div>
           <AccountHash :value="currentAddress" />
         </div>
         <div class="pair">
@@ -22,12 +22,12 @@
       </div>
       <div class="flex-box">
         <div class="pair">
-          <div class="label minW130">Balance</div>
+          <div class="label minW140">Balance</div>
           <div class="value">{{ account.balance_eth.toFixed(4) }} ETH</div>
         </div>
       </div>
       <div class="flex-box">
-        <div class="label minW130" v-if="account.isContract">Account Code</div>
+        <div class="label minW140" v-if="account.isContract">Account Code</div>
         <div class="account-code" v-if="account.isContract">{{account.code}}</div>
       </div>
     </div>
