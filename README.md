@@ -43,6 +43,21 @@ npm run serve
 npm run build
 ```
 
+
+
+# Docker 
+1. go to project dir and run:
+```
+docker build . -t block_explorer
+```
+
+then run the image:
+
+```
+docker run -p 8080:8080 -e  "NODE_URL=https://mainnet.infura.io/alethio" -e "CONNECTION_TYPE=json_rpc" block_explorer
+```
+
+
 # License
 
 Copyright 2018 <>

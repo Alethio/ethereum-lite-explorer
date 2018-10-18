@@ -58,6 +58,7 @@ Vue.mixin({
       } else if (this.$store.state.blocks[blockNumber] == null) {
         this.$store.commit('setPending', blockNumber);
         var context = this;
+        // debugger;
         this.$store.state.w3.eth.getBlock(`${blockNumber}`, true, (err, block) => {
           if (block != null) {
             context.$store.commit('setLastBlock', block.number);
@@ -140,7 +141,7 @@ Vue.mixin({
             } else {
               callback(null, {
                 balance,
-                balance_eth: parseFloat(context.$store.state.w3.utils.fromWei(balance)),
+                balance_eth: parseFloat(context.$store.state.w3.fromWei(balance)),
                 code,
                 isContract: (code != '0x'),
               });
@@ -153,7 +154,7 @@ Vue.mixin({
      ** Internal function to enrich/decode any field of a transaction so render don't have to.
      */
     lib_processTX(transaction) {
-      transaction.value_eth = parseFloat(this.$store.state.w3.utils.fromWei(transaction.value));
+      transaction.value_eth = parseFloat(this.$store.state.w3.fromWei(transaction.value));
       if (transaction.receipt != null) {
         transaction.gas_used_percent = transaction.receipt.gasUsed / transaction.gas * 100;
       }
