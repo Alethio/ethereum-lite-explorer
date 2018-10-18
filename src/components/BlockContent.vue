@@ -101,7 +101,7 @@
                                 sortable
                                 class="last-column"
                         >
-                            {{ props.row.value_eth }}
+                            {{ props.row.value_eth.toFixed(4) }}
                         </b-table-column>
                     </template>
                     <template slot="empty">

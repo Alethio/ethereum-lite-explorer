@@ -23,7 +23,7 @@
       <div class="flex-box">
         <div class="pair">
           <div class="label minW130">Balance</div>
-          <div class="value">{{ account.balance_eth }} ETH</div>
+          <div class="value">{{ account.balance_eth.toFixed(4) }} ETH</div>
         </div>
       </div>
       <div class="flex-box">
