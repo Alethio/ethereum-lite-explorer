@@ -7,8 +7,12 @@
       <TxHash :value="tx.hash" />
     </div>
     <div class="pair">
-      <div class="tx-value-label">Value</div>
-      <div class="value">
+      <div class="tx-value-label value-grayed" v-if="tx.value_eth === 0">Value</div>
+      <div class="value gray" v-if="tx.value_eth === 0">
+        {{ this.numberWithCommas(tx.value_eth)}} ETH
+      </div>
+      <div class="tx-value-label" v-if="tx.value_eth !== 0">Value</div>
+      <div class="value" v-if="tx.value_eth !== 0">
         {{ this.numberWithCommas(tx.value_eth)}} ETH
       </div>
     </div>

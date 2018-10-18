@@ -245,7 +245,13 @@ th:last-child {
 }
 
 .gray {
- color: #A7B5D1;
+    color: #A7B5D1;
+}
+.value-grayed {
+    background-color: #D0DEF2;
+}
+.value-grayed:before {
+    border-left-color: #D0DEF2;
 }
 .percentage {
     padding-left: 10px;
