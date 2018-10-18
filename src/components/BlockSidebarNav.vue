@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return ({
-      range: 30,
+      range: parseInt((window.innerHeight - 280) / 32, 10),
       blocks: [],
       maximum: -Infinity,
     });
@@ -52,7 +52,8 @@ export default {
       if (this.currentBlock !== -1) {
         this.$emit('block_selected', this.currentBlock);
         const tmp = [];
-        for (var i = -this.range; i <= this.range; i++) {
+        console.log(this.range);
+        for (let i = -this.range; i <= this.range; i++) {
           const block = this.$store.state.blocks[this.currentBlock + i];
           if (block != null) {
             if (this.maximum < block.transactions.length) {
@@ -61,24 +62,24 @@ export default {
             tmp.push({
               id: this.currentBlock + i,
               value: block.transactions.length,
-              selected: i == 0,
+              selected: i === 0,
             });
           } else {
             tmp.push({
               id: this.currentBlock + i,
               value: -1,
-              selected: i == 0,
+              selected: i === 0,
             });
           }
         }
         this.blocks = tmp.reverse();
         const context = this;
-        for (var i = 0; i < this.blocks.length; i++) {
+        for (let i = 0; i < this.blocks.length; i++) {
           this.lib_getBlock(this.blocks[i].id, (err, block) => {
             if (block != null) {
               const index = context.currentBlock - block.number + context.range;
               // console.log(index, context.blocks[index].id, block.number, context.blocks[index].id == block.number)
-              if (context.blocks[index].id == block.number) {
+              if (context.blocks[index].id === block.number) {
                 Vue.set(context.blocks[index], 'value', block.transactions.length);
                 if (context.maximum < block.transactions.length) {
                   context.maximum = block.transactions.length;
