@@ -12,7 +12,7 @@
         {{ this.numberWithCommas(tx.value_eth)}} ETH
       </div>
       <div class="tx-value-label" v-if="tx.value_eth !== 0">Value</div>
-      <div class="value" v-if="tx.value_eth !== 0">
+      <div class="value" v-if="tx.value_eth !== 0 && tx.value_eth">
         {{ this.numberWithCommas(tx.value_eth.toFixed(4))}} ETH
       </div>
     </div>
