@@ -67,14 +67,14 @@
   <div class="flex-box">
     <div class="pair">
       <div class="label minW130">Gas used by tx</div>
-      <div class="value">
+      <div class="value" v-if="tx.receipt">
         {{ this.numberWithCommas(tx.receipt.gasUsed)}}
         <span class="percentage">{{((tx.receipt.gasUsed / tx.gas) * 100).toFixed(2)}}%</span>
       </div>
     </div>
     <div class="pair">
       <div class="label">Tx fee</div>
-      <div class="value">
+      <div class="value" v-if="tx.receipt">
         {{ ((tx.receipt.gasUsed * tx.gasPrice) / Math.pow(10, 18)).toFixed(9)}} ETH
       </div>
     </div>
