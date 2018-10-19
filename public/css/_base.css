@@ -239,6 +239,9 @@ th:last-child {
     border-bottom: 10px solid transparent;
     border-left: 10px solid rgb(72, 226, 162);
 }
+.tx-sideBar {
+    padding-bottom: 40px;
+}
 .separated {
     padding-top: 56px;
 }
