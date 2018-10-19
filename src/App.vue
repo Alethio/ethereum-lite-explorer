@@ -21,6 +21,7 @@ body {
 
 .is-fullheight {
   height: 100%;
+  min-height: max-content;
 }
 
 .sidebar {
