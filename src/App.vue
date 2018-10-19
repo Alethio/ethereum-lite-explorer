@@ -5,7 +5,7 @@
       Best block:
     </div>
     <BlockNumber :value="lastBlock" :isLink="true"/>
-    <div  v-on:click="lib_openSearch()" class="top-menu-item-link button" style="margin-right:5px;">
+    <div  v-on:click="lib_openSearch()" class="top-menu-item-link button search-btn" style="margin-right:5px;">
       Search
     </div>
   </div>
@@ -47,6 +47,9 @@ body {
 .top-menu-item-link {
   cursor: pointer;
 }
+.search-btn {
+  margin-left: 28px;
+}
   .button {
     border-radius: 4px;
     transition: background-color 0.2s ease-in-out 0s, border-color 0.2s ease-in-out 0s;
@@ -56,7 +59,7 @@ body {
     background-color: rgb(167, 181, 209);
     color: rgb(255, 255, 255);
     padding: 7px 16px 8px;
-    margin: 2px 0 0;
+    margin-top: 2px;
     border-width: 1px;
     border-style: solid;
     text-transform: uppercase;
