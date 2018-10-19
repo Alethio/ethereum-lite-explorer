@@ -218,7 +218,7 @@ Vue.mixin({
     },
     lib_openSearch() {
       this.$dialog.prompt({
-        message: `Enter a blocknumber, transaction hash or address.`,
+        message: `Enter a block number, transaction hash or address.`,
         inputAttrs: {
           placeholder: 'e.g. 0x45434...',
           maxlength: 100,

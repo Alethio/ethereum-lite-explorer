@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return ({
-      range: parseInt((window.innerHeight - 280) / 32, 10),
+      range: parseInt((window.innerHeight - 335) / 32, 10),
       blocks: [],
       maximum: -Infinity,
     });
@@ -52,7 +52,6 @@ export default {
       if (this.currentBlock !== -1) {
         this.$emit('block_selected', this.currentBlock);
         const tmp = [];
-        console.log(this.range);
         for (let i = -this.range; i <= this.range; i++) {
           const block = this.$store.state.blocks[this.currentBlock + i];
           if (block != null) {

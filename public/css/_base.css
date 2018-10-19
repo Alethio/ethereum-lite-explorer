@@ -23,7 +23,7 @@ div {
 }
 
 .block-logo-container {
-    padding: 48px 56px 0 72px;
+    padding: 100px 56px 0 72px;
 }
 
 .block-logo {
@@ -51,7 +51,7 @@ div {
     width: 100%;
 }
 .block-content {
-    padding-top: 48px;
+    padding-top: 100px;
     padding-left: 50px;
 }
 .pair {
@@ -198,7 +198,7 @@ th:last-child {
 }
 
 .tx-logo-container {
-    padding: 48px 56px 45px 72px;
+    padding: 100px 56px 45px 72px;
 }
 .tx-logo {
     padding: 15px 24px 15px 6px;
@@ -264,7 +264,7 @@ th:last-child {
 }
 
 .account-avatar-container {
-    padding: 48px 115px 0 72px;
+    padding: 100px 115px 0 72px;
 }
 
 .account-avatar {
@@ -275,10 +275,115 @@ th:last-child {
     max-height: 74px;
 }
 .account-content {
-    padding-top: 48px;
+    padding-top: 100px;
 }
 .account-code {
     padding: 12px 60px 40px 17px;
     font-family: 'Roboto Mono', monospace;
     word-break: break-all;
+}
+.top-menu {
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    border: 1px solid #D9E4EF;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.04);
+    padding-bottom: 5px;
+    margin: 0;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+
+}
+.modal-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255, 255, 0.8);
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+.modal-card-body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.modal-card {
+    border: 1px solid #D9E4EF;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.04);
+    padding: 32px;
+    background-color: white;
+    position: absolute;
+    left: 30%;
+    width: 40%;
+    height: 230px;
+    top: calc(50% - 150px);
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.media {
+    display: flex;
+}
+.media-content p {
+    color: #273656;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    padding-bottom: 32px;
+    margin: 0;
+}
+.control input:focus {
+    outline: none;
+}
+
+.control input {
+    background: #FFFFFF;
+    border: 1px solid #D9E4EF;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.04);
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    color: #273656;
+    width: 415px;
+}
+.button {
+    cursor: pointer;
+}
+
+.button:active {
+    outline: none;
+}
+
+
+.modal-card-foot .is-primary {
+    margin-right: 30px;
+    background-color: #357CFF;
+    transition: background-color 0.2s ease-in-out 0s;
+}
+.modal-card-foot .is-primary:hover{
+    background-color: rgba(53, 124, 255, 0.8);
+}
+
+.modal-card-foot {
+    display: flex;
+    flex-direction: row-reverse;
+    width: max-content;
+    margin: 0 auto;
 }

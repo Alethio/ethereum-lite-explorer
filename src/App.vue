@@ -1,9 +1,18 @@
 <template>
 <div id="app" class="is-fullheight">
+  <div class="column has-text-right top-menu ">
+    <div class="top-menu-item-link label">
+      Best block:
+    </div>
+    <BlockNumber :value="lastBlock" :isLink="true"/>
+    <div  v-on:click="lib_openSearch()" class="top-menu-item-link button" style="margin-right:5px;">
+      Search
+    </div>
+  </div>
+
   <router-view/>
 </div>
 </template>
-
 <style>
 html,
 body {
@@ -35,24 +44,37 @@ body {
   border-width: 1px;
 }
 
-.top-menu {
-  background-color: #151D36;
-  margin: 0px;
-}
-
-.top-menu-item {
-  color: #FFFFFF;
-  padding: 4px;
-}
-
 .top-menu-item-link {
   cursor: pointer;
 }
+  .button {
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out 0s, border-color 0.2s ease-in-out 0s;
+    font-weight: 700;
+    box-sizing: border-box;
+    vertical-align: middle;
+    background-color: rgb(167, 181, 209);
+    color: rgb(255, 255, 255);
+    padding: 7px 16px 8px;
+    margin: 2px 0 0;
+    border-width: 1px;
+    border-style: solid;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .button:hover {
+    background-color: #357CFF;
+  }
 </style>
 
 <script>
-export default {
+import BlockNumber from '@/components/ui/BlockNumber.vue';
 
+export default {
+  components: {
+    BlockNumber,
+  },
   mounted() {
     // We start here the watcher for last blocks
     this.lib_monitorLastBlock();
