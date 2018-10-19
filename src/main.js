@@ -188,7 +188,8 @@ Vue.mixin({
         if (!input.startsWith('0x')) {
           input = '0x' + input;
         }
-        if (this.$store.state.w3.utils.isHexStrict(input)) {
+        var re = /[0-9A-Fa-f]/g;
+        if (re.test(input)) {
           if (input.length == 42) {
             return ({'type': 'account', 'value': input})
           } else if (input.length == 66) {
