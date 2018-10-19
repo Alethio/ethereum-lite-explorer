@@ -180,7 +180,7 @@ Vue.mixin({
       if (input == null) {
         return ({'type': 'none', 'value': input})
       }
-      input = input.replace(/[^A-Z0-9]+/ig, "");
+      input = input.replace(/0[xX][^A-Z0-9]+/ig, "");
       input = input.toLowerCase();
       if ('' + parseInt(input) == input && !input.startsWith('0x')) {
         return ({'type': 'block', 'value': parseInt(input)})
