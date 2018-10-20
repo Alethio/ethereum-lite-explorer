@@ -23,7 +23,7 @@ div {
 }
 
 .block-logo-container {
-    padding: 100px 56px 0 72px;
+    padding: 55px 56px 0 72px;
 }
 
 .block-logo {
@@ -51,7 +51,7 @@ div {
     width: 100%;
 }
 .block-content {
-    padding-top: 100px;
+    padding-top: 55px;
     padding-left: 50px;
 }
 .pair {
@@ -198,7 +198,7 @@ th:last-child {
 }
 
 .tx-logo-container {
-    padding: 100px 56px 45px 72px;
+    padding: 55px 56px 45px 72px;
 }
 .tx-logo {
     padding: 15px 24px 15px 6px;
@@ -267,7 +267,7 @@ th:last-child {
 }
 
 .account-avatar-container {
-    padding: 100px 115px 0 72px;
+    padding: 55px 115px 0 72px;
 }
 
 .account-avatar {
@@ -278,7 +278,7 @@ th:last-child {
     max-height: 74px;
 }
 .account-content {
-    padding-top: 100px;
+    padding-top: 55px;
 }
 .account-code {
     padding: 12px 60px 40px 17px;
@@ -390,3 +390,37 @@ th:last-child {
     width: max-content;
     margin: 0 auto;
 }
+
+.left-header {
+    min-width: 80px;
+    width: 80px;
+    min-height: 100%;
+    border-right: 1px solid #D0DEF2;
+    padding-top: 24px;
+    box-sizing: border-box;
+}
+.iconAlethio {
+    fill: #273656 !important;
+    overflow: visible;
+}
+
+.iconAlethio svg {
+    overflow: visible;
+}
+.iconSearch {
+    cursor: pointer;
+    fill: #D0DEF2 !important;
+    transition: fill linear 0.2s;
+}
+.iconSearch:hover {
+    fill: #357CFF !important;
+}
+.search-icon-container {
+    padding: 32px 20px;
+}
+
+.min100 {
+    min-height: 100%;
+    height: 100%;
+}
+

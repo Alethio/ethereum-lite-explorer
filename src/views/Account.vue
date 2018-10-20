@@ -1,6 +1,28 @@
 <template>
-<div id="account" class="columns" >
-  <div class="column is-5 flex-box">
+<div id="account" class="columns min100" >
+  <div class="column is-5 flex-box min100">
+    <div class="left-header">
+      <div class="iconAlethio">
+        <icon-base icon-name="alethio"
+                   width="32"
+                   height="32"
+                   viewBox="2 24 24 24"
+        >
+          <icon-alethio />
+        </icon-base>
+      </div>
+      <div class="search-icon-container">
+        <div v-on:click="lib_openSearch()" class="iconSearch">
+          <icon-base icon-name="search"
+                     width="36"
+                     height="36"
+                     viewBox="-4 0 24 24"
+          >
+            <icon-search />
+          </icon-base>
+        </div>
+      </div>
+    </div>
     <div class="account-avatar-container">
       <div class="account-avatar">
         <div class="identicon-container">
@@ -38,12 +60,18 @@
 <script>
 import HashAvatar from '@/components/ui/HashAvatar.vue';
 import AccountHash from '@/components/ui/AccountHash.vue';
+import IconBase from '@/components/icons/IconBase.vue';
+import IconSearch from '@/components/icons/IconSearch.vue';
+import IconAlethio from '@/components/icons/IconAlethio.vue';
 
 export default {
   name: 'account',
   components: {
     HashAvatar,
     AccountHash,
+    IconBase,
+    IconSearch,
+    IconAlethio,
   },
   data() {
     return ({

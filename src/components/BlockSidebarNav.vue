@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return ({
-      range: parseInt((window.innerHeight - 335) / 32, 10),
+      range: parseInt((window.innerHeight - 280) / 32, 10),
       blocks: [],
       maximum: -Infinity,
     });

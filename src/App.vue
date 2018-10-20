@@ -1,19 +1,25 @@
 <template>
 <div id="app" class="is-fullheight">
-  <div class="column has-text-right top-menu ">
-    <div class="top-menu-item-link label">
-      Best block:
-    </div>
-    <BlockNumber :value="lastBlock" :isLink="true"/>
-    <div  v-on:click="lib_openSearch()" class="top-menu-item-link button search-btn" style="margin-right:5px;">
-      Search
-    </div>
-  </div>
+  <!--<div class="column has-text-right top-menu ">-->
+    <!--<div class="top-menu-item-link label">-->
+      <!--Best block:-->
+    <!--</div>-->
+    <!--<BlockNumber :value="lastBlock" :isLink="true"/>-->
+    <!--<div  v-on:click="lib_openSearch()" class="top-menu-item-link button search-btn" style="margin-right:5px;">-->
+      <!--Search-->
+    <!--</div>-->
+  <!--</div>-->
 
   <router-view/>
 </div>
 </template>
 <style>
+  .icon {
+    fill: #00d1b2 !important;
+  }
+  .icon:hover {
+    fill: #0a0a0a !important;
+  }
 html,
 body {
   height: 100%;
@@ -74,10 +80,14 @@ body {
 
 <script>
 import BlockNumber from '@/components/ui/BlockNumber.vue';
+import IconBase from '@/components/icons/IconBase.vue';
+import IconSearch from '@/components/icons/IconSearch.vue';
 
 export default {
   components: {
     BlockNumber,
+    IconBase,
+    IconSearch,
   },
   mounted() {
     // We start here the watcher for last blocks
