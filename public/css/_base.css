@@ -93,6 +93,15 @@ div {
     letter-spacing: 0.2px;
     font-weight: 500;
 }
+.uncle-counter {
+    padding: 1px 8px 3px;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    font-weight: 500;
+    border: 1px solid #357CFF;
+    color: #357CFF;
+}
 .erc-counter {
     background-color: #48E2A2;
     padding: 1px 8px 3px;
@@ -424,3 +433,93 @@ th:last-child {
     height: 100%;
 }
 
+.home {
+    background-color: #F7F8FA;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.centered-absolute {
+    position: absolute;
+    top: calc(50% - 65px);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 830px;
+}
+.home-search-container {
+    margin-top: 32px;
+    box-sizing: border-box;
+    padding: 16px;
+    background-color: #FFFFFF;
+    box-shadow: 0 8px 16px 0 rgba(51,69,100,0.07);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.searchbar-alethio-logo {
+    fill: #273656 !important;
+}
+
+.home-search-container input:focus {
+    outline: none;
+}
+
+.home-search-container input {
+    box-sizing: border-box;
+    font-family: 'Barlow', sans-serif !important;
+    width: 663px;
+    min-width: 663px;
+    border: none;
+    padding: 0 56px 4px 12px;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0;
+    font-weight: 500;
+    color:  #273656;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-family: 'Barlow', sans-serif !important;
+    color: #273656;;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    font-family: 'Barlow', sans-serif !important;
+    color: #273656;;
+}
+:-ms-input-placeholder { /* IE 10+ */
+    font-family: 'Barlow', sans-serif !important;
+    color: #273656;;
+}
+:-moz-placeholder { /* Firefox 18- */
+    font-family: 'Barlow', sans-serif !important;
+    color: #273656;;
+}
+
+.submit-container {
+    cursor: pointer;
+    display: flex;
+    background-color: #357CFF;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out 0s;
+    color: white;
+    padding: 8px 16px 6px 8px;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+}
+.submit-container:hover {
+    background-color: rgba(53, 124, 255, 0.8);
+}
+
+.searchbar-search-icon {
+    fill: white !important;
+}
+.search-text {
+    padding-left: 12px;
+}
+.white-bg-value {
+    background-color: white;
+    padding: 1px 8px 3px;
+}

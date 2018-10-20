@@ -169,10 +169,24 @@ Vue.mixin({
     lib_monitorLastBlock() {
       const context = this;
       this.$store.state.w3.eth.getBlockNumber((err, number) => {
-        //console.log("We get latest block", err, number)
         if (!err) {
           context.$store.commit('setLastBlock', number);
+          this.$store.state.w3.eth.getBlock(number, false, (err, block) => {
+            if (!err) {
+              context.$store.commit('setLastBlockFull', block);
+            }
+          });
         }
+        this.$store.state.w3.net.getPeerCount((err2, count) => {
+          if (!err2) {
+            context.$store.commit('setPeers', count);
+          }
+        });
+        this.$store.state.w3.version.getNode((err3, version) => {
+          if (!err3) {
+            context.$store.commit('setNodeType', version);
+          }
+        });
         setTimeout(context.lib_monitorLastBlock, 6000);
       });
     },
