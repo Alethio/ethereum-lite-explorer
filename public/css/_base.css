@@ -250,6 +250,7 @@ th:last-child {
 }
 .tx-sideBar {
     padding-bottom: 40px;
+    box-sizing: border-box;
 }
 .separated {
     padding-top: 56px;
@@ -288,6 +289,7 @@ th:last-child {
 }
 .account-content {
     padding-top: 55px;
+    height: max-content;
 }
 .account-code {
     padding: 12px 60px 40px 17px;
@@ -430,7 +432,7 @@ th:last-child {
 }
 
 .min100 {
-    min-height: 100%;
+    min-height: max-content;
     height: 100%;
 }
 
