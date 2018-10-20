@@ -25,6 +25,11 @@ Vue.use(VueTimeago, {name: 'Timeago', locale: 'en'});
  */
 Vue.mixin({
   methods: {
+    lib_goHome() {
+      this.$router.push({
+        path: '/',
+      });
+    },
     /*
      * Navigate to a block information page
      */

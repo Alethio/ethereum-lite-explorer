@@ -1,7 +1,7 @@
 <template>
 <div id="block" class="columns is-fullheight is-mobile flex-box">
   <div class="left-header">
-    <div class="iconAlethio">
+    <div class="iconAlethio" v-on:click="lib_goHome()">
       <icon-base icon-name="alethio"
                  width="32"
                  height="32"

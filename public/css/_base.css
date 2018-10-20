@@ -409,6 +409,7 @@ th:last-child {
     box-sizing: border-box;
 }
 .iconAlethio {
+    cursor: pointer;
     fill: #273656 !important;
     overflow: visible;
 }

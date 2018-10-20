@@ -2,7 +2,7 @@
 <div id="account" class="columns min100" >
   <div class="column is-5 flex-box min100">
     <div class="left-header">
-      <div class="iconAlethio">
+      <div class="iconAlethio" v-on:click="lib_goHome()">
         <icon-base icon-name="alethio"
                    width="32"
                    height="32"
