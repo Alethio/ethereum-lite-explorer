@@ -105,15 +105,9 @@
                         </b-table-column>
                     </template>
                     <template slot="empty">
-                       <section class="section">
+                       <section class="section no-txs">
                            <div class="content has-text-grey has-text-centered">
-                               <p>
-                                   <b-icon
-                                       icon="emoticon-sad"
-                                       size="is-large">
-                                   </b-icon>
-                               </p>
-                               <p>No transaction to show.</p>
+                               <div class="value">Don't have data to show.</div>
                            </div>
                        </section>
                     </template>

@@ -552,6 +552,10 @@ th:last-child {
     color: #A7B5D1;
 }
 
+.is-empty {
+    background: #F7F8FA !important;
+}
 
-
-
+.no-txs {
+    padding-left: 222px;
+}
