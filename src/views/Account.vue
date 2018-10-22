@@ -45,7 +45,7 @@
       <div class="flex-box">
         <div class="pair">
           <div class="label minW140">Balance</div>
-          <div class="value" v-if="account.balance_eth || account.balance_eth === 0">{{ account.balance_eth.toFixed(4) }} ETH</div>
+          <div class="value" v-if="account.balance_eth || account.balance_eth === 0">{{ this.numberWithCommas(account.balance_eth.toFixed(4)) }} ETH</div>
         </div>
       </div>
       <div class="flex-box">
@@ -63,6 +63,7 @@ import AccountHash from '@/components/ui/AccountHash.vue';
 import IconBase from '@/components/icons/IconBase.vue';
 import IconSearch from '@/components/icons/IconSearch.vue';
 import IconAlethio from '@/components/icons/IconAlethio.vue';
+import HelpersMixin from '../../src/mixins/Helpers';
 
 export default {
   name: 'account',
@@ -73,6 +74,7 @@ export default {
     IconSearch,
     IconAlethio,
   },
+  mixins: [HelpersMixin],
   data() {
     return ({
       currentAddress: '',
