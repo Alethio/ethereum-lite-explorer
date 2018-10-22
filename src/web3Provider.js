@@ -7,7 +7,6 @@ let w3 = null;
 const connectionType = process.env.CONNECTION_TYPE || CONNECTION_JSON_RPC;
 const nodeUrl = process.env.NODE_URL || 'https://mainnet.infura.io/alethio';
 
-
 // We check if Metamask or someone else has already injected a web3 instance
 // Remove this line if you want to direcly inject your own web3
 if (typeof web3 !== 'undefined' || false) {

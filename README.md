@@ -51,10 +51,10 @@ npm run build
 docker build . -t block_explorer
 ```
 
-then run the image:
+then run the image example on ropsten:
 
 ```
-docker run -p 8080:8080 -e  "NODE_URL=https://mainnet.infura.io/alethio" -e "CONNECTION_TYPE=json_rpc" block_explorer
+docker run -p 8080:8080  -p 8181:8181 -e  "NODE_URL=https://ropsten.infura.io/alethio" -e "CONNECTION_TYPE=json_rpc" block_explorer
 ```
 
 
