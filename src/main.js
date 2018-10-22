@@ -212,7 +212,7 @@ Vue.mixin({
           if (input.length == 42) {
             return ({'type': 'account', 'value': input})
           } else if (input.length == 66) {
-            return ({'type': 'tx', 'value': input})
+            return ({'type': 'bkOrTx', 'value': input})
           } else {
             return ({'type': 'none', 'value': input})
           }
@@ -224,11 +224,19 @@ Vue.mixin({
     lib_processSearch(input) {
       var inputType = this.lib_guessInputType(input);
       // console.log(inputType)
-      if (inputType.type == 'tx') {
-        this.lib_goToTx(inputType.value)
-      } else if (inputType.type == 'block') {
+      if (inputType.type === 'bkOrTx') {
+        this.$store.state.w3.eth.getBlock(inputType.value, false, (err, result) =>{
+          if (!err) {
+            if (result && result.number) {
+              this.lib_goToBlock(result.number);
+            } else {
+              this.lib_goToTx(inputType.value);
+            }
+          }
+        });
+      } else if (inputType.type === 'block') {
         this.lib_goToBlock(inputType.value)
-      } else if (inputType.type == 'account') {
+      } else if (inputType.type === 'account') {
         this.lib_goToAccount(inputType.value)
       } else {
         this.$router.push({
