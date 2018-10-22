@@ -197,35 +197,35 @@ Vue.mixin({
     },
     lib_guessInputType(input) {
       if (input == null) {
-        return ({'type': 'none', 'value': input})
+        return ({'type': 'none', 'value': input});
       }
       input = input.replace(/0[xX][^A-Z0-9]+/ig, "");
       input = input.toLowerCase();
-      if ('' + parseInt(input) == input && !input.startsWith('0x')) {
-        return ({'type': 'block', 'value': parseInt(input)})
+      if ('' + parseInt(input) === input && !input.startsWith('0x')) {
+        return ({'type': 'block', 'value': parseInt(input)});
       } else {
         if (!input.startsWith('0x')) {
           input = '0x' + input;
         }
         var re = /[0-9A-Fa-f]/g;
         if (re.test(input)) {
-          if (input.length == 42) {
-            return ({'type': 'account', 'value': input})
-          } else if (input.length == 66) {
-            return ({'type': 'bkOrTx', 'value': input})
+          if (input.length === 42) {
+            return ({'type': 'account', 'value': input});
+          } else if (input.length === 66) {
+            return ({'type': 'bkOrTx', 'value': input});
           } else {
-            return ({'type': 'none', 'value': input})
+            return ({'type': 'none', 'value': input});
           }
         }
 
       }
-      return ({'type': 'none', 'value': input})
+      return ({'type': 'none', 'value': input});
     },
     lib_processSearch(input) {
       var inputType = this.lib_guessInputType(input);
       // console.log(inputType)
       if (inputType.type === 'bkOrTx') {
-        this.$store.state.w3.eth.getBlock(inputType.value, false, (err, result) =>{
+        this.$store.state.w3.eth.getBlock(inputType.value, false, (err, result) => {
           if (!err) {
             if (result && result.number) {
               this.lib_goToBlock(result.number);
@@ -235,12 +235,12 @@ Vue.mixin({
           }
         });
       } else if (inputType.type === 'block') {
-        this.lib_goToBlock(inputType.value)
+        this.lib_goToBlock(inputType.value);
       } else if (inputType.type === 'account') {
-        this.lib_goToAccount(inputType.value)
+        this.lib_goToAccount(inputType.value);
       } else {
         this.$router.push({
-          path: `/404`,
+          path: '/404',
         });
       }
     },
