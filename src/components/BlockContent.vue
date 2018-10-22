@@ -93,7 +93,7 @@
                                 sortable
                                 class="normal-column"
                         >
-                            <AddressLink :address="props.row.to" />
+                            <AddressLink :address="props.row.to !== null ? props.row.to : props.row.receipt.contractAddress" />
                         </b-table-column>
                         <b-table-column
                                 field="value_eth"
