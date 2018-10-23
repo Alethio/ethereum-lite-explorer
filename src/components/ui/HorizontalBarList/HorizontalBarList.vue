@@ -6,7 +6,7 @@
                      v-on:item_clicked="$emit('item_clicked', elem.id)"
                      v-bind:class="{ item: true, selected: elem.selected,
                      hidden:elem.value === -1 }"
-                     :percent="(elem.value / maximumValue) * 100" >
+                     :percent="(maximumValue === 0 ? 0 : elem.value / maximumValue) * 100" >
       </HorizontalBar>
     </div>
   </div>
