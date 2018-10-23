@@ -1,7 +1,16 @@
 #!/bin/bash
 
 
-sed -i 's@Object({NODE_ENV:\"production\",BASE_URL:\"\/\"})@Object({NODE_URL: '"'$NODE_URL'"', CONNECTION_TYPE: '"'$CONNECTION_TYPE'"'})@g' js/*
 
+_term() {
+  echo "Caught SIGTERM signal!"
+  kill -TERM "$child" 2>/dev/null
+}
 
-serve -s -l 8080
+trap _term SIGTERM
+
+echo "Doing some initial work...";
+sed -i 's@Object({NODE_ENV:\"production\",BASE_URL:\"\/\"})@Object({NODE_URL: '"'$NODE_URL'"', CONNECTION_TYPE: '"'$CONNECTION_TYPE'"'})@g' js/* & serve -l 8080 -s &
+
+child=$!
+wait "$child"
