@@ -47,8 +47,8 @@
       <AccountHash :value="tx.to"  v-if="tx.to !== null"/>
     </div>
     <div class="pair">
-      <div class="label" v-if="tx.receipt.contractAddress !== null">Creates</div>
-      <AccountHash :value="tx.receipt.contractAddress"  v-if="tx.receipt.contractAddress !== null"/>
+      <div class="label" v-if="tx.receipt && tx.receipt.contractAddress !== null">Creates</div>
+      <AccountHash :value="tx.receipt.contractAddress"  v-if="tx.receipt &&  tx.receipt.contractAddress !== null"/>
     </div>
   </div>
   <div class="flex-box separated">
