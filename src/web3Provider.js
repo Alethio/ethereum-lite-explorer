@@ -4,8 +4,8 @@ const CONNECTION_WEB_SOCKET = 'ws';
 
 let w3 = null;
 // fall back on mainnet infura
-const connectionType = process.env.CONNECTION_TYPE || CONNECTION_JSON_RPC;
-const nodeUrl = process.env.NODE_URL || 'https://mainnet.infura.io/alethio';
+const connectionType = process.env.VUE_APP_CONNECTION_TYPE || CONNECTION_JSON_RPC;
+const nodeUrl = process.env.VUE_APP_NODE_URL || 'https://mainnet.infura.io/alethio';
 // const nodeUrl = process.env.NODE_URL || 'http://localhost:32770/jsonrpc';
 
 // We check if Metamask or someone else has already injected a web3 instance
