@@ -1,29 +1,23 @@
-FROM node:9-alpine
+FROM node:9-alpine AS build
+
+ARG CONNECTION_TYPE=json_rpc
+ARG NODE_URL
+ARG BASE_URL=/
+
+ENV VUE_APP_CONNECTION_TYPE=${CONNECTION_TYPE}
+ENV VUE_APP_NODE_URL=${NODE_URL}
+ENV VUE_APP_BASE_URL=${BASE_URL}
 
 WORKDIR /build
 
-RUN apk update && \
-    apk upgrade && \
-    apk add git && \
-    apk add python && \
-    apk add build-base
-ADD package.json package-lock.json ./
-RUN yarn global add serve
-
+RUN apk add --update git python build-base
+COPY package.json package-lock.json ./
 RUN npm install
 
-
-ADD . .
-
+COPY . .
 RUN npm run build
 
-RUN mv dist /app
-RUN cp entrypoint.sh /app/entrypoint.sh
-RUN rm -rf /build
+FROM nginx:stable-alpine
 
-WORKDIR /app
-RUN chmod +x entrypoint.sh
-
-
-EXPOSE 8080
-ENTRYPOINT ["/bin/sh", "/app/entrypoint.sh"]
+COPY --from=build /build/dist /usr/share/nginx/html
+COPY nginx.app.conf /etc/nginx/conf.d/default.conf

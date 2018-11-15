@@ -55,13 +55,13 @@ npm run build
 # Docker 
 1. go to project dir and run:
 ```
-docker build . -t block_explorer
+docker build --build-arg NODE_URL=https://ropsten.infura.io/alethio --build-arg CONNECTION_TYPE=json_rpc --build-arg BASE_URL=/ . -t block_explorer
 ```
 
 then run the image example on ropsten:
 
 ```
-docker run -p 8080:8080  -p 8181:8181 -e  "NODE_URL=https://ropsten.infura.io/alethio" -e "CONNECTION_TYPE=json_rpc" block_explorer
+docker run -p 8080:8080 block_explorer
 ```
 
 

@@ -1,3 +1,3 @@
 module.exports = {
-  baseUrl: './'
+  baseUrl: process.env.VUE_APP_BASE_URL || './'
 }
