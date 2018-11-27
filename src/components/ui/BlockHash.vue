@@ -1,22 +1,15 @@
 <template>
-<div v-if="value != null" class="hash">
-
-  <v-popover
-  trigger="hover"
-  placement="top"
-  >
-  <!-- This will be the popover target (for the events and position) -->
-  <a v-on:click="lib_goToBlock(number)" class="tooltip-target">{{ value | cleanHash }}</a>
-  <template slot="popover">
-    <p>
-    <strong>
-      {{value}}
-    </strong>
-    </p>
-  </template>
-</v-popover>
-
-</div>
+  <div class="wrapper">
+    <div class="top-tooltip-container">
+      <div class="arrow"></div>
+      <div class="top-tooltip">
+        {{value}}
+      </div>
+    </div>
+    <div v-if="value != null" class="hash">
+      <a v-on:click="lib_goToBlock(number)" class="tooltip-target">{{ value | cleanHash }}</a>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -52,14 +45,49 @@ export default {
 }
 
 .hash {
+  cursor: pointer;
   background-color: rgb(167, 181, 209);
   color: rgb(255, 255, 255);
-  float: left;
-  padding-right: 7px;
-  padding-left: 7px;
+  padding: 1px 8px 3px;
   font-size: 20px;
   line-height: 24px;
   font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.wrapper {
+  padding: 10px 8px;
+  position: relative;
+}
+
+.wrapper:hover .top-tooltip-container {
+  display: block;
+}
+
+.top-tooltip-container {
+  display: none;
+  padding: 2px 0 8px;
+  position: absolute;
+  top: -28px;
+  left: -200px;
+}
+.top-tooltip {
+  background-color: white;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #273656;
+  padding: 4px 16px;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.04);
+}
+.arrow {
+  position: absolute;
+  bottom: 4px;
+  left: calc(50% - 4px);
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  background-color: white;
 }
 
 

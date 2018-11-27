@@ -25,6 +25,11 @@ Vue.use(VueTimeago, {name: 'Timeago', locale: 'en'});
  */
 Vue.mixin({
   methods: {
+    lib_goHome() {
+      this.$router.push({
+        path: '/',
+      });
+    },
     /*
      * Navigate to a block information page
      */
@@ -58,6 +63,7 @@ Vue.mixin({
       } else if (this.$store.state.blocks[blockNumber] == null) {
         this.$store.commit('setPending', blockNumber);
         var context = this;
+        // debugger;
         this.$store.state.w3.eth.getBlock(`${blockNumber}`, true, (err, block) => {
           if (block != null) {
             context.$store.commit('setLastBlock', block.number);
@@ -140,7 +146,7 @@ Vue.mixin({
             } else {
               callback(null, {
                 balance,
-                balance_eth: parseFloat(context.$store.state.w3.utils.fromWei(balance)),
+                balance_eth: parseFloat(context.$store.state.w3.fromWei(balance)),
                 code,
                 isContract: (code != '0x'),
               });
@@ -153,7 +159,7 @@ Vue.mixin({
      ** Internal function to enrich/decode any field of a transaction so render don't have to.
      */
     lib_processTX(transaction) {
-      transaction.value_eth = parseFloat(this.$store.state.w3.utils.fromWei(transaction.value));
+      transaction.value_eth = parseFloat(this.$store.state.w3.fromWei(transaction.value));
       if (transaction.receipt != null) {
         transaction.gas_used_percent = transaction.receipt.gasUsed / transaction.gas * 100;
       }
@@ -168,56 +174,79 @@ Vue.mixin({
     lib_monitorLastBlock() {
       const context = this;
       this.$store.state.w3.eth.getBlockNumber((err, number) => {
-        //console.log("We get latest block", err, number)
         if (!err) {
           context.$store.commit('setLastBlock', number);
+          this.$store.state.w3.eth.getBlock(number, false, (err, block) => {
+            if (!err) {
+              context.$store.commit('setLastBlockFull', block);
+            }
+          });
         }
+        this.$store.state.w3.net.getPeerCount((err2, count) => {
+          if (!err2) {
+            context.$store.commit('setPeers', count);
+          }
+        });
+        this.$store.state.w3.version.getNode((err3, version) => {
+          if (!err3) {
+            context.$store.commit('setNodeType', version);
+          }
+        });
         setTimeout(context.lib_monitorLastBlock, 6000);
       });
     },
     lib_guessInputType(input) {
       if (input == null) {
-        return ({'type': 'none', 'value': input})
+        return ({'type': 'none', 'value': input});
       }
-      input = input.replace(/[^A-Z0-9]+/ig, "");
+      input = input.replace(/0[xX][^A-Z0-9]+/ig, "");
       input = input.toLowerCase();
-      if ('' + parseInt(input) == input && !input.startsWith('0x')) {
-        return ({'type': 'block', 'value': parseInt(input)})
+      if ('' + parseInt(input) === input && !input.startsWith('0x')) {
+        return ({'type': 'block', 'value': parseInt(input)});
       } else {
         if (!input.startsWith('0x')) {
           input = '0x' + input;
         }
-        if (this.$store.state.w3.utils.isHexStrict(input)) {
-          if (input.length == 42) {
-            return ({'type': 'account', 'value': input})
-          } else if (input.length == 66) {
-            return ({'type': 'tx', 'value': input})
+        var re = /[0-9A-Fa-f]/g;
+        if (re.test(input)) {
+          if (input.length === 42) {
+            return ({'type': 'account', 'value': input});
+          } else if (input.length === 66) {
+            return ({'type': 'bkOrTx', 'value': input});
           } else {
-            return ({'type': 'none', 'value': input})
+            return ({'type': 'none', 'value': input});
           }
         }
 
       }
-      return ({'type': 'none', 'value': input})
+      return ({'type': 'none', 'value': input});
     },
     lib_processSearch(input) {
       var inputType = this.lib_guessInputType(input);
       // console.log(inputType)
-      if (inputType.type == 'tx') {
-        this.lib_goToTx(inputType.value)
-      } else if (inputType.type == 'block') {
-        this.lib_goToBlock(inputType.value)
-      } else if (inputType.type == 'account') {
-        this.lib_goToAccount(inputType.value)
+      if (inputType.type === 'bkOrTx') {
+        this.$store.state.w3.eth.getBlock(inputType.value, false, (err, result) => {
+          if (!err) {
+            if (result && result.number) {
+              this.lib_goToBlock(result.number);
+            } else {
+              this.lib_goToTx(inputType.value);
+            }
+          }
+        });
+      } else if (inputType.type === 'block') {
+        this.lib_goToBlock(inputType.value);
+      } else if (inputType.type === 'account') {
+        this.lib_goToAccount(inputType.value);
       } else {
         this.$router.push({
-          path: `/404`,
+          path: '/404',
         });
       }
     },
     lib_openSearch() {
       this.$dialog.prompt({
-        message: `Enter a blocknumber, transaction hash or address.`,
+        message: `Enter a block number, transaction hash or address.`,
         inputAttrs: {
           placeholder: 'e.g. 0x45434...',
           maxlength: 100,

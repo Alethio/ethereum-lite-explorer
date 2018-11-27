@@ -28,6 +28,13 @@ Check our tutorials about:
 
 # Getting started
 
+## Env variables
+```
+VUE_APP_CONNECTION_TYPE='json_rpc'
+VUE_APP_NODE_URL='https://mainnet.infura.io/v3/d70ece33c9754843b5181a4c07f49a4f'
+VUE_APP_BASE_URL='/'
+```
+
 ## Project setup
 ```
 npm install
@@ -42,6 +49,21 @@ npm run serve
 ```
 npm run build
 ```
+
+
+
+# Docker 
+1. go to project dir and run:
+```
+docker build --build-arg NODE_URL=https://ropsten.infura.io/alethio --build-arg CONNECTION_TYPE=json_rpc --build-arg BASE_URL=/ . -t block_explorer
+```
+
+then run the image example on ropsten:
+
+```
+docker run -p 8080:8080 block_explorer
+```
+
 
 # License
 

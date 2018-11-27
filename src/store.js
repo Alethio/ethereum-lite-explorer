@@ -17,6 +17,9 @@ export default new Vuex.Store({
     totalBlocks: 0,
     totalTransactions: 0,
     countPending: 0,
+    lastBlockFull: null,
+    peers: 0,
+    nodeType: null,
   },
   /*
   *  Mutations are used by the internal library and should not be called by someone else.
@@ -41,6 +44,25 @@ export default new Vuex.Store({
     setLastBlock(state, blockNumber) {
       if (state.lastBlock < blockNumber) {
         state.lastBlock = blockNumber;
+      }
+    },
+    setLastBlockFull(state, block) {
+      if (state.lastBlockFull) {
+        if (state.lastBlockFull.number < block.number) {
+          state.lastBlockFull = block;
+        }
+      } else {
+        state.lastBlockFull = block;
+      }
+    },
+    setPeers(state, count) {
+      if (state.peers !==  count) {
+        state.peers = count;
+      }
+    },
+    setNodeType(state, type) {
+      if (state.nodeType !== type) {
+        state.nodeType = type;
       }
     },
   },

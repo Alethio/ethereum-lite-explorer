@@ -1,124 +1,93 @@
 
 <template>
-<div style="">
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">BLOCK</span>
-        </div>
-        <div class="column is-3">
-          <BlockNumber :value="tx.blockNumber" :isLink="true"/>
-        </div>
+<div class="block-content">
+  <div class="flex-box">
+    <div class="pair">
+      <div class="label minW140">Hash</div>
+      <TxHash :value="tx.hash" />
+    </div>
+    <div class="pair">
+      <div class="tx-value-label value-grayed" v-if="tx.value_eth === 0">Value</div>
+      <div class="value gray" v-if="tx.value_eth === 0">
+        {{ this.numberWithCommas(tx.value_eth)}} ETH
+      </div>
+      <div class="tx-value-label" v-if="tx.value_eth !== 0">Value</div>
+      <div class="value" v-if="tx.value_eth !== 0 && tx.value_eth">
+        {{ this.numberWithCommas(tx.value_eth.toFixed(4))}} ETH
       </div>
     </div>
   </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">HASH</span>
-        </div>
-        <div class="column is-3">
-          <TxHash :value="tx.hash" />
-        </div>
+  <div class="flex-box">
+    <div class="pair">
+      <div class="label minW140">Block</div>
+      <BlockNumber :value="tx.blockNumber" :isLink="true"/>
+    </div>
+  </div>
+  <div class="flex-box">
+    <div class="pair">
+      <div class="label minW140">Position</div>
+      <div class="value">
+        {{ tx.transactionIndex}}
+      </div>
+    </div>
+    <div class="pair">
+      <div class="label">Nonce</div>
+      <div class="value">
+        {{ this.numberWithCommas(tx.nonce)}}
       </div>
     </div>
   </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Value</span>
-        </div>
-        <div class="column is-3">
-          {{ tx.value_eth}} ETH
-        </div>
+  <div class="flex-box">
+    <div class="pair">
+      <div class="label minW140">From</div>
+      <AccountHash :value="tx.from" />
+    </div>
+    <div class="pair">
+      <div class="label" v-if="tx.to !== null">To</div>
+      <AccountHash :value="tx.to"  v-if="tx.to !== null"/>
+    </div>
+    <div class="pair">
+      <div class="label" v-if="tx.receipt && tx.receipt.contractAddress !== null">Creates</div>
+      <AccountHash :value="tx.receipt.contractAddress"  v-if="tx.receipt &&  tx.receipt.contractAddress !== null"/>
+    </div>
+  </div>
+  <div class="flex-box separated">
+    <div class="pair">
+      <div class="label minW140">Gas limit</div>
+      <div class="value">
+        {{ this.numberWithCommas(tx.gas)}}
+      </div>
+    </div>
+    <div class="pair">
+      <div class="label">Gas price</div>
+      <div class="value">
+        {{ (tx.gasPrice / Math.pow(10, 18)).toFixed(9)}} ETH
+      </div>
+      <div class="value gray">
+        {{ tx.gasPrice / Math.pow(10, 9)}} Gwei
       </div>
     </div>
   </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">FROM</span>
-        </div>
-        <div class="column is-3">
-          <AccountHash :value="tx.from" />
-        </div>
+  <div class="flex-box">
+    <div class="pair">
+      <div class="label minW140">Gas used by tx</div>
+      <div class="value" v-if="tx.receipt">
+        {{ this.numberWithCommas(tx.receipt.gasUsed)}}
+        <span class="percentage">{{((tx.receipt.gasUsed / tx.gas) * 100).toFixed(2)}}%</span>
+      </div>
+    </div>
+    <div class="pair">
+      <div class="label">Tx fee</div>
+      <div class="value" v-if="tx.receipt">
+        {{ ((tx.receipt.gasUsed * tx.gasPrice) / Math.pow(10, 18)).toFixed(9)}} ETH
       </div>
     </div>
   </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">TO</span>
-        </div>
-        <div class="column is-3">
-          <AccountHash :value="tx.to" />
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Position</span>
-        </div>
-        <div class="column is-3">
-          {{ tx.transactionIndex}}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Nonce</span>
-        </div>
-        <div class="column is-3">
-          {{ tx.nonce}}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Gas Limit</span>
-        </div>
-        <div class="column is-3">
-          {{ tx.gas}}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Gas price</span>
-        </div>
-        <div class="column is-3">
-          {{ tx.gasPrice}}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Gas used</span>
-        </div>
-        <div v-if="tx.receipt != null" class="column is-3">
-          {{ tx.receipt.gasUsed}}
-        </div>
+  <div class="flex-box">
+    <div class="pair">
+      <div class="label minW140">Cummulative gas used</div>
+      <div class="value" v-if="tx.receipt">
+        {{ this.numberWithCommas(tx.receipt.cumulativeGasUsed)}}
       </div>
     </div>
   </div>
@@ -128,6 +97,7 @@
 
 <script>
 import Vue from 'vue';
+import HelpersMixin from '../../src/mixins/Helpers';
 
 import Hash from '@/components/ui/Hash.vue';
 import TxHash from '@/components/ui/TxHash.vue';
@@ -145,6 +115,7 @@ export default {
   components: {
     AddressLink, TransactionLink, Hash, TxHash, AccountHash, BlockNumber,
   },
+  mixins: [HelpersMixin],
   data() {
     return ({
       tx: {},

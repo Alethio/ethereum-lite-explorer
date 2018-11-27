@@ -1,149 +1,127 @@
 
 <template>
-<div style="">
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">BLOCK</span>
+    <div>
+        <div class="block-content">
+            <div class="flex-box">
+                <div class="pair">
+                    <div class="label minW140">Block</div>
+                    <BlockNumber :value="block.number" />
+                </div>
+                <div class="pair">
+                    <div class="label">Time</div>
+                    <TimeStamp :value="block.timestamp" />
+                </div>
+            </div>
+            <div class="flex-box">
+                <div class="pair">
+                    <div class="label minW140">Hash</div>
+                    <Hash :value="block.hash" />
+                </div>
+                <div class="pair">
+                    <div class="label">Parent</div>
+                    <BlockHash :number="block.number - 1" :value="block.parentHash" />
+                </div>
+            </div>
+            <div class="flex-box">
+                <div class="pair">
+                    <div class="label minW140">Nonce</div>
+                    <div class="value">
+                        {{ block.nonce }}
+                    </div>
+                </div>
+                <div class="pair">
+                    <div class="label">Size</div>
+                    <div class="value">
+                        {{ this.numberWithCommas(block.size) }} bytes
+                    </div>
+                </div>
+            </div>
+            <div class="flex-box">
+                <div class="pair">
+                    <div class="label minW140">Transactions</div>
+                    <div class="counter-container">
+                        <div class="tx-counter">
+                            {{ block.transactions == null ? 0 :
+                            this.numberWithCommas(block.transactions.length) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="pair">
+                    <div class="label">ERC20 Transfers</div>
+                    <ERC20Transfers  v-bind:block="block" />
+                </div>
+            </div>
         </div>
-        <div class="column is-3">
-          <BlockNumber :value="block.number" />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Time</span>
-        </div>
-        <div class="column is-3">
-          <TimeStamp :value="block.timestamp" />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">HASH</span>
-        </div>
-        <div class="column is-3">
-          <Hash :value="block.hash" />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Parent</span>
-        </div>
-        <div class="column is-3">
-          <BlockHash :number="block.number - 1" :value="block.parentHash" />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Nonce</span>
-        </div>
-        <div class="column is-3">
-          {{ block.nonce }}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Size</span>
-        </div>
-        <div class="column is-3">
-          {{ block.size }}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">Transactions</span>
-        </div>
-        <div class="column is-5">
-          <span>
-          {{ block.transactions == null ? 0 : block.transactions.length }}
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column is-12">
-      <div class="columns is-mobile">
-        <div class="column is-2 has-text-right">
-          <span class="heading is-1 has-text-right">ERC20 Transfers</span>
-        </div>
-        <div class="column is-5">
-          <span>
-           <ERC20Transfers  v-bind:block="block" />
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="columns">
-    <div class="column is-12">
-      <b-table :data="transactions" default-sort="transactionIndex" default-sort-direction="asc" :per-page="20" :paginated="true" :pagination-simple="true">
-        <template slot-scope="props">
-                <b-table-column field="transactionIndex" label="ID" sortable numeric>
-                    {{ props.row.transactionIndex }}
-                </b-table-column>
-                <b-table-column field="hash" label="HASH" sortable>
-                <TransactionLink :transaction="props.row.hash" />
-                </b-table-column>
-                <b-table-column field="from" label="FROM" sortable>
-                    <AddressLink :address="props.row.from" />
-                </b-table-column>
-                <b-table-column field="to" label="TO" sortable>
-                    <AddressLink :address="props.row.to" />
-                </b-table-column>
-                <b-table-column field="value_eth" label="VALUE" sortable>
-                    {{ props.row.value_eth }}
-                </b-table-column>
-        </template>
-        <template slot="empty">
-               <section class="section">
-                   <div class="content has-text-grey has-text-centered">
-                       <p>
-                           <b-icon
-                               icon="emoticon-sad"
-                               size="is-large">
-                           </b-icon>
-                       </p>
-                       <p>No transaction to show.</p>
-                   </div>
-               </section>
-           </template>
-      </b-table>
+        <div class="columns txs-table-container">
+            <div class="column is-12">
+                <b-table :data="transactions"
+                         default-sort="transactionIndex"
+                         default-sort-direction="asc"
+                         :per-page="20" :paginated="true"
+                         :pagination-simple="true"
+                >
+                    <template slot-scope="props">
+                        <b-table-column
+                                field="transactionIndex"
+                                label="ID"
+                                sortable
+                                numeric
+                                class="first-column"
+                        >
+                            {{ props.row.transactionIndex }}
+                        </b-table-column>
+                        <b-table-column
+                                field="hash"
+                                label="HASH"
+                                sortable
+                                class="normal-column"
+                        >
+                            <TransactionLink :transaction="props.row.hash" />
+                        </b-table-column>
+                        <b-table-column
+                                field="from"
+                                label="FROM"
+                                sortable
+                                class="normal-column"
+                        >
+                            <AddressLink :address="props.row.from" />
+                        </b-table-column>
+                        <b-table-column
+                                field="to"
+                                label="TO"
+                                sortable
+                                class="normal-column"
+                        >
+                            <AddressLink :address="props.row.to !== null ? props.row.to : props.row.receipt.contractAddress" />
+                        </b-table-column>
+                        <b-table-column
+                                field="value_eth"
+                                label="VALUE (ETH)"
+                                sortable
+                                class="last-column"
+                        >
+                            {{ props.row.value_eth.toFixed(4) }}
+                        </b-table-column>
+                    </template>
+                    <template slot="empty">
+                       <section class="section no-txs">
+                           <div class="content has-text-grey has-text-centered">
+                               <div class="value">Don't have data to show.</div>
+                           </div>
+                       </section>
+                    </template>
+                </b-table>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+
 </template>
 
 
 <script>
 import Vue from 'vue';
+import HelpersMixin from '../../src/mixins/Helpers';
 
 import Hash from '@/components/ui/Hash.vue';
 import BlockHash from '@/components/ui/BlockHash.vue';
@@ -162,6 +140,7 @@ export default {
   components: {
     AddressLink, TransactionLink, Hash, BlockHash, BlockNumber, TimeStamp, ERC20Transfers,
   },
+  mixins: [HelpersMixin],
   data() {
     return ({
       block: {},
@@ -171,7 +150,7 @@ export default {
   },
   watch: {
     async currentBlock() {
-      if (this.currentBlock != -1) {
+      if (this.currentBlock !== -1) {
         const context = this;
 
         // We save a UUID to prevent old callbacks from also giving their results
@@ -187,7 +166,7 @@ export default {
           // For every individual transaction we fill the table.
           for (let i = 0; i < context.block.transactions.length; i++) {
             context.lib_getTransaction(context.block.transactions[i], true, (err, tx) => {
-              if (tx != null && uid == context.transactions_uid) {
+              if (tx != null && uid === context.transactions_uid) {
                 context.transactions.push(tx);
               }
             });

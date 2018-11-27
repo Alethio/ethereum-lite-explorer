@@ -1,7 +1,13 @@
 <template>
-  <div style="height:100%; width: 100%" class="hello">
-  <div v-for="elem in elements">
-    <HorizontalBar :label="'#' + elem.id" v-on:item_clicked="$emit('item_clicked', elem.id)" v-bind:class="{ item: true, selected: elem.selected, hidden:elem.value == -1 }" :percent="(elem.value / maximumValue) * 100" ></HorizontalBar>
+  <div class="blocks-list">
+    <div v-for="elem in elements" :key="elem.id" style="overflow: visible">
+      <HorizontalBar :label="'# ' + elem.id"
+                     :value="elem.value"
+                     v-on:item_clicked="$emit('item_clicked', elem.id)"
+                     v-bind:class="{ item: true, selected: elem.selected,
+                     hidden:elem.value === -1 }"
+                     :percent="(maximumValue === 0 ? 0 : elem.value / maximumValue) * 100" >
+      </HorizontalBar>
     </div>
   </div>
 </template>
