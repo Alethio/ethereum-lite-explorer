@@ -29,7 +29,7 @@ export default {
   },
   filters: {
     timestampToText(timestamp) {
-      var d = new Date(timestamp * 1000);
+      const d = new Date(timestamp * 1000);
       return (d.toLocaleString());
     },
   },
