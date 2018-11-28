@@ -1,4 +1,4 @@
-# Ethstats Light
+# EthStats Lite
 
 An Ethereum open source, decentralized block explorer. You can deploy it anywhere you want and connect to the JSONRPC interface of your choice.
 
