@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "VUE_APP_BASE_URL=/ npm run build; push-dir --dir=dist --branch=gh-pages --cleanup"
+    "deploy": "VUE_APP_BASE_URL=/ npm run build && cp ./dist/index.html ./dist/200.html && cp ./dist/index.html ./dist/404.html && push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
     "apexcharts": "^2.1.5",
