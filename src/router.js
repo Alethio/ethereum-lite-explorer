@@ -11,7 +11,6 @@ import noFound from './views/404.vue';
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
   base: process.env.VUE_APP_BASE_URL,
   routes: [
     {
