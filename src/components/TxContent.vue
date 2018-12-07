@@ -73,7 +73,7 @@
       <div class="label minW140">Gas used by tx</div>
       <div class="value" v-if="tx.receipt">
         {{ this.numberWithCommas(tx.receipt.gasUsed)}}
-        <span class="percentage">{{((tx.receipt.gasUsed / tx.gas) * 100).toFixed(2)}}%</span>
+        <span class="percentage">{{((tx.receipt.gasUsed * 100) / tx.gas).toFixed(2)}}%</span>
       </div>
     </div>
     <div class="pair">

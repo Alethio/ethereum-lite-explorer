@@ -93,7 +93,11 @@
                                 sortable
                                 class="normal-column"
                         >
-                            <AddressLink :address="props.row.to !== null ? props.row.to : props.row.receipt.contractAddress" />
+                            <AddressLink 
+                                :address="props.row.to !== null ?
+                                    props.row.to :
+                                    props.row.receipt.contractAddress" 
+                            />
                         </b-table-column>
                         <b-table-column
                                 field="value_eth"
@@ -165,7 +169,7 @@ export default {
 
           // For every individual transaction we fill the table.
           for (let i = 0; i < context.block.transactions.length; i += 1) {
-            context.lib_getTransaction(context.block.transactions[i], true, (err, tx) => {
+            context.lib_getTransaction(context.block.transactions[i], true, (terr, tx) => {
               if (tx != null && uid === context.transactions_uid) {
                 context.transactions.push(tx);
               }

@@ -164,7 +164,7 @@ Vue.mixin({
       const transaction = tx;
       transaction.value_eth = parseFloat(this.$store.state.w3.fromWei(transaction.value));
       if (transaction.receipt != null) {
-        transaction.gas_used_percent = (transaction.receipt.gasUsed / transaction.gas) * 100;
+        transaction.gas_used_percent = (transaction.receipt.gasUsed * 100) / transaction.gas;
       }
       return (transaction);
     },
