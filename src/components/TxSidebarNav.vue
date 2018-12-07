@@ -36,7 +36,7 @@ export default {
   },
   watch: {
     async currentHash() {
-      if (this.currentHash != '') {
+      if (this.currentHash !== '') {
         const context = this;
         context.transactions = [];
         // We save a UUID to prevent old callbacks from also giving their results
@@ -47,16 +47,16 @@ export default {
           context.blockNumber = tx.blockNumber;
           context.maximum = -Infinity;
           context.lib_getBlock(context.blockNumber, (err, block) => {
-            for (var i = 0; i < block.transactions.length; i++) {
+            for (let i = 0; i < block.transactions.length; i += 1) {
               context.transactions.push({
                 id: block.transactions[i],
                 value: 0,
-                selected: block.transactions[i] == context.currentHash,
+                selected: block.transactions[i] === context.currentHash,
               });
             }
-            for (var i = 0; i < block.transactions.length; i++) {
+            for (let i = 0; i < block.transactions.length; i += 1) {
               context.lib_getTransaction(block.transactions[i], true, (err, tx) => {
-                if (uid == context.tx_uid) { // safeguard as we are not synchronous
+                if (uid === context.tx_uid) { // safeguard as we are not synchronous
                   if (tx.value_eth > context.maximum) {
                     context.maximum = tx.value_eth;
                   }

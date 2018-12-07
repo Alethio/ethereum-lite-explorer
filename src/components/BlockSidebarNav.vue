@@ -8,7 +8,11 @@
       </div>
     </div>
   </div>
-  <HorizontalBarList v-on:item_clicked="lib_goToBlock($event)" v-bind:elements="blocks" :maximumValue="maximum" />
+  <HorizontalBarList
+    v-on:item_clicked="lib_goToBlock($event)"
+    v-bind:elements="blocks"
+    :maximumValue="maximum"
+  />
 </div>
 </template>
 
@@ -52,7 +56,7 @@ export default {
       if (this.currentBlock !== -1) {
         this.$emit('block_selected', this.currentBlock);
         const tmp = [];
-        for (let i = -this.range; i <= this.range; i++) {
+        for (let i = -this.range; i <= this.range; i += 1) {
           const block = this.$store.state.blocks[this.currentBlock + i];
           if (block != null) {
             if (this.maximum < block.transactions.length) {
@@ -73,11 +77,11 @@ export default {
         }
         this.blocks = tmp.reverse();
         const context = this;
-        for (let i = 0; i < this.blocks.length; i++) {
+        for (let i = 0; i < this.blocks.length; i += 1) {
           this.lib_getBlock(this.blocks[i].id, (err, block) => {
             if (block != null) {
-              const index = context.currentBlock - block.number + context.range;
-              // console.log(index, context.blocks[index].id, block.number, context.blocks[index].id == block.number)
+              const index = (context.currentBlock - block.number) + context.range;
+
               if (context.blocks[index].id === block.number) {
                 Vue.set(context.blocks[index], 'value', block.transactions.length);
                 if (context.maximum < block.transactions.length) {

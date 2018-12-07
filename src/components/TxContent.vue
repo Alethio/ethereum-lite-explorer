@@ -97,7 +97,6 @@
 
 <script>
 import Vue from 'vue';
-import HelpersMixin from '../../src/mixins/Helpers';
 
 import Hash from '@/components/ui/Hash.vue';
 import TxHash from '@/components/ui/TxHash.vue';
@@ -105,6 +104,8 @@ import AccountHash from '@/components/ui/AccountHash.vue';
 import BlockNumber from '@/components/ui/BlockNumber.vue';
 import AddressLink from '@/components/ui/AddressLink.vue';
 import TransactionLink from '@/components/ui/TransactionLink.vue';
+
+import HelpersMixin from '../../src/mixins/Helpers';
 
 
 export default {
@@ -125,11 +126,10 @@ export default {
   },
   watch: {
     async currentHash() {
-      if (this.currentHash != '') {
+      if (this.currentHash !== '') {
         const context = this;
         // We save a UUID to prevent old callbacks from also giving their results
         context.tx_uid = this.lib_UID();
-        const uid = context.tx_uid;
 
         // We get the block to iterate all his transactions
         context.lib_getTransaction(context.currentHash, true, (err, tx) => {

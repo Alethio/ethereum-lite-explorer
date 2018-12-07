@@ -22,9 +22,9 @@ export default {
 
   },
   filters: {
-    cleanHash(string) {
-      if (string == null) { return ''; }
-      string = string.toLowerCase();
+    cleanHash(str) {
+      if (str == null) { return ''; }
+      string = str.toLowerCase();
       const midpoint = Math.ceil(string.length / 2);
       const toremove = string.length - 12;
       const lstrip = Math.ceil(toremove / 2);

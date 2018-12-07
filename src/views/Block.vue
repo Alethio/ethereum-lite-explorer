@@ -53,18 +53,18 @@ export default {
     });
   },
   mounted() {
-    this.currentBlock = parseInt(this.$route.params.blocknumber);
+    this.currentBlock = parseInt(this.$route.params.blocknumber, 10);
     this.checkIfExist();
   },
   watch: {
     $route(to, from) {
-      this.currentBlock = parseInt(this.$route.params.blocknumber);
+      this.currentBlock = parseInt(this.$route.params.blocknumber, 10);
       this.checkIfExist();
     },
   },
   methods: {
     checkIfExist() {
-      if (this.currentBlock != -1) {
+      if (this.currentBlock !== -1) {
         const context = this;
         this.lib_getBlock(this.currentBlock, (err, block) => {
           if (err || block == null) {

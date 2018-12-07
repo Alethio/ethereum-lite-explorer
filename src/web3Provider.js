@@ -29,8 +29,6 @@ switch (connectionType) {
 }
 // }
 
-const getWeb3 = function () {
-  return w3;
-};
+const getWeb3 = () => w3;
 
 export default getWeb3;
