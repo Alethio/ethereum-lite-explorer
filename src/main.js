@@ -58,16 +58,17 @@ Vue.mixin({
      ** Get a block either from RPC, cache.
      */
     lib_getBlock(blockNumber, callback) {
+      const context = this;
       if (blockNumber < 0) {
         callback(null, null);
       } else if (this.$store.state.blocks[blockNumber] == null) {
         this.$store.commit('setPending', blockNumber);
-        var context = this;
         // debugger;
-        this.$store.state.w3.eth.getBlock(`${blockNumber}`, true, (err, block) => {
+        this.$store.state.w3.eth.getBlock(`${blockNumber}`, true, (err, blk) => {
+          const block = blk;
           if (block != null) {
             context.$store.commit('setLastBlock', block.number);
-            for (let i = 0; i < block.transactions.length; i++) {
+            for (let i = 0; i < block.transactions.length; i += 1) {
               context.$store.commit('storeTransaction', context.lib_processTX(block.transactions[i]));
               block.transactions[i] = block.transactions[i].hash;
             }
@@ -88,33 +89,34 @@ Vue.mixin({
     /*
      ** Get a transaction either from RPC, cache.
      */
-    lib_getTransaction(transactionHash, withreceipt, callback) {
-      withreceipt = withreceipt || false;
+    lib_getTransaction(transactionHash, withReceipt, callback) {
+      const getReceipt = withReceipt || false;
       const context = this;
       //  console.log('Get transaction', transactionHash, withreceipt)
       if (context.$store.state.transactions[transactionHash] == null) {
         context.$store.commit('setPending', transactionHash);
         context.$store.state.w3.eth.getTransaction(transactionHash, (err, tx) => {
-          if (err || tx == null) {
+          const transaction = tx;
+          if (err || transaction == null) {
             callback(true, null);
             context.$store.commit('removePending', transactionHash);
-          } else if (withreceipt) {
-            context.$store.state.w3.eth.getTransactionReceipt(transactionHash, (err, receipt) => {
-              tx.receipt = receipt;
-              context.$store.commit('storeTransaction', context.lib_processTX(tx));
+          } else if (getReceipt) {
+            context.$store.state.w3.eth.getTransactionReceipt(transactionHash, (rerr, receipt) => {
+              transaction.receipt = receipt;
+              context.$store.commit('storeTransaction', context.lib_processTX(transaction));
               context.$store.commit('removePending', transactionHash);
-              callback(null, tx);
+              callback(null, transaction);
             });
           } else {
-            context.$store.commit('storeTransaction', context.lib_processTX(tx));
+            context.$store.commit('storeTransaction', context.lib_processTX(transaction));
             context.$store.commit('removePending', transactionHash);
-            callback(null, tx);
+            callback(null, transaction);
           }
         });
       } else if (!this.$store.state.pendingQueries[transactionHash]) {
         // console.log('We already have the tx');
         const tx = this.$store.state.transactions[transactionHash];
-        if (tx.receipt == null && withreceipt) {
+        if (tx.receipt == null && getReceipt) {
           this.$store.commit('setPending', transactionHash);
           this.$store.state.w3.eth.getTransactionReceipt(transactionHash, (err, receipt) => {
             tx.receipt = receipt;
@@ -127,7 +129,7 @@ Vue.mixin({
         }
       } else {
         setTimeout(() => {
-          context.lib_getTransaction(transactionHash, withreceipt, callback);
+          context.lib_getTransaction(transactionHash, getReceipt, callback);
         }, 500);
       }
     },
@@ -140,15 +142,15 @@ Vue.mixin({
         if (err) {
           callback(err, null);
         } else {
-          context.$store.state.w3.eth.getCode(address, (err, code) => {
-            if (err) {
-              callback(err, null);
+          context.$store.state.w3.eth.getCode(address, (cerr, code) => {
+            if (cerr) {
+              callback(cerr, null);
             } else {
               callback(null, {
                 balance,
                 balance_eth: parseFloat(context.$store.state.w3.fromWei(balance)),
                 code,
-                isContract: (code != '0x'),
+                isContract: (code !== '0x'),
               });
             }
           });
@@ -158,15 +160,17 @@ Vue.mixin({
     /*
      ** Internal function to enrich/decode any field of a transaction so render don't have to.
      */
-    lib_processTX(transaction) {
+    lib_processTX(tx) {
+      const transaction = tx;
       transaction.value_eth = parseFloat(this.$store.state.w3.fromWei(transaction.value));
       if (transaction.receipt != null) {
-        transaction.gas_used_percent = transaction.receipt.gasUsed / transaction.gas * 100;
+        transaction.gas_used_percent = (transaction.receipt.gasUsed / transaction.gas) * 100;
       }
       return (transaction);
     },
     /*
-     ** Return a uique ID that is convenient for preventing callbacks to write after the state has changed
+     ** Return a uique ID that is convenient for preventing callbacks to write after
+     ** the state has changed
      */
     lib_UID() {
       return (uuidv1());
@@ -176,33 +180,33 @@ Vue.mixin({
       this.$store.state.w3.eth.getBlockNumber((err, number) => {
         if (!err) {
           context.$store.commit('setLastBlock', number);
-          this.$store.state.w3.eth.getBlock(number, false, (err, block) => {
-            if (!err) {
+          this.$store.state.w3.eth.getBlock(number, false, (berr, block) => {
+            if (!berr) {
               context.$store.commit('setLastBlockFull', block);
             }
           });
         }
-        this.$store.state.w3.net.getPeerCount((err2, count) => {
-          if (!err2) {
+        this.$store.state.w3.net.getPeerCount((perr, count) => {
+          if (!perr) {
             context.$store.commit('setPeers', count);
           }
         });
-        this.$store.state.w3.version.getNode((err3, version) => {
-          if (!err3) {
+        this.$store.state.w3.version.getNode((nerr, version) => {
+          if (!nerr) {
             context.$store.commit('setNodeType', version);
           }
         });
         setTimeout(context.lib_monitorLastBlock, 6000);
       });
     },
-    lib_guessInputType(input) {
-      if (input == null) {
-        return ({ type: 'none', value: input });
+    lib_guessInputType(inputType) {
+      if (inputType == null) {
+        return ({ type: 'none', value: inputType });
       }
-      input = input.replace(/0[xX][^A-Z0-9]+/ig, '');
+      let input = inputType.replace(/0[xX][^A-Z0-9]+/ig, '');
       input = input.toLowerCase();
-      if (`${parseInt(input)}` === input && !input.startsWith('0x')) {
-        return ({ type: 'block', value: parseInt(input) });
+      if (`${parseInt(input, 10)}` === input && !input.startsWith('0x')) {
+        return ({ type: 'block', value: parseInt(input, 10) });
       }
       if (!input.startsWith('0x')) {
         input = `0x${input}`;
