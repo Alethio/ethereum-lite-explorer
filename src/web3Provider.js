@@ -1,4 +1,5 @@
 import Web3 from 'web3';
+
 const CONNECTION_JSON_RPC = 'json_rpc';
 const CONNECTION_WEB_SOCKET = 'ws';
 
@@ -16,20 +17,20 @@ const nodePass = process.env.VUE_APP_NODE_PASS;
 // if (typeof web3 !== 'undefined' || false) {
 //   w3 = new Web3(web3.currentProvider);
 // } else {
-  switch (connectionType) {
-    case CONNECTION_JSON_RPC:
-      w3 = new Web3(new Web3.providers.HttpProvider(nodeUrl, 0, nodeUser, nodePass));
-      break;
-    case CONNECTION_WEB_SOCKET:
-      w3 = new Web3(new Web3.providers.WebsocketProvider(nodeUrl));
-      break;
-    default:
-      break;
-  }
+switch (connectionType) {
+  case CONNECTION_JSON_RPC:
+    w3 = new Web3(new Web3.providers.HttpProvider(nodeUrl, 0, nodeUser, nodePass));
+    break;
+  case CONNECTION_WEB_SOCKET:
+    w3 = new Web3(new Web3.providers.WebsocketProvider(nodeUrl));
+    break;
+  default:
+    break;
+}
 // }
 
 const getWeb3 = function () {
-    return w3;
+  return w3;
 };
 
 export default getWeb3;

@@ -65,17 +65,17 @@ export default {
   methods: {
     checkIfExist() {
       if (this.currentTx != null && this.currentTx !== '') {
-        var context = this;
-        this.lib_getTransaction(this.currentTx, false, function(err, tx) {
+        const context = this;
+        this.lib_getTransaction(this.currentTx, false, (err, tx) => {
           if (err || tx == null) {
             context.$router.push({
-              path: `/404`,
+              path: '/404',
             });
           }
-        })
+        });
       }
-    }
-  }
+    },
+  },
 
 };
 </script>

@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 import uuidv1 from 'uuid/v1';
 import VTooltip from 'v-tooltip';
-import VueTimeago from 'vue-timeago'
+import VueTimeago from 'vue-timeago';
 
 import App from './App.vue';
 import router from './router';
@@ -17,7 +17,7 @@ Vue.use(Buefy);
 Vue.use(VTooltip);
 
 // Timeago is used to handle timestamp display
-Vue.use(VueTimeago, {name: 'Timeago', locale: 'en'});
+Vue.use(VueTimeago, { name: 'Timeago', locale: 'en' });
 
 /*
  * We define here global functions that are accessible by any instance of Vue
@@ -197,32 +197,31 @@ Vue.mixin({
     },
     lib_guessInputType(input) {
       if (input == null) {
-        return ({'type': 'none', 'value': input});
+        return ({ type: 'none', value: input });
       }
-      input = input.replace(/0[xX][^A-Z0-9]+/ig, "");
+      input = input.replace(/0[xX][^A-Z0-9]+/ig, '');
       input = input.toLowerCase();
-      if ('' + parseInt(input) === input && !input.startsWith('0x')) {
-        return ({'type': 'block', 'value': parseInt(input)});
-      } else {
-        if (!input.startsWith('0x')) {
-          input = '0x' + input;
-        }
-        var re = /[0-9A-Fa-f]/g;
-        if (re.test(input)) {
-          if (input.length === 42) {
-            return ({'type': 'account', 'value': input});
-          } else if (input.length === 66) {
-            return ({'type': 'bkOrTx', 'value': input});
-          } else {
-            return ({'type': 'none', 'value': input});
-          }
-        }
-
+      if (`${parseInt(input)}` === input && !input.startsWith('0x')) {
+        return ({ type: 'block', value: parseInt(input) });
       }
-      return ({'type': 'none', 'value': input});
+      if (!input.startsWith('0x')) {
+        input = `0x${input}`;
+      }
+      const re = /[0-9A-Fa-f]/g;
+      if (re.test(input)) {
+        if (input.length === 42) {
+          return ({ type: 'account', value: input });
+        } else if (input.length === 66) {
+          return ({ type: 'bkOrTx', value: input });
+        }
+        return ({ type: 'none', value: input });
+      }
+
+
+      return ({ type: 'none', value: input });
     },
     lib_processSearch(input) {
-      var inputType = this.lib_guessInputType(input);
+      const inputType = this.lib_guessInputType(input);
       // console.log(inputType)
       if (inputType.type === 'bkOrTx') {
         this.$store.state.w3.eth.getBlock(inputType.value, false, (err, result) => {
@@ -246,15 +245,15 @@ Vue.mixin({
     },
     lib_openSearch() {
       this.$dialog.prompt({
-        message: `Enter a block number, transaction hash or address.`,
+        message: 'Enter a block number, transaction hash or address.',
         inputAttrs: {
           placeholder: 'e.g. 0x45434...',
           maxlength: 100,
         },
-        confirmText: "Search",
-        onConfirm: (value) => this.lib_processSearch(value)
-      })
-    }
+        confirmText: 'Search',
+        onConfirm: value => this.lib_processSearch(value),
+      });
+    },
   },
 });
 

@@ -12,19 +12,19 @@
   </svg>
 </template>
 <script>
-    export default {
-props: {
+export default {
+  props: {
     iconName: {
       type: String,
-      default: 'box'
+      default: 'box',
     },
     width: {
       type: [Number, String],
-      default: 18
+      default: 18,
     },
     height: {
       type: [Number, String],
-      default: 18
+      default: 18,
     },
     iconColor: {
       type: String,

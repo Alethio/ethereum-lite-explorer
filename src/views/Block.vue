@@ -65,16 +65,16 @@ export default {
   methods: {
     checkIfExist() {
       if (this.currentBlock != -1) {
-        var context = this;
-        this.lib_getBlock(this.currentBlock, function(err, block) {
+        const context = this;
+        this.lib_getBlock(this.currentBlock, (err, block) => {
           if (err || block == null) {
             context.$router.push({
-              path: `/404`,
+              path: '/404',
             });
           }
-        })
+        });
       }
-    }
-  }
+    },
+  },
 };
 </script>
