@@ -85,7 +85,7 @@
   </div>
   <div class="flex-box">
     <div class="pair">
-      <div class="label minW140">Cummulative gas used</div>
+      <div class="label minW140">Cumulative gas used</div>
       <div class="value" v-if="tx.receipt">
         {{ this.numberWithCommas(tx.receipt.cumulativeGasUsed)}}
       </div>
