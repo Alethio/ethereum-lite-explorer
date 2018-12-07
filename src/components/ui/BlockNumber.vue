@@ -3,7 +3,10 @@
 <div v-if="value != null && !isLink" class="block_number">
   # {{ value }}
 </div>
-<router-link  :to="{ name: 'block', params: { blocknumber: value }}" v-if="value != null && isLink" class="block_number">
+<router-link
+  :to="{ name: 'block', params: { blocknumber: value }}"
+  v-if="value != null && isLink" class="block_number"
+>
   # {{ value }}
 </router-link>
 </div>

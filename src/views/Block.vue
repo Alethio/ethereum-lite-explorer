@@ -57,7 +57,7 @@ export default {
     this.checkIfExist();
   },
   watch: {
-    $route(to, from) {
+    $route(to, from) { // eslint-disable-line
       this.currentBlock = parseInt(this.$route.params.blocknumber, 10);
       this.checkIfExist();
     },

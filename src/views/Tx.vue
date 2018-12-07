@@ -57,7 +57,7 @@ export default {
     this.checkIfExist();
   },
   watch: {
-    $route(to, from) {
+    $route(to, from) { // eslint-disable-line
       this.currentTx = this.$route.params.hash;
       this.checkIfExist();
     },

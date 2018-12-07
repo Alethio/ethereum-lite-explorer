@@ -27,7 +27,7 @@ export default {
   },
   watch: {
     metric(a, b) {
-      console.log(a, b);
+      console.log(a, b); // eslint-disable-line
     },
   },
   filters: {
