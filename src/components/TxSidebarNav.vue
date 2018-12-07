@@ -46,7 +46,7 @@ export default {
           context.tx = tx;
           context.blockNumber = tx.blockNumber;
           context.maximum = -Infinity;
-          context.lib_getBlock(context.blockNumber, (err, block) => {
+          context.lib_getBlock(context.blockNumber, (berr, block) => {
             for (let i = 0; i < block.transactions.length; i += 1) {
               context.transactions.push({
                 id: block.transactions[i],
@@ -55,12 +55,12 @@ export default {
               });
             }
             for (let i = 0; i < block.transactions.length; i += 1) {
-              context.lib_getTransaction(block.transactions[i], true, (err, tx) => {
+              context.lib_getTransaction(block.transactions[i], true, (terr, ttx) => {
                 if (uid === context.tx_uid) { // safeguard as we are not synchronous
-                  if (tx.value_eth > context.maximum) {
-                    context.maximum = tx.value_eth;
+                  if (ttx.value_eth > context.maximum) {
+                    context.maximum = ttx.value_eth;
                   }
-                  Vue.set(context.transactions[tx.transactionIndex], 'value', tx.value_eth);
+                  Vue.set(context.transactions[ttx.transactionIndex], 'value', ttx.value_eth);
                 }
               });
             }

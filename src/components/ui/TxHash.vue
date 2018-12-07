@@ -24,7 +24,7 @@ export default {
   filters: {
     cleanHash(str) {
       if (str == null) { return ''; }
-      let string = str.toLowerCase();
+      const string = str.toLowerCase();
       const midpoint = Math.ceil(string.length / 2);
       const toremove = string.length - 12;
       const lstrip = Math.ceil(toremove / 2);

@@ -133,7 +133,6 @@ export default {
 
         // We get the block to iterate all his transactions
         context.lib_getTransaction(context.currentHash, true, (err, tx) => {
-          console.log(tx);
           context.tx = tx;
         });
       }

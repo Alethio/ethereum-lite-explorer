@@ -93,10 +93,10 @@
                                 sortable
                                 class="normal-column"
                         >
-                            <AddressLink 
+                            <AddressLink
                                 :address="props.row.to !== null ?
                                     props.row.to :
-                                    props.row.receipt.contractAddress" 
+                                    props.row.receipt.contractAddress"
                             />
                         </b-table-column>
                         <b-table-column
