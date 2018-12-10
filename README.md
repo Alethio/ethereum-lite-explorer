@@ -1,5 +1,10 @@
 # EthStats Lite
 
+> NOTICE   
+> This repo is a big piece of work in progress.  
+> We are currently adding documentation and cleaning up the code.  
+> Working branch is [prepare-initial-release](https://github.com/Alethio/ethstats-lite-explorer/tree/prepare-intial-release)
+
 An Ethereum open source, decentralized block explorer. You can deploy it anywhere you want and connect to the JSONRPC interface of your choice.
 
 The project is built using [Vue.js](https://vuejs.org/) and [BulmaCSS](https://bulma.io/).
