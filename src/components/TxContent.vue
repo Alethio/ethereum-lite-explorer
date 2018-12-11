@@ -99,8 +99,6 @@
 
 
 <script>
-import Vue from 'vue';
-
 import Hash from '@/components/ui/Hash.vue';
 import TxHash from '@/components/ui/TxHash.vue';
 import AccountHash from '@/components/ui/AccountHash.vue';

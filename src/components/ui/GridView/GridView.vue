@@ -1,6 +1,6 @@
 <template>
 <div style="height:100%; width: 100%" class="hello txList">
-  <div v-for="elem in elements">
+  <div v-for="elem in elements" :key="elem.id">
     <div class="item_container" v-on:click="$emit('item_clicked', elem.id)">
       <div v-bind:class="{ item: true, selected: elem.selected }"
            :style="{} | computeSize(elem.value, maximum)">

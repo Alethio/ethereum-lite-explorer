@@ -124,8 +124,6 @@
 
 
 <script>
-import Vue from 'vue';
-
 import Hash from '@/components/ui/Hash.vue';
 import BlockHash from '@/components/ui/BlockHash.vue';
 import BlockNumber from '@/components/ui/BlockNumber.vue';
