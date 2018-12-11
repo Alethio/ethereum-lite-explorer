@@ -1,18 +1,30 @@
-# EthStats Lite
 
-An Ethereum open source, decentralized block explorer. You can deploy it anywhere you want and connect to the JSONRPC interface of your choice.
+# Ethstats Lite Explorer
+The **Lite Explorer**  is a client-side only web application that connects directly to a [Ethereum JSON RPC](https://github.com/ethereum/wiki/wiki/JSON-RPC) compatible node.  
+This means you can have your own private Ethereum Explorer should you wish so. 
+No need for servers, hosting or trusting any third parties to display chain data.
+
+## Short Term Roadmap 
+- Milstone 0.5 - Initial release
+  - [ ] Docs and Examples
+  - [ ] Allow Custom Node URLs
+  - [ ] Infura Node Dropdown selector (if not custom)
+  - [ ] Add Docker build 
+- Milstone 1.0 - Reactified 
+  - [ ] Release [Ethstats](ethstats.io) React primitive components
+  - [ ] Migrate app to React
+
+### Technical Details
+
+#### Structure
 
 The project is built using [Vue.js](https://vuejs.org/) and [BulmaCSS](https://bulma.io/).
 
-# Documentation
+`main.js` defines the library functions. You will mainly need `lib_goToBlock`, `lib_goToAccount`, `lib_UID`, `lib_getTransaction`, `lib_getBlock`. those functions are available to all Vue components instantiated in the project.
 
-## Structure
+`router.js` defines the routes of the webapp, mainly `/block`, `/account`, `/tx`.
 
-main.js defines the library functions. You will mainly need lib_goToBlock, lib_goToAccount, lib_UID, lib_getTransaction, lib_getBlock. those functions are avaliable to all Vue components instantiated in the project.
-
-router.js defines the routes of the webapp, mainly /block, /account, /tx.
-
-## Data
+#### Data
 
 The data that are available through the project are:
 
@@ -20,20 +32,28 @@ The data that are available through the project are:
 * transaction: Same as web3js definition of a transaction with embedded receipt. (Cached)
 * account: has the fields balance, bytecode and type. (Not cached)
 
-## Documentation
-
-Check our tutorials about:
-* How to embed (Coming soon)
-* How to extend (Coming soon)
-
-# Getting started
-
-## Env variables
+#### Env variables
 ```
 VUE_APP_CONNECTION_TYPE='json_rpc'
-VUE_APP_NODE_URL='https://mainnet.infura.io/v3/d70ece33c9754843b5181a4c07f49a4f'
+VUE_APP_NODE_URL='https://mainnet.infura.io/'
 VUE_APP_BASE_URL='/'
+VUE_APP_NODE_USER='username'
+VUE_APP_NODE_PASSWORD='abcd'
 ```
+
+## Getting started
+
+
+```
+npm install
+
+```
+
+
+
+
+
+
 
 ## Project setup
 ```
@@ -63,14 +83,3 @@ then run the image example on ropsten:
 ```
 docker run -p 8080:8080 block_explorer
 ```
-
-
-# License
-
-Copyright 2018 <>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
