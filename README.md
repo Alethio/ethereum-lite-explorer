@@ -63,16 +63,16 @@ Please make sure you have the following installed and running properly
 
 ### Setup/Build Instructions
 Clone the explorer in a folder of your choosing
-```
+```sh
 $ git clone https://github.com/Alethio/ethstats-lite-explorer.git
 $ cd ethstats-lite-explorer
 ```
 Install npm packages
-```
+```sh
 $ npm install
 ```
 Copy the sample environment variables
-```
+```sh
 $ cp .env.example .env.local
 ```
 Adjust `.env.local` to your needs. You can remove the variables you do not wish to change from default.
@@ -86,12 +86,12 @@ Adjust `.env.local` to your needs. You can remove the variables you do not wish 
 | VUE_APP_NODE_PASSWORD | HTTP Basic Authentification Password. |
 
 After which you can run the explorer (in development mode)
-```
+```sh
 $ npm run serve
 ```
 
 or build it for deployment
-```
+```sh
 $ npm run build
 ```
 the `dist` folder will then contain the minimised and optimised version fo the app. Got ahead and [deploy it](#example-deployments) somewhere.
@@ -99,11 +99,59 @@ the `dist` folder will then contain the minimised and optimised version fo the a
 ### Example setups
 
 #### With Infura
+[Sign-up](https://infura.io/register) for an account or [sign-in](https://infura.io/login) into your Infura account.  
+From the control panel, obtain your endpoint url for the network you are interested in (mainnet, ropsten, kovan, rinkeby). It will looks similar to `https://mainnet.infura.io/v3/aa11bb22cc33.....`.
+
+Update `.env.local` file and set `VUE_APP_NODE_URL` to your Infura endpoint.
+
+Start Lite explorer 
+```sh
+$ npm run serve
+```
 
 ####  With Parity Light Client
+This will allow you to run both your own node and explorer.  
+No third-party dependencies.  
+It will be slower to browse older data because it is fetching it real time from other ethereum peer nodes but it's fast to sync and low in resource usage.
+
+[Install Parity Ethereum](https://wiki.parity.io/Setup) through one of the convenient methods and start it with the `--light` cli flag.
+
+As a simple step, if you have Docker, you could just run
+
+```sh
+$ docker run -d --restart always --name parity-light -p 127.0.0.1:8545:8545 parity/parity:stable --light --jsonrpc-interface all
+``` 
+
+Start Lite explorer 
+```sh
+$ npm run serve
+```
 
 #### With Ganache
+First of all, if you do not have it, download and install [Ganache](https://truffleframework.com/ganache) which will give you wour own personal test chain.
+
+After setting up and starting Ganache, update the `.env.local` file and set `VUE_APP_NODE_URL` to `'http://localhost:7545'`.
+
+Start Lite explorer 
+```sh
+$ npm run serve
+```
 
 ### Example Deployments
 
 #### surge.sh
+Surge.sh is a simple, single-command web publishing service that you can use to deploy your own version of the Lite Explorer.
+
+Make sure you have set a proper and accessible `VUE_APP_NODE_URL`
+
+```sh
+$ npm install --global surge
+# build explorer
+$ npm run build
+# go to build dir
+$ cd dist
+# make push state work as it should
+$ cp index.html 200.html && cp index.html 404.html
+# deploy
+$ surge
+```
