@@ -3,6 +3,8 @@ The **Lite Explorer**  is a client-side only web application that connects direc
 This means you can have your own private Ethereum Explorer should you wish so. 
 No need for servers, hosting or trusting any third parties to display chain data.
 
+[![CircleCI](https://circleci.com/gh/Alethio/ethstats-lite-explorer.svg?style=svg)](https://circleci.com/gh/Alethio/ethstats-lite-explorer)
+
 ## Contents
 - [Short Term Roadmap](#short-term-roadmap)
     * [Technical Details](#technical-details)
@@ -25,7 +27,7 @@ No need for servers, hosting or trusting any third parties to display chain data
     * [ ] Docs and Examples
     * [ ] Allow Custom Node URLs
     * [ ] Infura Nodes Dropdown selector (if not custom)
-    * [ ] Readd Docker build 
+    * [ ] Re-add Docker build 
 - Milstone 1.0 - React-ified 
     * [ ] Release [Ethstats](ethstats.io) React primitive components
     * [ ] Migrate app to React
@@ -73,7 +75,7 @@ Copy the sample environment variables
 ```
 $ cp .env.example .env.local
 ```
-and then adjust the `.env.local` to your needs.
+Adjust `.env.local` to your needs. You can remove the variables you do not wish to change from default.
 
 | ENV var | Description |
 | --- | --- |
