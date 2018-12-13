@@ -94,6 +94,14 @@
       </div>
     </div>
   </div>
+  <div class="flex-box" v-if="tx.input && tx.input !== '0x'">
+    <div class="pair">
+      <div class="label minW140">Payload</div>
+      <div class="value">
+        {{ tx.input }}
+      </div>
+    </div>
+  </div>
 </div>
 </template>
 
