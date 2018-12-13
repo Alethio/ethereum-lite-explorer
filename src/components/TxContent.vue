@@ -97,8 +97,10 @@
   <div class="flex-box" v-if="tx.input && tx.input !== '0x'">
     <div class="pair">
       <div class="label minW140">Payload</div>
-      <div class="value">
-        {{ tx.input }}
+      <div class="payload">
+        <span class="byte" v-for="(byte, i) in tx.input.replace(/^0x/, '').match(/.{1,2}/g)" :key="i">
+          {{ byte }}
+        </span>
       </div>
     </div>
   </div>
