@@ -5,6 +5,10 @@ No need for servers, hosting or trusting any third parties to display chain data
 
 [![CircleCI](https://circleci.com/gh/Alethio/ethstats-lite-explorer.svg?style=svg)](https://circleci.com/gh/Alethio/ethstats-lite-explorer)
 
+> NOTICE   
+> This is a big piece of work in progress.  
+> Please report any bugs using Github's [issues](https://github.com/Alethio/ethstats-lite-explorer/issues/)
+
 ## Contents
 - [Short Term Roadmap](#short-term-roadmap)
     * [Technical Details](#technical-details)
