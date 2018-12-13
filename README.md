@@ -1,4 +1,4 @@
-# Ethstats Lite Explorer
+# EthStats Lite Explorer
 The **Lite Explorer**  is a client-side only web application that connects directly to a [Ethereum JSON RPC](https://github.com/ethereum/wiki/wiki/JSON-RPC) compatible node.  
 This means you can have your own private Ethereum Explorer should you wish so. 
 No need for servers, hosting or trusting any third parties to display chain data.
@@ -29,7 +29,7 @@ No need for servers, hosting or trusting any third parties to display chain data
     * [ ] Infura Nodes Dropdown selector (if not custom)
     * [ ] Re-add Docker build 
 - Milstone 1.0 - React-ified 
-    * [ ] Release [Ethstats](ethstats.io) React primitive components
+    * [ ] Release [EthStats](ethstats.io) React primitive components
     * [ ] Migrate app to React
 
 ### Technical Details
