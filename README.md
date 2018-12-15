@@ -1,81 +1,161 @@
-# EthStats Lite
+# EthStats Lite Explorer
+The **Lite Explorer**  is a client-side only web application that connects directly to a [Ethereum JSON RPC](https://github.com/ethereum/wiki/wiki/JSON-RPC) compatible node.  
+This means you can have your own private Ethereum Explorer should you wish so. 
+No need for servers, hosting or trusting any third parties to display chain data.
+
+[![CircleCI](https://circleci.com/gh/Alethio/ethstats-lite-explorer.svg?style=svg)](https://circleci.com/gh/Alethio/ethstats-lite-explorer)
 
 > NOTICE   
-> This repo is a big piece of work in progress.  
-> We are currently adding documentation and cleaning up the code.  
-> Working branch is [prepare-initial-release](https://github.com/Alethio/ethstats-lite-explorer/tree/prepare-initial-release)
+> This is a big piece of work in progress.  
+> Please report any bugs using Github's [issues](https://github.com/Alethio/ethstats-lite-explorer/issues/)
 
-An Ethereum open source, decentralized block explorer. You can deploy it anywhere you want and connect to the JSONRPC interface of your choice.
+## Contents
+- [Short Term Roadmap](#short-term-roadmap)
+    * [Technical Details](#technical-details)
+        + [Structure](#structure)
+        + [Data](#data)
+- [Getting started](#getting-started)
+    * [Prerequisites](#prerequisites)
+    * [Setup/Build Instructions](#setup-build-instructions)
+    * [Example setups](#example-setups)
+        + [With Infura](#with-infura)
+        + [With Parity Light Client](#with-parity-light-client)
+        + [With Ganache](#with-ganache)
+    * [Example Deployments](#example-deployments)
+        + [surge.sh](#surgesh)
+- [Contributing](CONTRIBUTING.md)
+- [License](LICENSE.md)
+
+## Short Term Roadmap 
+- Milstone 0.5 - Initial release
+    * [ ] Docs and Examples
+    * [ ] Allow Custom Node URLs
+    * [ ] Infura Nodes Dropdown selector (if not custom)
+    * [ ] Re-add Docker build 
+- Milstone 1.0 - React-ified 
+    * [ ] Release [EthStats](ethstats.io) React primitive components
+    * [ ] Migrate app to React
+
+### Technical Details
+
+#### Structure
 
 The project is built using [Vue.js](https://vuejs.org/) and [BulmaCSS](https://bulma.io/).
 
-# Documentation
+`main.js` defines the library functions. You will mainly need `lib_goToBlock`, `lib_goToAccount`, `lib_UID`, `lib_getTransaction`, `lib_getBlock`. those functions are available to all Vue components instantiated in the project.
 
-## Structure
+`router.js` defines the routes of the webapp, mainly `/block`, `/account`, `/tx`.
 
-main.js defines the library functions. You will mainly need lib_goToBlock, lib_goToAccount, lib_UID, lib_getTransaction, lib_getBlock. those functions are avaliable to all Vue components instantiated in the project.
-
-router.js defines the routes of the webapp, mainly /block, /account, /tx.
-
-## Data
+#### Data
 
 The data that are available through the project are:
 
-* block: Same as web3js definition of a block (Cached)
-* transaction: Same as web3js definition of a transaction with embedded receipt. (Cached)
-* account: has the fields balance, bytecode and type. (Not cached)
+- block: Same as web3js definition of a block (Cached)
+- transaction: Same as web3js definition of a transaction with embedded receipt. (Cached)
+- account: has the fields balance, bytecode and type. (Not cached)
 
-## Documentation
+## Getting started
 
-Check our tutorials about:
-* How to embed (Coming soon)
-* How to extend (Coming soon)
+### Prerequisites 
+Please make sure you have the following installed and running properly
+- [Node.js](https://nodejs.org/en/download/) >= 8.0  
+- NPM >= 5.0 (NPM is distributed with Node.js. For more infos see: https://www.npmjs.com/get-npm)
+- a JSON-RPC enabled and accessible Ethereum Client, some examples:
+    * [An Infura Account](#with-infura)
+    * [Parity Light Client](#with-parity-light)
+    * [Ganache](#with-ganache)
 
-# Getting started
-
-## Env variables
+### Setup/Build Instructions
+Clone the explorer in a folder of your choosing
+```sh
+$ git clone https://github.com/Alethio/ethstats-lite-explorer.git
+$ cd ethstats-lite-explorer
 ```
-VUE_APP_CONNECTION_TYPE='json_rpc'
-VUE_APP_NODE_URL='https://mainnet.infura.io/v3/d70ece33c9754843b5181a4c07f49a4f'
-VUE_APP_BASE_URL='/'
+Install npm packages
+```sh
+$ npm install
 ```
+Copy the sample environment variables
+```sh
+$ cp .env.example .env.local
+```
+Adjust `.env.local` to your needs. You can remove the variables you do not wish to change from default.
 
-## Project setup
-```
-npm install
-```
+| ENV var | Description |
+| --- | --- |
+| VUE_APP_CONNECTION_TYPE | RPC Connection type. `'json_rpc'` for http(s)  or `'ws'` for websockets. Default `'json_rpc'`. |
+| VUE_APP_NODE_URL | URL of RPC enabled node. Default `'https://mainnet.infura.io/'` |
+| VUE_APP_BASE_URL | Path of your app. Use `'/'` for root directory, `'subfolder-path'` if your app live in another folder or `''` if you want to open the app directly from the file system without any server. Default `'/'`. |
+| VUE_APP_NODE_USER | If your RPC node is behind HTTP Basic Authentification then use this to set the username. |
+| VUE_APP_NODE_PASSWORD | HTTP Basic Authentification Password. |
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-
-
-# Docker 
-1. go to project dir and run:
-```
-docker build --build-arg NODE_URL=https://ropsten.infura.io/alethio --build-arg CONNECTION_TYPE=json_rpc --build-arg BASE_URL=/ . -t block_explorer
-```
-
-then run the image example on ropsten:
-
-```
-docker run -p 8080:8080 block_explorer
+After which you can run the explorer (in development mode)
+```sh
+$ npm run serve
 ```
 
+or build it for deployment
+```sh
+$ npm run build
+```
+the `dist` folder will then contain the minimised and optimised version fo the app. Got ahead and [deploy it](#example-deployments) somewhere.
 
-# License
+### Example setups
 
-Copyright 2018 <>
+#### With Infura
+[Sign-up](https://infura.io/register) for an account or [sign-in](https://infura.io/login) into your Infura account.  
+From the control panel, obtain your endpoint url for the network you are interested in (mainnet, ropsten, kovan, rinkeby). It will looks similar to `https://mainnet.infura.io/v3/aa11bb22cc33.....`.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Update `.env.local` file and set `VUE_APP_NODE_URL` to your Infura endpoint.
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+Start Lite explorer 
+```sh
+$ npm run serve
+```
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+####  With Parity Light Client
+This will allow you to run both your own node and explorer.  
+No third-party dependencies.  
+It will be slower to browse older data because it is fetching it real time from other ethereum peer nodes but it's fast to sync and low in resource usage.
+
+[Install Parity Ethereum](https://wiki.parity.io/Setup) through one of the convenient methods and start it with the `--light` cli flag.
+
+As a simple step, if you have Docker, you could just run
+
+```sh
+$ docker run -d --restart always --name parity-light -p 127.0.0.1:8545:8545 parity/parity:stable --light --jsonrpc-interface all
+``` 
+
+Start Lite explorer 
+```sh
+$ npm run serve
+```
+
+#### With Ganache
+First of all, if you do not have it, download and install [Ganache](https://truffleframework.com/ganache) which will give you wour own personal test chain.
+
+After setting up and starting Ganache, update the `.env.local` file and set `VUE_APP_NODE_URL` to `'http://localhost:7545'`.
+
+Start Lite explorer 
+```sh
+$ npm run serve
+```
+
+### Example Deployments
+
+#### surge.sh
+Surge.sh is a simple, single-command web publishing service that you can use to deploy your own version of the Lite Explorer.
+
+Make sure you have set a proper and accessible `VUE_APP_NODE_URL`
+
+```sh
+$ npm install --global surge
+# build explorer
+$ npm run build
+# go to build dir
+$ cd dist
+# make push state work as it should
+$ cp index.html 200.html && cp index.html 404.html
+# deploy
+$ surge
+```

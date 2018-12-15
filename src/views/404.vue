@@ -58,7 +58,7 @@ export default {
     });
   },
   mounted() {
-    this.currentBlock = parseInt(this.$route.params.blocknumber);
+    this.currentBlock = parseInt(this.$route.params.blocknumber, 10);
   },
   watch: {
 

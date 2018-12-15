@@ -45,7 +45,9 @@
       <div class="flex-box">
         <div class="pair">
           <div class="label minW140">Balance</div>
-          <div class="value" v-if="account.balance_eth || account.balance_eth === 0">{{ this.numberWithCommas(account.balance_eth.toFixed(4)) }} ETH</div>
+          <div class="value" v-if="account.balance_eth || account.balance_eth === 0">
+            {{ this.numberWithCommas(account.balance_eth.toFixed(4)) }} ETH
+          </div>
         </div>
       </div>
       <div class="flex-box">
@@ -85,10 +87,10 @@ export default {
     this.currentAddress = this.$route.params.address;
   },
   watch: {
-    $route(to, from) {
+    $route(to, from) { // eslint-disable-line
       this.currentAddress = this.$route.params.address;
     },
-    currentAddress(to, from) {
+    currentAddress(to, from) { // eslint-disable-line
       this.account = {};
       const context = this;
       this.lib_getAccount(this.currentAddress, (err, account) => {

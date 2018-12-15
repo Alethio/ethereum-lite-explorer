@@ -1,15 +1,5 @@
 <template>
 <div id="app" class="is-fullheight">
-  <!--<div class="column has-text-right top-menu ">-->
-    <!--<div class="top-menu-item-link label">-->
-      <!--Best block:-->
-    <!--</div>-->
-    <!--<BlockNumber :value="lastBlock" :isLink="true"/>-->
-    <!--<div  v-on:click="lib_openSearch()" class="top-menu-item-link button search-btn" style="margin-right:5px;">-->
-      <!--Search-->
-    <!--</div>-->
-  <!--</div>-->
-
   <router-view/>
 </div>
 </template>

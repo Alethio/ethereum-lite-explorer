@@ -93,7 +93,11 @@
                                 sortable
                                 class="normal-column"
                         >
-                            <AddressLink :address="props.row.to !== null ? props.row.to : props.row.receipt.contractAddress" />
+                            <AddressLink
+                                :address="props.row.to !== null ?
+                                    props.row.to :
+                                    props.row.receipt.contractAddress"
+                            />
                         </b-table-column>
                         <b-table-column
                                 field="value_eth"
@@ -120,17 +124,16 @@
 
 
 <script>
-import Vue from 'vue';
-import HelpersMixin from '../../src/mixins/Helpers';
-
 import Hash from '@/components/ui/Hash.vue';
 import BlockHash from '@/components/ui/BlockHash.vue';
 import BlockNumber from '@/components/ui/BlockNumber.vue';
 import AddressLink from '@/components/ui/AddressLink.vue';
 import TransactionLink from '@/components/ui/TransactionLink.vue';
 import TimeStamp from '@/components/ui/TimeStamp.vue';
-
 import ERC20Transfers from '@/components/plugins/ERC20Transfers.vue';
+
+import HelpersMixin from '../../src/mixins/Helpers';
+
 
 export default {
   name: 'BlockContent',
@@ -160,12 +163,11 @@ export default {
         // We get the block to iterate all his transactions
         context.lib_getBlock(context.currentBlock, (err, block) => {
           context.block = block;
-          const currentBlock = context.currentBlock;
           context.transactions = [];
 
           // For every individual transaction we fill the table.
-          for (let i = 0; i < context.block.transactions.length; i++) {
-            context.lib_getTransaction(context.block.transactions[i], true, (err, tx) => {
+          for (let i = 0; i < context.block.transactions.length; i += 1) {
+            context.lib_getTransaction(context.block.transactions[i], true, (terr, tx) => {
               if (tx != null && uid === context.transactions_uid) {
                 context.transactions.push(tx);
               }

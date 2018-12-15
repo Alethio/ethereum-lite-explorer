@@ -21,7 +21,7 @@ export default {
         format: 'svg',
       };
       const icon = new Identicon(h.replace('0x', ''), opts).toString();
-      return ('data:image/svg+xml;base64,' + icon);
+      return (`data:image/svg+xml;base64,${icon}`);
     },
   },
 };

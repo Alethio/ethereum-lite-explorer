@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "VUE_APP_BASE_URL=/ npm run build && cp ./dist/index.html ./dist/200.html && cp ./dist/index.html ./dist/404.html && push-dir --dir=dist --branch=gh-pages --cleanup"
+    "deploy-gh": "VUE_APP_BASE_URL=/ npm run build && cp ./dist/index.html ./dist/200.html && cp ./dist/index.html ./dist/404.html && push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
     "apexcharts": "^2.1.5",
@@ -18,16 +18,18 @@
     "v-tooltip": "^2.0.0-rc.33",
     "vue": "^2.5.17",
     "vue-apexcharts": "^1.2.2",
-    "vue-router": "^3.0.1",
+    "vue-router": "^3.0.2",
     "vue-timeago": "^5.0.0",
     "vuex": "^3.0.1",
     "web3": "0.20.3",
     "websocket": "^1.0.28"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.5",
-    "@vue/cli-plugin-eslint": "^3.0.5",
-    "@vue/cli-service": "^3.0.5",
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@vue/cli-plugin-babel": "^3.2.0",
+    "@vue/cli-plugin-eslint": "^3.2.1",
+    "@vue/cli-service": "^3.2.0",
     "@vue/eslint-config-airbnb": "^3.0.5",
     "push-dir": "^0.4.1",
     "vue-template-compiler": "^2.5.17"
@@ -41,7 +43,23 @@
       "plugin:vue/essential",
       "@vue/airbnb"
     ],
-    "rules": {},
+    "rules": {
+      "no-param-reassign": ["error", {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "acc", 
+          "accumulator",
+          "e", 
+          "ctx",
+          "req",
+          "request",
+          "res",
+          "response",
+          "$scope",
+          "state"
+        ]
+      }]
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

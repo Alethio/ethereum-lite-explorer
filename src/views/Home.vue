@@ -1,14 +1,5 @@
 <template>
 <section class="home is-fullheight">
-  <!--<div class="columns">-->
-    <!--<div class="column has-text-centered">-->
-    <!--<h1 class="title">hello there</h1>-->
-    <!--<p>this is the lighweight block explorer in the future we can put some general graphs here...</p>-->
-    <!--<p class="button" v-on:click="lib_goToBlock(lastBlock)">Go to last block</p>-->
-    <!--</div>-->
-    <!--<div class="column">-->
-    <!--</div>-->
-  <!--</div>-->
   <div class="centered-absolute">
     <div class="flex-box" style="align-items: center">
       <div class="label" v-if="nodeType">Type</div>
@@ -26,14 +17,17 @@
       <div class="flex-box">
         <div class="searchbar-alethio-logo">
           <icon-base icon-name="alethio"
-                     width="24"
-                     height="24"
-                     viewBox="22 22 24 24"
+            width="24"
+            height="24"
+            viewBox="22 22 24 24"
           >
             <icon-alethio />
           </icon-base>
         </div>
-        <input v-model="search" placeholder="Enter a block number, transaction hash or address." v-on:keyup.enter="lib_processSearch(search)"/>
+        <input v-model="search"
+          placeholder="Enter a block number, transaction hash or address."
+          v-on:keyup.enter="lib_processSearch(search)"
+        />
       </div>
       <div v-on:click="lib_processSearch(search)" class="submit-container">
         <div class="searchbar-search-icon">

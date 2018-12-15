@@ -56,7 +56,7 @@ export default new Vuex.Store({
       }
     },
     setPeers(state, count) {
-      if (state.peers !==  count) {
+      if (state.peers !== count) {
         state.peers = count;
       }
     },

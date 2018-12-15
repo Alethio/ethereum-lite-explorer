@@ -22,15 +22,14 @@ export default {
 
   },
   filters: {
-    cleanHash(string) {
-      if (string == null) { return ''; }
-      string = string.toLowerCase();
+    cleanHash(str) {
+      if (str == null) { return ''; }
+      const string = str.toLowerCase();
       const midpoint = Math.ceil(string.length / 2);
       const toremove = string.length - 12;
       const lstrip = Math.ceil(toremove / 2);
       const rstrip = toremove - lstrip;
-      return (`${string.substring(0, midpoint - lstrip)} ... ${
-        string.substring(midpoint + rstrip)}`);
+      return (`${string.substring(0, midpoint - lstrip)} ... ${string.substring(midpoint + rstrip)}`);
     },
   },
 };

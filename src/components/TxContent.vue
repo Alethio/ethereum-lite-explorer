@@ -48,7 +48,10 @@
     </div>
     <div class="pair">
       <div class="label" v-if="tx.receipt && tx.receipt.contractAddress !== null">Creates</div>
-      <AccountHash :value="tx.receipt.contractAddress"  v-if="tx.receipt &&  tx.receipt.contractAddress !== null"/>
+      <AccountHash
+        :value="tx.receipt.contractAddress"
+        v-if="tx.receipt &&  tx.receipt.contractAddress !== null"
+      />
     </div>
   </div>
   <div class="flex-box separated">
@@ -73,7 +76,7 @@
       <div class="label minW140">Gas used by tx</div>
       <div class="value" v-if="tx.receipt">
         {{ this.numberWithCommas(tx.receipt.gasUsed)}}
-        <span class="percentage">{{((tx.receipt.gasUsed / tx.gas) * 100).toFixed(2)}}%</span>
+        <span class="percentage">{{((tx.receipt.gasUsed * 100) / tx.gas).toFixed(2)}}%</span>
       </div>
     </div>
     <div class="pair">
@@ -85,9 +88,22 @@
   </div>
   <div class="flex-box">
     <div class="pair">
-      <div class="label minW140">Cummulative gas used</div>
+      <div class="label minW140">Cumulative gas used</div>
       <div class="value" v-if="tx.receipt">
         {{ this.numberWithCommas(tx.receipt.cumulativeGasUsed)}}
+      </div>
+    </div>
+  </div>
+  <div class="flex-box" v-if="tx.input && tx.input !== '0x'">
+    <div class="pair">
+      <div class="label minW140">Payload</div>
+      <div class="payload">
+        <div class="byte"
+          v-for="(byte, i) in tx.input.replace(/^0x/, '').match(/.{1,2}/g)"
+          :key="i"
+        >
+          {{ byte }}
+        </div>
       </div>
     </div>
   </div>
@@ -96,15 +112,14 @@
 
 
 <script>
-import Vue from 'vue';
-import HelpersMixin from '../../src/mixins/Helpers';
-
 import Hash from '@/components/ui/Hash.vue';
 import TxHash from '@/components/ui/TxHash.vue';
 import AccountHash from '@/components/ui/AccountHash.vue';
 import BlockNumber from '@/components/ui/BlockNumber.vue';
 import AddressLink from '@/components/ui/AddressLink.vue';
 import TransactionLink from '@/components/ui/TransactionLink.vue';
+
+import HelpersMixin from '../../src/mixins/Helpers';
 
 
 export default {
@@ -125,15 +140,13 @@ export default {
   },
   watch: {
     async currentHash() {
-      if (this.currentHash != '') {
+      if (this.currentHash !== '') {
         const context = this;
         // We save a UUID to prevent old callbacks from also giving their results
         context.tx_uid = this.lib_UID();
-        const uid = context.tx_uid;
 
         // We get the block to iterate all his transactions
         context.lib_getTransaction(context.currentHash, true, (err, tx) => {
-          console.log(tx);
           context.tx = tx;
         });
       }

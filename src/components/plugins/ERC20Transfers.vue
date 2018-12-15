@@ -28,10 +28,10 @@ export default {
       context.transfers_uid = this.lib_UID(); // We store a UUID for the
       // current set of request so async callbacks don't polute the result table
       const uid = context.transfers_uid;
-      for (let i = 0; i < context.block.transactions.length; i++) {
+      for (let i = 0; i < context.block.transactions.length; i += 1) {
         context.lib_getTransaction(context.block.transactions[i], true, (err, tx) => {
           if (tx.receipt != null && tx.receipt.logs != null) {
-            for (let j = 0; j < tx.receipt.logs.length; j++) {
+            for (let j = 0; j < tx.receipt.logs.length; j += 1) {
               if (uid === context.transfers_uid && tx.receipt.logs[j].topics[0] === '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef') {
                 context.transfers += 1;
               }

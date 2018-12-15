@@ -25,15 +25,17 @@ export default {
 
   },
   filters: {
-    cleanHash(string) {
+    cleanHash(str) {
+      let string = str;
       if (string == null) { return ''; }
       string = string.toLowerCase();
       const midpoint = Math.ceil(string.length / 2);
       const toremove = string.length - 12;
       const lstrip = Math.ceil(toremove / 2);
       const rstrip = toremove - lstrip;
-      return (`${string.substring(0, midpoint - lstrip)} ... ${
-        string.substring(midpoint + rstrip)}`);
+      const left = string.substring(0, midpoint - lstrip);
+      const right = string.substring(midpoint + rstrip);
+      return (`${left} ... ${right}`);
     },
   },
 };

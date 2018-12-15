@@ -81,6 +81,26 @@ div {
     letter-spacing: 0.2px;
     padding: 11px 16px 13px;
 }
+
+.payload {
+    color: #273656;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.2px;
+    padding: 11px 16px 13px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.byte {
+    display: block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+}
+
 .counter-container {
     padding: 10px 8px;
 }
