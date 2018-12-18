@@ -9,9 +9,11 @@ import noFound from './views/404.vue';
 
 
 Vue.use(Router);
+const routerMode = process.env.VUE_APP_ROUTER_MODE || 'hash';
 
 export default new Router({
   base: process.env.VUE_APP_BASE_URL,
+  mode: routerMode,
   routes: [
     {
       path: '/',
