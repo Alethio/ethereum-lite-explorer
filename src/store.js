@@ -1,15 +1,20 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-// Web3 provider defines where is located our RPC provider.
-import getWeb3 from './web3Provider';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const CONNECTION_JSON_RPC = 'json_rpc';
+
+
+const store = new Vuex.Store({
   state: {
-    w3: getWeb3(),
-    blocks: {}, // Stroe cached blocks
+    nodeUrl: process.env.VUE_APP_NODE_URL,
+    connectionType: process.env.VUE_APP_CONNECTION_TYPE || CONNECTION_JSON_RPC,
+    nodeUser: process.env.VUE_APP_NODE_USER,
+    nodePass: process.env.VUE_APP_NODE_PASS,
+    w3: null,
+    blocks: {}, // Store cached blocks
     transactions: {}, // Store cached transactions
     pendingQueries: {}, // Store which blocks/tx are currently being queried
     lastBlock: -1,
@@ -25,6 +30,9 @@ export default new Vuex.Store({
   *  Mutations are used by the internal library and should not be called by someone else.
   */
   mutations: {
+    setWeb3(state, createdWeb3) {
+      state.w3 = createdWeb3;
+    },
     setPending(state, key) {
       Vue.set(state.pendingQueries, key, true);
       state.countPending += 1;
@@ -65,11 +73,18 @@ export default new Vuex.Store({
         state.nodeType = type;
       }
     },
+    setNodeUrl(state, url) {
+      state.nodeUrl = url;
+    },
   },
   actions: {
 
   },
   getters: {
-
+    connectionType: state => state.connectionType,
+    nodeUrl: state => state.nodeUrl,
+    nodeUser: state => state.nodeUser,
+    nodePass: state => state.nodePass,
   },
 });
+export default store;

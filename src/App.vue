@@ -80,6 +80,7 @@ export default {
     IconSearch,
   },
   mounted() {
+    this.lib_createWeb3();
     // We start here the watcher for last blocks
     this.lib_monitorLastBlock();
   },
