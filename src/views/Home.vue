@@ -1,5 +1,14 @@
 <template>
 <section class="home is-fullheight">
+  <div class="node-dropdown">
+    <v-select v-model="selected"
+              :options="[{label: 'Mainnet', value: 'https://mainnet.infura.io/Alethio'},
+                         {label: 'Kovan', value: 'https://kovan.infura.io/Alethio'},
+                         {label: 'Rinkeby', value: 'https://rinkeby.infura.io/Alethio'},
+                         {label: 'Ropsten', value: 'https://ropsten.infura.io/Alethio'},]"
+    >
+    </v-select>
+  </div>
   <div class="centered-absolute">
     <div class="flex-box" style="align-items: center">
       <div class="label" v-if="nodeType">Type</div>
@@ -51,6 +60,10 @@ import BlockNumber from '@/components/ui/BlockNumber.vue';
 import IconBase from '@/components/icons/IconBase.vue';
 import IconSearch from '@/components/icons/IconSearch.vue';
 import IconAlethio from '@/components/icons/IconAlethio.vue';
+import Vue from 'vue';
+import vSelect from 'vue-select';
+
+Vue.component('v-select', vSelect);
 
 export default {
   name: 'home',
@@ -63,6 +76,7 @@ export default {
   data() {
     return ({
       search: '',
+      selected: 'Mainnet',
     });
   },
   mounted() {
