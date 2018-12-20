@@ -36,7 +36,13 @@ const getNodeUrlsArray = () => {
 const getPreselectedNodeUrl = () => {
   const localSave = localStorage.getItem('nodeUrl');
   if (localSave) {
-    return JSON.parse(localSave);
+    const parsedSave = JSON.parse(localSave);
+    if (parsedSave.label === 'Deploy URL') {
+      if (process.env.VUE_APP_NODE_URL !== parsedSave.value) {
+        return { label: 'Deploy URL', value: process.env.VUE_APP_NODE_URL };
+      }
+    }
+    return parsedSave;
   }
   const checkForNode = findNodeUrl();
   if (checkForNode.foundUrl) {
