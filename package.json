@@ -19,6 +19,7 @@
     "vue": "^2.5.17",
     "vue-apexcharts": "^1.2.2",
     "vue-router": "^3.0.2",
+    "vue-select": "^2.5.1",
     "vue-timeago": "^5.0.0",
     "vuex": "^3.0.1",
     "web3": "0.20.3",
@@ -44,21 +45,24 @@
       "@vue/airbnb"
     ],
     "rules": {
-      "no-param-reassign": ["error", {
-        "props": true,
-        "ignorePropertyModificationsFor": [
-          "acc", 
-          "accumulator",
-          "e", 
-          "ctx",
-          "req",
-          "request",
-          "res",
-          "response",
-          "$scope",
-          "state"
-        ]
-      }]
+      "no-param-reassign": [
+        "error",
+        {
+          "props": true,
+          "ignorePropertyModificationsFor": [
+            "acc",
+            "accumulator",
+            "e",
+            "ctx",
+            "req",
+            "request",
+            "res",
+            "response",
+            "$scope",
+            "state"
+          ]
+        }
+      ]
     },
     "parserOptions": {
       "parser": "babel-eslint"
