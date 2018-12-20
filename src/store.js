@@ -39,6 +39,10 @@ const getNodeUrlsArray = () => {
 };
 
 const getPreselectedNodeUrl = () => {
+  const localSave = localStorage.getItem('nodeUrl');
+  if (localSave) {
+    return JSON.parse(localSave);
+  }
   const checkForNode = findNodeUrl();
   if (checkForNode.foundUrl) {
     return defaultNodeUrls[checkForNode.atIndex];
@@ -46,9 +50,17 @@ const getPreselectedNodeUrl = () => {
   return { label: 'Deploy URL', value: process.env.VUE_APP_NODE_URL };
 };
 
+const getPreselectedWeb3Url = () => {
+  const localSave = localStorage.getItem('nodeUrl');
+  if (localSave) {
+    return JSON.parse(localSave).value;
+  }
+  return process.env.VUE_APP_NODE_URL;
+};
+
 const store = new Vuex.Store({
   state: {
-    nodeUrl: process.env.VUE_APP_NODE_URL,
+    nodeUrl: getPreselectedWeb3Url(),
     connectionType: process.env.VUE_APP_CONNECTION_TYPE || CONNECTION_JSON_RPC,
     nodeUser: process.env.VUE_APP_NODE_USER,
     nodePass: process.env.VUE_APP_NODE_PASS,
@@ -77,6 +89,7 @@ const store = new Vuex.Store({
     setActiveUrl(state, url) {
       state.selectedUrl = url;
       state.nodeUrl = url.value;
+      localStorage.setItem('nodeUrl', JSON.stringify(url));
     },
     setPending(state, key) {
       Vue.set(state.pendingQueries, key, true);
