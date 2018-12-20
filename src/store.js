@@ -10,8 +10,9 @@ const defaultNodeUrls = [{ label: 'Mainnet', value: 'https://mainnet.infura.io/A
   { label: 'Rinkeby', value: 'https://rinkeby.infura.io/Alethio' },
   { label: 'Ropsten', value: 'https://ropsten.infura.io/Alethio' }];
 
-const getNodeUrlsArray = () => {
+const findNodeUrl = () => {
   let foundDeployUrl = false;
+  let foundIndex = -1;
   const deployUrl = process.env.VUE_APP_NODE_URL;
   const debris = deployUrl.split('/');
   debris.pop();
@@ -22,17 +23,28 @@ const getNodeUrlsArray = () => {
     const choppedCheckedUrl = checkedUrlDebris.join('/');
     if (choppedDeployUrl === choppedCheckedUrl) {
       foundDeployUrl = true;
+      foundIndex = i;
       break;
     }
   }
-  if (foundDeployUrl) {
-    return defaultNodeUrls;
-  } else {
-    defaultNodeUrls.push({ label: 'Deploy URL', value: process.env.VUE_APP_NODE_URL });
-    return defaultNodeUrls;
-  }
+  return { foundUrl: foundDeployUrl, atIndex: foundIndex };
 };
 
+const getNodeUrlsArray = () => {
+  if (findNodeUrl().foundUrl) {
+    return defaultNodeUrls;
+  }
+  defaultNodeUrls.push({ label: 'Deploy URL', value: process.env.VUE_APP_NODE_URL });
+  return defaultNodeUrls;
+};
+
+const getPreselectedNodeUrl = () => {
+  const checkForNode = findNodeUrl();
+  if (checkForNode.foundUrl) {
+    return defaultNodeUrls[checkForNode.atIndex];
+  }
+  return { label: 'Deploy URL', value: process.env.VUE_APP_NODE_URL };
+};
 
 const store = new Vuex.Store({
   state: {
@@ -42,7 +54,7 @@ const store = new Vuex.Store({
     nodePass: process.env.VUE_APP_NODE_PASS,
     w3: null,
     nodeUrls: getNodeUrlsArray(),
-    selectedUrl: { label: 'Deploy URL', value: process.env.VUE_APP_NODE_URL },
+    selectedUrl: getPreselectedNodeUrl(),
     blocks: {}, // Store cached blocks
     transactions: {}, // Store cached transactions
     pendingQueries: {}, // Store which blocks/tx are currently being queried
