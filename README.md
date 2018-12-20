@@ -3,6 +3,7 @@ The **Lite Explorer**  is a client-side only web application that connects direc
 This means you can have your own private Ethereum Explorer should you wish so. 
 No need for servers, hosting or trusting any third parties to display chain data.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a853085f6f2f4f50a8241054c486c742)](https://app.codacy.com/app/tzapu/ethstats-lite-explorer?utm_source=github.com&utm_medium=referral&utm_content=Alethio/ethstats-lite-explorer&utm_campaign=Badge_Grade_Dashboard)
 [![CircleCI](https://circleci.com/gh/Alethio/ethstats-lite-explorer.svg?style=svg)](https://circleci.com/gh/Alethio/ethstats-lite-explorer)
 
 > NOTICE   
