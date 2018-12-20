@@ -5,23 +5,18 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const CONNECTION_JSON_RPC = 'json_rpc';
-const defaultNodeUrls = [{ label: 'Mainnet', value: 'https://mainnet.infura.io/Alethio' },
-  { label: 'Kovan', value: 'https://kovan.infura.io/Alethio' },
-  { label: 'Rinkeby', value: 'https://rinkeby.infura.io/Alethio' },
-  { label: 'Ropsten', value: 'https://ropsten.infura.io/Alethio' }];
+const INFURA_USER = process.env.VUE_APP_INFURA_ACCOUNT || '';
+const defaultNodeUrls = [{ label: 'Mainnet', value: `https://mainnet.infura.io/${INFURA_USER}` },
+  { label: 'Kovan', value: `https://kovan.infura.io/${INFURA_USER}` },
+  { label: 'Rinkeby', value: `https://rinkeby.infura.io/${INFURA_USER}` },
+  { label: 'Ropsten', value: `https://ropsten.infura.io/${INFURA_USER}` }];
 
 const findNodeUrl = () => {
   let foundDeployUrl = false;
   let foundIndex = -1;
-  const deployUrl = process.env.VUE_APP_NODE_URL;
-  const debris = deployUrl.split('/');
-  debris.pop();
-  const choppedDeployUrl = debris.join('/');
-  for (let i = 0; i <= defaultNodeUrls.length; i += 1) {
-    const checkedUrlDebris = defaultNodeUrls[i].value.split('/');
-    checkedUrlDebris.pop();
-    const choppedCheckedUrl = checkedUrlDebris.join('/');
-    if (choppedDeployUrl === choppedCheckedUrl) {
+  const deployUrl = `${process.env.VUE_APP_NODE_URL}${INFURA_USER}`;
+  for (let i = 0; i < defaultNodeUrls.length; i += 1) {
+    if (deployUrl.includes(defaultNodeUrls[i].value)) {
       foundDeployUrl = true;
       foundIndex = i;
       break;
