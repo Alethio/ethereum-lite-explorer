@@ -220,7 +220,30 @@ Vue.mixin({
             context.$store.commit('setNodeType', version);
           }
         });
-        setTimeout(context.lib_monitorLastBlock, 6000);
+        setTimeout(context.lib_monitorLastBlock, 5000);
+      });
+    },
+    lib_fetchInitialData() {
+      const context = this;
+      this.$store.state.w3.eth.getBlockNumber((err, number) => {
+        if (!err) {
+          context.$store.commit('setLastBlock', number);
+          this.$store.state.w3.eth.getBlock(number, false, (berr, block) => {
+            if (!berr) {
+              context.$store.commit('setLastBlockFull', block);
+            }
+          });
+        }
+        this.$store.state.w3.net.getPeerCount((perr, count) => {
+          if (!perr) {
+            context.$store.commit('setPeers', count);
+          }
+        });
+        this.$store.state.w3.version.getNode((nerr, version) => {
+          if (!nerr) {
+            context.$store.commit('setNodeType', version);
+          }
+        });
       });
     },
     lib_guessInputType(inputType) {

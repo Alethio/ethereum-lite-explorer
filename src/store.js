@@ -5,6 +5,33 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const CONNECTION_JSON_RPC = 'json_rpc';
+const defaultNodeUrls = [{ label: 'Mainnet', value: 'https://mainnet.infura.io/Alethio' },
+  { label: 'Kovan', value: 'https://kovan.infura.io/Alethio' },
+  { label: 'Rinkeby', value: 'https://rinkeby.infura.io/Alethio' },
+  { label: 'Ropsten', value: 'https://ropsten.infura.io/Alethio' }];
+
+const getNodeUrlsArray = () => {
+  let foundDeployUrl = false;
+  const deployUrl = process.env.VUE_APP_NODE_URL;
+  const debris = deployUrl.split('/');
+  debris.pop();
+  const choppedDeployUrl = debris.join('/');
+  for (let i = 0; i <= defaultNodeUrls.length; i += 1) {
+    const checkedUrlDebris = defaultNodeUrls[i].value.split('/');
+    checkedUrlDebris.pop();
+    const choppedCheckedUrl = checkedUrlDebris.join('/');
+    if (choppedDeployUrl === choppedCheckedUrl) {
+      foundDeployUrl = true;
+      break;
+    }
+  }
+  if (foundDeployUrl) {
+    return defaultNodeUrls;
+  } else {
+    defaultNodeUrls.push({ label: 'Deploy URL', value: process.env.VUE_APP_NODE_URL });
+    return defaultNodeUrls;
+  }
+};
 
 
 const store = new Vuex.Store({
@@ -14,6 +41,8 @@ const store = new Vuex.Store({
     nodeUser: process.env.VUE_APP_NODE_USER,
     nodePass: process.env.VUE_APP_NODE_PASS,
     w3: null,
+    nodeUrls: getNodeUrlsArray(),
+    selectedUrl: { label: 'Deploy URL', value: process.env.VUE_APP_NODE_URL },
     blocks: {}, // Store cached blocks
     transactions: {}, // Store cached transactions
     pendingQueries: {}, // Store which blocks/tx are currently being queried
@@ -32,6 +61,10 @@ const store = new Vuex.Store({
   mutations: {
     setWeb3(state, createdWeb3) {
       state.w3 = createdWeb3;
+    },
+    setActiveUrl(state, url) {
+      state.selectedUrl = url;
+      state.nodeUrl = url.value;
     },
     setPending(state, key) {
       Vue.set(state.pendingQueries, key, true);
@@ -75,6 +108,12 @@ const store = new Vuex.Store({
     },
     setNodeUrl(state, url) {
       state.nodeUrl = url;
+    },
+    resetStats(state) {
+      state.lastBlock = 0;
+      state.lastBlockFull = 0;
+      state.nodeType = null;
+      state.peers = null;
     },
   },
   actions: {

@@ -1,11 +1,9 @@
 <template>
 <section class="home is-fullheight">
   <div class="node-dropdown">
-    <v-select v-model="selected"
-              :options="[{label: 'Mainnet', value: 'https://mainnet.infura.io/Alethio'},
-                         {label: 'Kovan', value: 'https://kovan.infura.io/Alethio'},
-                         {label: 'Rinkeby', value: 'https://rinkeby.infura.io/Alethio'},
-                         {label: 'Ropsten', value: 'https://ropsten.infura.io/Alethio'},]"
+    <v-select :options="$store.state.nodeUrls"
+              :value="$store.state.selectedUrl"
+              @input="setActiveUrl"
     >
     </v-select>
   </div>
@@ -76,7 +74,6 @@ export default {
   data() {
     return ({
       search: '',
-      selected: 'Mainnet',
     });
   },
   mounted() {
@@ -84,6 +81,14 @@ export default {
   },
   watch: {
 
+  },
+  methods: {
+    setActiveUrl(val) {
+      this.$store.commit('setActiveUrl', val);
+      this.$store.commit('resetStats');
+      this.lib_createWeb3();
+      this.lib_fetchInitialData();
+    },
   },
   computed: {
     lastBlock() {
