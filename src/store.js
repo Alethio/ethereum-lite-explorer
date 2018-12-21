@@ -5,6 +5,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const CONNECTION_JSON_RPC = 'json_rpc';
+const DEFAULT_LABELS = ['Mainnet', 'Kovan', 'Rinkeby', 'Ropsten'];
 const INFURA_USER = process.env.VUE_APP_INFURA_ACCOUNT || '';
 const defaultNodeUrls = [{ label: 'Mainnet', value: `https://mainnet.infura.io/v3/${INFURA_USER}` },
   { label: 'Kovan', value: `https://kovan.infura.io/v3/${INFURA_USER}` },
@@ -29,7 +30,10 @@ const getNodeUrlsArray = () => {
   if (findNodeUrl().foundUrl) {
     return defaultNodeUrls;
   }
-  defaultNodeUrls.push({ label: 'Deploy URL', value: process.env.VUE_APP_NODE_URL });
+  defaultNodeUrls.push({
+    label: process.env.VUE_APP_NODE_URL,
+    value: process.env.VUE_APP_NODE_URL,
+  });
   return defaultNodeUrls;
 };
 
@@ -37,9 +41,9 @@ const getPreselectedNodeUrl = () => {
   const localSave = localStorage.getItem('nodeUrl');
   if (localSave) {
     const parsedSave = JSON.parse(localSave);
-    if (parsedSave.label === 'Deploy URL') {
+    if (DEFAULT_LABELS.indexOf(parsedSave.label) < 0) {
       if (process.env.VUE_APP_NODE_URL !== parsedSave.value) {
-        return { label: 'Deploy URL', value: process.env.VUE_APP_NODE_URL };
+        return { label: process.env.VUE_APP_NODE_URL, value: process.env.VUE_APP_NODE_URL };
       }
     }
     return parsedSave;
@@ -48,7 +52,7 @@ const getPreselectedNodeUrl = () => {
   if (checkForNode.foundUrl) {
     return defaultNodeUrls[checkForNode.atIndex];
   }
-  return { label: 'Deploy URL', value: process.env.VUE_APP_NODE_URL };
+  return { label: 'Host:port', value: process.env.VUE_APP_NODE_URL };
 };
 
 const getPreselectedWeb3Url = () => {
