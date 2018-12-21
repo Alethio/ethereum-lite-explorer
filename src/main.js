@@ -32,17 +32,17 @@ Vue.mixin({
   methods: {
     lib_createWeb3() {
       let w3 = null;
-      const savedSore = this.$store;
-      const conn = savedSore.getters.connectionType;
+      const savedStore = this.$store;
+      const conn = savedStore.getters.connectionType;
       switch (conn) {
         case CONNECTION_JSON_RPC:
           w3 = new Web3(new Web3.providers.HttpProvider(
-            savedSore.getters.nodeUrl,
-            0, savedSore.getters.nodeUser, savedSore.getters.nodePass,
+            savedStore.getters.nodeUrl,
+            0, savedStore.getters.nodeUser, savedStore.getters.nodePass,
           ));
           break;
         case CONNECTION_WEB_SOCKET:
-          w3 = new Web3(new Web3.providers.WebsocketProvider(savedSore.getters.nodeUrl()));
+          w3 = new Web3(new Web3.providers.WebsocketProvider(savedStore.getters.nodeUrl()));
           break;
         default:
           break;
