@@ -6,10 +6,10 @@ Vue.use(Vuex);
 
 const CONNECTION_JSON_RPC = 'json_rpc';
 const INFURA_USER = process.env.VUE_APP_INFURA_ACCOUNT || '';
-const defaultNodeUrls = [{ label: 'Mainnet', value: `https://mainnet.infura.io/${INFURA_USER}` },
-  { label: 'Kovan', value: `https://kovan.infura.io/${INFURA_USER}` },
-  { label: 'Rinkeby', value: `https://rinkeby.infura.io/${INFURA_USER}` },
-  { label: 'Ropsten', value: `https://ropsten.infura.io/${INFURA_USER}` }];
+const defaultNodeUrls = [{ label: 'Mainnet', value: `https://mainnet.infura.io/v3/${INFURA_USER}` },
+  { label: 'Kovan', value: `https://kovan.infura.io/v3/${INFURA_USER}` },
+  { label: 'Rinkeby', value: `https://rinkeby.infura.io/v3/${INFURA_USER}` },
+  { label: 'Ropsten', value: `https://ropsten.infura.io/v3/${INFURA_USER}` }];
 
 const findNodeUrl = () => {
   let foundDeployUrl = false;
