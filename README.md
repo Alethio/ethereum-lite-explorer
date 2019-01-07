@@ -106,9 +106,19 @@ the `dist` folder will then contain the minimised and optimised version fo the a
 
 #### With Infura
 [Sign-up](https://infura.io/register) for an account or [sign-in](https://infura.io/login) into your Infura account.  
-From the control panel, obtain your endpoint url for the network you are interested in (mainnet, ropsten, kovan, rinkeby). It will looks similar to `https://mainnet.infura.io/v3/aa11bb22cc33.....`.
 
-Update `.env.local` file and set `VUE_APP_NODE_URL` to your Infura endpoint.
+After that you have two options:
+
+- connect to a single network  
+  From the control panel, obtain your endpoint url for the network you are interested in (mainnet, ropsten, kovan, rinkeby). 
+  It will looks similar to `https://mainnet.infura.io/v3/aa11bb22cc33.....`.  
+
+  Update `.env.local` file and set `VUE_APP_NODE_URL` to your Infura endpoint.
+
+- have a choice of infura networks and be able to swith between them  
+  From the control panel obtain your Infura Project ID
+  
+  Update `.env.local` file and set `VUE_APP_INFURA_ACCOUNT` to your project id to get a dropdown of all the available Infura networks.
 
 Start Lite explorer 
 ```sh
