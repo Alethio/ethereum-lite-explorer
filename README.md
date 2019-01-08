@@ -85,7 +85,7 @@ Adjust `.env.local` to your needs. You can remove the variables you do not wish 
 | --- | --- |
 | VUE_APP_CONNECTION_TYPE | RPC Connection type. `'json_rpc'` for http(s)  or `'ws'` for websockets. Default `'json_rpc'`. |
 | VUE_APP_NODE_URL | URL of RPC enabled node. Default `'https://mainnet.infura.io/'` |
-| VUE_APP_INFURA_ACCOUNT | Infura Project ID. You can get this from your [Infura Dashboard](https://infura.io/dashboard) .
+| VUE_APP_INFURA_PROJECT_ID | Infura Project ID. You can get this from your [Infura Dashboard](https://infura.io/dashboard) .
 | VUE_APP_BASE_URL | Path of your app. Use `'/'` for root directory, `'subfolder-path'` if your app live in another folder or `''` if you want to open the app directly from the file system without any server. Default `'/'`. |
 | VUE_APP_NODE_USER | If your RPC node is behind HTTP Basic Authentification then use this to set the username. |
 | VUE_APP_NODE_PASSWORD | HTTP Basic Authentification Password. |
@@ -118,7 +118,7 @@ After that you have two options:
 - have a choice of infura networks and be able to swith between them  
   From the control panel obtain your Infura Project ID
   
-  Update `.env.local` file and set `VUE_APP_INFURA_ACCOUNT` to your project id to get a dropdown of all the available Infura networks.
+  Update `.env.local` file and set `VUE_APP_INFURA_PROJECT_ID` to your project id to get a dropdown of all the available Infura networks.
 
 Start Lite explorer 
 ```sh

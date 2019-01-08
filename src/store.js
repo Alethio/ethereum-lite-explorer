@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 const CONNECTION_JSON_RPC = 'json_rpc';
 const DEFAULT_LABELS = ['Mainnet', 'Kovan', 'Rinkeby', 'Ropsten'];
-const INFURA_USER = process.env.VUE_APP_INFURA_ACCOUNT || '';
+const INFURA_USER = process.env.VUE_APP_INFURA_PROJECT_ID || '';
 const defaultNodeUrls = [{ label: 'Mainnet', value: `https://mainnet.infura.io/v3/${INFURA_USER}` },
   { label: 'Kovan', value: `https://kovan.infura.io/v3/${INFURA_USER}` },
   { label: 'Rinkeby', value: `https://rinkeby.infura.io/v3/${INFURA_USER}` },
