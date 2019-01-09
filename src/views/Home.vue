@@ -1,6 +1,6 @@
 <template>
 <section class="home is-fullheight">
-  <div class="node-dropdown">
+  <div class="node-dropdown" v-if="infuraProjectID">
     <v-select :options="$store.state.nodeUrls"
               :value="$store.state.selectedUrl"
               @input="setActiveUrl"
@@ -61,6 +61,7 @@ import IconAlethio from '@/components/icons/IconAlethio.vue';
 import Vue from 'vue';
 import vSelect from 'vue-select';
 
+
 Vue.component('v-select', vSelect);
 
 export default {
@@ -102,6 +103,9 @@ export default {
     },
     nodeType() {
       return (this.$store.state.nodeType);
+    },
+    infuraProjectID() {
+      return (this.$store.state.infuraProjectID);
     },
   },
 

@@ -39,7 +39,7 @@ const getNodeUrlsArray = () => {
 
 const getPreselectedNodeUrl = () => {
   const localSave = localStorage.getItem('nodeUrl');
-  if (localSave) {
+  if (localSave && process.env.VUE_APP_INFURA_PROJECT_ID) {
     const parsedSave = JSON.parse(localSave);
     if (DEFAULT_LABELS.indexOf(parsedSave.label) < 0) {
       if (process.env.VUE_APP_NODE_URL !== parsedSave.value) {
@@ -57,7 +57,7 @@ const getPreselectedNodeUrl = () => {
 
 const getPreselectedWeb3Url = () => {
   const localSave = localStorage.getItem('nodeUrl');
-  if (localSave) {
+  if (localSave && process.env.VUE_APP_INFURA_PROJECT_ID) {
     return JSON.parse(localSave).value;
   }
   return process.env.VUE_APP_NODE_URL;
@@ -69,6 +69,7 @@ const store = new Vuex.Store({
     connectionType: process.env.VUE_APP_CONNECTION_TYPE || CONNECTION_JSON_RPC,
     nodeUser: process.env.VUE_APP_NODE_USER,
     nodePass: process.env.VUE_APP_NODE_PASS,
+    infuraProjectID: process.env.VUE_APP_INFURA_PROJECT_ID,
     w3: null,
     nodeUrls: getNodeUrlsArray(),
     selectedUrl: getPreselectedNodeUrl(),
