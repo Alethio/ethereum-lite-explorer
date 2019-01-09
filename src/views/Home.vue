@@ -3,6 +3,8 @@
   <div class="node-dropdown" v-if="infuraProjectID">
     <v-select :options="$store.state.nodeUrls"
               :value="$store.state.selectedUrl"
+              :searchable=false
+              :clearable=false
               @input="setActiveUrl"
     >
     </v-select>
