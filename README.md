@@ -91,7 +91,7 @@ Adjust `.env.local` to your needs. You can remove the variables you do not wish 
 | VUE_APP_NODE_PASSWORD | HTTP Basic Authentification Password. |
 | VUE_APP_ROUTER_MODE | Vue Router mode `'hash'` (default mode) uses the URL hash for routing. Works in all Vue-supported browsers, including those that do not support HTML5 History API. `'history'` requires HTML5 History API and server config. See [HTML5 History Mode](https://router.vuejs.org/guide/essentials/history-mode.html).
 
-> NOTICE: if `VUE_APP_NODE_URL` and `VUE_APP_INFURA_PROJECT_ID` are both missing, the explorer will start with the Infura mainnet endpoint in anonymous mode.
+> NOTICE: if `VUE_APP_NODE_URL` and `VUE_APP_INFURA_PROJECT_ID` are both missing, the explorer will start with the Infura mainnet endpoint in anonymous mode (https://mainnet.infura.io/).
 
 After which you can run the explorer (in development mode)
 ```sh
