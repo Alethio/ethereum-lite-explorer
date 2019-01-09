@@ -85,11 +85,13 @@ Adjust `.env.local` to your needs. You can remove the variables you do not wish 
 | --- | --- |
 | VUE_APP_CONNECTION_TYPE | RPC Connection type. `'json_rpc'` for http(s)  or `'ws'` for websockets. Default `'json_rpc'`. |
 | VUE_APP_NODE_URL | URL of RPC enabled node. Default `'https://mainnet.infura.io/'` |
-| VUE_APP_INFURA_PROJECT_ID | Infura Project ID. You can get this from your [Infura Dashboard](https://infura.io/dashboard) .
+| VUE_APP_INFURA_PROJECT_ID | Infura Project ID. You can get this from your [Infura Dashboard](https://infura.io/dashboard). Adding this will enable a dropdown to select from the available Infura endpoints.
 | VUE_APP_BASE_URL | Path of your app. Use `'/'` for root directory, `'subfolder-path'` if your app live in another folder or `''` if you want to open the app directly from the file system without any server. Default `'/'`. |
 | VUE_APP_NODE_USER | If your RPC node is behind HTTP Basic Authentification then use this to set the username. |
 | VUE_APP_NODE_PASSWORD | HTTP Basic Authentification Password. |
 | VUE_APP_ROUTER_MODE | Vue Router mode `'hash'` (default mode) uses the URL hash for routing. Works in all Vue-supported browsers, including those that do not support HTML5 History API. `'history'` requires HTML5 History API and server config. See [HTML5 History Mode](https://router.vuejs.org/guide/essentials/history-mode.html).
+
+> NOTICE: if `VUE_APP_NODE_URL` and `VUE_APP_INFURA_PROJECT_ID` are both missing, the explorer will start with the Infura endpoints in anonymous mode.
 
 After which you can run the explorer (in development mode)
 ```sh
