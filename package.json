@@ -30,7 +30,7 @@
     "@babel/preset-env": "^7.2.0",
     "@vue/cli-plugin-babel": "^3.2.0",
     "@vue/cli-plugin-eslint": "^3.2.1",
-    "@vue/cli-service": "^3.2.0",
+    "@vue/cli-service": "^3.3.0",
     "@vue/eslint-config-airbnb": "^3.0.5",
     "push-dir": "^0.4.1",
     "vue-template-compiler": "^2.5.17"
