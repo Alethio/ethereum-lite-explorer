@@ -7,6 +7,7 @@ Vue.use(Vuex);
 const CONNECTION_JSON_RPC = 'json_rpc';
 const DEFAULT_LABELS = ['Mainnet', 'Kovan', 'Rinkeby', 'Ropsten'];
 const INFURA_USER = process.env.VUE_APP_INFURA_PROJECT_ID || '';
+const DEFAULT_INFURA_URL = 'https://mainnet.infura.io/';
 const defaultNodeUrls = [{ label: 'Mainnet', value: `https://mainnet.infura.io/v3/${INFURA_USER}` },
   { label: 'Kovan', value: `https://kovan.infura.io/v3/${INFURA_USER}` },
   { label: 'Rinkeby', value: `https://rinkeby.infura.io/v3/${INFURA_USER}` },
@@ -60,7 +61,10 @@ const getPreselectedWeb3Url = () => {
   if (localSave && process.env.VUE_APP_INFURA_PROJECT_ID) {
     return JSON.parse(localSave).value;
   }
-  return process.env.VUE_APP_NODE_URL;
+  if (process.env.VUE_APP_NODE_URL) {
+    return process.env.VUE_APP_NODE_URL;
+  }
+  return DEFAULT_INFURA_URL;
 };
 
 const store = new Vuex.Store({
