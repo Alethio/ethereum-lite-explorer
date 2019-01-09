@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import Web3 from 'web3';
 import Buefy from 'buefy';
 import uuidv1 from 'uuid/v1';
 import VTooltip from 'v-tooltip';
@@ -7,6 +8,10 @@ import VueTimeago from 'vue-timeago';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+
+
+const CONNECTION_JSON_RPC = 'json_rpc';
+const CONNECTION_WEB_SOCKET = 'ws';
 
 Vue.config.productionTip = false;
 
@@ -25,6 +30,25 @@ Vue.use(VueTimeago, { name: 'Timeago', locale: 'en' });
  */
 Vue.mixin({
   methods: {
+    lib_createWeb3() {
+      let w3 = null;
+      const savedStore = this.$store;
+      const conn = savedStore.getters.connectionType;
+      switch (conn) {
+        case CONNECTION_JSON_RPC:
+          w3 = new Web3(new Web3.providers.HttpProvider(
+            savedStore.getters.nodeUrl,
+            0, savedStore.getters.nodeUser, savedStore.getters.nodePass,
+          ));
+          break;
+        case CONNECTION_WEB_SOCKET:
+          w3 = new Web3(new Web3.providers.WebsocketProvider(savedStore.getters.nodeUrl()));
+          break;
+        default:
+          break;
+      }
+      this.$store.commit('setWeb3', w3);
+    },
     lib_goHome() {
       this.$router.push({
         path: '/',
@@ -196,7 +220,30 @@ Vue.mixin({
             context.$store.commit('setNodeType', version);
           }
         });
-        setTimeout(context.lib_monitorLastBlock, 6000);
+        setTimeout(context.lib_monitorLastBlock, 5000);
+      });
+    },
+    lib_fetchInitialData() {
+      const context = this;
+      this.$store.state.w3.eth.getBlockNumber((err, number) => {
+        if (!err) {
+          context.$store.commit('setLastBlock', number);
+          this.$store.state.w3.eth.getBlock(number, false, (berr, block) => {
+            if (!berr) {
+              context.$store.commit('setLastBlockFull', block);
+            }
+          });
+        }
+        this.$store.state.w3.net.getPeerCount((perr, count) => {
+          if (!perr) {
+            context.$store.commit('setPeers', count);
+          }
+        });
+        this.$store.state.w3.version.getNode((nerr, version) => {
+          if (!nerr) {
+            context.$store.commit('setNodeType', version);
+          }
+        });
       });
     },
     lib_guessInputType(inputType) {

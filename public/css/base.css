@@ -579,3 +579,30 @@ th:last-child {
 .no-txs {
     padding-left: 222px;
 }
+
+.node-dropdown {
+    display: flex;
+    justify-content: flex-end;
+    padding: 24px;
+}
+
+.dropdown {
+    width: 320px;
+    background-color: white;
+}
+
+.dropdown-toggle {
+    border: none !important;
+    box-shadow: 0 8px 16px 0 rgba(51,69,100,0.07);
+}
+
+.dropdown-menu {
+    border: none !important;
+    box-shadow: 0 8px 16px 0 rgba(51,69,100,0.07)!important;
+    width: 100% !important;
+    max-height: 100px!important;
+    min-height: 0!important;
+}
+
+.v-select li {
+}

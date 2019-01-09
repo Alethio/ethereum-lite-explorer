@@ -3,7 +3,6 @@ The **Lite Explorer**  is a client-side only web application that connects direc
 This means you can have your own private Ethereum Explorer should you wish so. 
 No need for servers, hosting or trusting any third parties to display chain data.
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a853085f6f2f4f50a8241054c486c742)](https://app.codacy.com/app/tzapu/ethstats-lite-explorer?utm_source=github.com&utm_medium=referral&utm_content=Alethio/ethstats-lite-explorer&utm_campaign=Badge_Grade_Dashboard)
 [![CircleCI](https://circleci.com/gh/Alethio/ethstats-lite-explorer.svg?style=svg)](https://circleci.com/gh/Alethio/ethstats-lite-explorer)
 
 > NOTICE   
@@ -86,10 +85,13 @@ Adjust `.env.local` to your needs. You can remove the variables you do not wish 
 | --- | --- |
 | VUE_APP_CONNECTION_TYPE | RPC Connection type. `'json_rpc'` for http(s)  or `'ws'` for websockets. Default `'json_rpc'`. |
 | VUE_APP_NODE_URL | URL of RPC enabled node. Default `'https://mainnet.infura.io/'` |
+| VUE_APP_INFURA_PROJECT_ID | Infura Project ID. You can get this from your [Infura Dashboard](https://infura.io/dashboard). Adding this will enable a dropdown to select from the available Infura endpoints.
 | VUE_APP_BASE_URL | Path of your app. Use `'/'` for root directory, `'subfolder-path'` if your app live in another folder or `''` if you want to open the app directly from the file system without any server. Default `'/'`. |
 | VUE_APP_NODE_USER | If your RPC node is behind HTTP Basic Authentification then use this to set the username. |
 | VUE_APP_NODE_PASSWORD | HTTP Basic Authentification Password. |
 | VUE_APP_ROUTER_MODE | Vue Router mode `'hash'` (default mode) uses the URL hash for routing. Works in all Vue-supported browsers, including those that do not support HTML5 History API. `'history'` requires HTML5 History API and server config. See [HTML5 History Mode](https://router.vuejs.org/guide/essentials/history-mode.html).
+
+> NOTICE: if `VUE_APP_NODE_URL` and `VUE_APP_INFURA_PROJECT_ID` are both missing, the explorer will start with the Infura mainnet endpoint in anonymous mode (https://mainnet.infura.io/).
 
 After which you can run the explorer (in development mode)
 ```sh
@@ -106,9 +108,19 @@ the `dist` folder will then contain the minimised and optimised version fo the a
 
 #### With Infura
 [Sign-up](https://infura.io/register) for an account or [sign-in](https://infura.io/login) into your Infura account.  
-From the control panel, obtain your endpoint url for the network you are interested in (mainnet, ropsten, kovan, rinkeby). It will looks similar to `https://mainnet.infura.io/v3/aa11bb22cc33.....`.
 
-Update `.env.local` file and set `VUE_APP_NODE_URL` to your Infura endpoint.
+After that you have two options:
+
+- connect to a single network  
+  From the control panel, obtain your endpoint url for the network you are interested in (mainnet, ropsten, kovan, rinkeby). 
+  It will looks similar to `https://mainnet.infura.io/v3/aa11bb22cc33.....`.  
+
+  Update `.env.local` file and set `VUE_APP_NODE_URL` to your Infura endpoint.
+
+- have a choice of infura networks and be able to swith between them  
+  From the control panel obtain your Infura Project ID
+  
+  Update `.env.local` file and set `VUE_APP_INFURA_PROJECT_ID` to your project id to get a dropdown of all the available Infura networks.
 
 Start Lite explorer 
 ```sh
