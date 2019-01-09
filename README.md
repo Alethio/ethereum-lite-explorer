@@ -28,9 +28,9 @@ No need for servers, hosting or trusting any third parties to display chain data
 
 ## Short Term Roadmap 
 - Milstone 0.5 - Initial release
-    * [ ] Docs and Examples
-    * [ ] Allow Custom Node URLs
-    * [ ] Infura Nodes Dropdown selector (if not custom)
+    * [x] Docs and Examples
+    * [x] Allow Custom Node URLs
+    * [x] Infura Nodes Dropdown selector
     * [ ] Re-add Docker build 
 - Milstone 1.0 - React-ified 
     * [ ] Release [EthStats](ethstats.io) React primitive components
