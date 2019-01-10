@@ -60,7 +60,7 @@ The data that are available through the project are:
 ### Prerequisites 
 Please make sure you have the following installed and running properly
 - [Node.js](https://nodejs.org/en/download/) >= 8.0  
-- NPM >= 5.0 (NPM is distributed with Node.js. For more infos see: https://www.npmjs.com/get-npm)
+- NPM >= 5.0 (NPM is distributed with Node.js. For more information see: https://www.npmjs.com/get-npm)
 - a JSON-RPC enabled and accessible Ethereum Client, some examples:
     * [An Infura Account](#with-infura)
     * [Parity Light Client](#with-parity-light-client)
@@ -119,7 +119,7 @@ After that you have two options:
 
   Update `.env.local` file and set `VUE_APP_NODE_URL` to your Infura endpoint.
 
-- have a choice of infura networks and be able to swith between them  
+- have a choice of infura networks and be able to switch between them  
   From the control panel obtain your Infura Project ID
   
   Update `.env.local` file and set `VUE_APP_INFURA_PROJECT_ID` to your project id to get a dropdown of all the available Infura networks.
@@ -148,7 +148,7 @@ $ npm run serve
 ```
 
 #### With Ganache
-First of all, if you do not have it, download and install [Ganache](https://truffleframework.com/ganache) which will give you wour own personal test chain.
+First of all, if you do not have it, download and install [Ganache](https://truffleframework.com/ganache) which will give you your own personal test chain.
 
 After setting up and starting Ganache, update the `.env.local` file and set `VUE_APP_NODE_URL` to `'http://localhost:7545'`.
 
@@ -159,6 +159,8 @@ $ npm run serve
 
 #### With Pantheon
 This is a great way to use a full featured client, and to see how the explorer works with a private network.
+
+First of all, if you do not have it, download and install [Pantheon](https://docs.pantheon.pegasys.tech/en/latest/Installation/Install-Binaries/).
 
 To get started, run a pantheon node in development mode, with the rpcs and websockets enabled, mining enabled, allowing traffic from all hosts and CORS origins (this is not a recommended way to run a production node securely).
 ```sh
