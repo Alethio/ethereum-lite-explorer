@@ -33,7 +33,7 @@ No need for servers, hosting or trusting any third parties to display chain data
     * [x] Infura Nodes Dropdown selector
     * [ ] Re-add Docker build 
 - Milstone 1.0 - React-ified 
-    * [ ] Release [EthStats](ethstats.io) React primitive components
+    * [ ] Release [EthStats](https://ethstats.io/) React primitive components
     * [ ] Migrate app to React
 
 ### Technical Details
@@ -62,7 +62,7 @@ Please make sure you have the following installed and running properly
 - NPM >= 5.0 (NPM is distributed with Node.js. For more infos see: https://www.npmjs.com/get-npm)
 - a JSON-RPC enabled and accessible Ethereum Client, some examples:
     * [An Infura Account](#with-infura)
-    * [Parity Light Client](#with-parity-light)
+    * [Parity Light Client](#with-parity-light-client)
     * [Ganache](#with-ganache)
 
 ### Setup/Build Instructions
