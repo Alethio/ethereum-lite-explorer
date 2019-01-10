@@ -21,7 +21,7 @@ No need for servers, hosting or trusting any third parties to display chain data
         + [With Infura](#with-infura)
         + [With Parity Light Client](#with-parity-light-client)
         + [With Ganache](#with-ganache)
-        + [Pantheon Dev Mode](#with-pantheon-dev-mode)
+        + [Pantheon Dev Mode](#with-pantheon) - private chain example
     * [Example Deployments](#example-deployments)
         + [surge.sh](#surgesh)
 - [Contributing](CONTRIBUTING.md)
@@ -65,7 +65,8 @@ Please make sure you have the following installed and running properly
     * [An Infura Account](#with-infura)
     * [Parity Light Client](#with-parity-light)
     * [Ganache](#with-ganache)
-    * [Pantheon Dev Mode](#with-pantheon-dev-mode)
+    * [Pantheon Dev Mode](#with-pantheon) - private chain example
+    
 ### Setup/Build Instructions
 Clone the explorer in a folder of your choosing
 ```sh
