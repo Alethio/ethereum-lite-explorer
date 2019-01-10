@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy-gh": "npm run build && cp ./dist/index.html ./dist/200.html && cp ./dist/index.html ./dist/404.html && push-dir --dir=dist --branch=gh-pages --cleanup"
+    "deploy-gh": "npm run build && cp ./dist/index.html ./dist/200.html && cp ./dist/index.html ./dist/404.html && gh-pages -d dist -m 'gh deploy [ci skip]'"
   },
   "dependencies": {
     "apexcharts": "^2.1.5",
@@ -32,7 +32,7 @@
     "@vue/cli-plugin-eslint": "^3.2.1",
     "@vue/cli-service": "^3.3.0",
     "@vue/eslint-config-airbnb": "^3.0.5",
-    "push-dir": "^0.4.1",
+    "gh-pages": "^2.0.1",
     "vue-template-compiler": "^2.5.17"
   },
   "eslintConfig": {
