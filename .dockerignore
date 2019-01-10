@@ -1,0 +1,11 @@
+node_modules
+/dist
+.idea
+.vscode
+.circleci
+.env*
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
