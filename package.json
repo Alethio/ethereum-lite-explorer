@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "deploy-gh": "npm run build && cp ./dist/index.html ./dist/200.html && cp ./dist/index.html ./dist/404.html && push-dir --dir=dist --branch=gh-pages --cleanup",
-    "deploy": "npm run build && cp ./dist/index.html ./dist/200.html && cp ./dist/index.html ./dist/404.html && gh-pages-deploy -- 'Try a custom commit message'"
+    "deploy": "npm run build && cp ./dist/index.html ./dist/200.html && cp ./dist/index.html ./dist/404.html && gh-pages-deploy -- 'Try a custom commit message with [ci skip]'"
   },
   "gh-pages-deploy": {
     "staticpath": "dist",
