@@ -9,10 +9,6 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
-
-const CONNECTION_JSON_RPC = 'json_rpc';
-const CONNECTION_WEB_SOCKET = 'ws';
-
 Vue.config.productionTip = false;
 
 // Buefy is a collection of BulmaCSS components for VueJS: https://buefy.github.io/#/documentation/start
@@ -33,20 +29,18 @@ Vue.mixin({
     lib_createWeb3() {
       let w3 = null;
       const savedStore = this.$store;
-      const conn = savedStore.getters.connectionType;
-      switch (conn) {
-        case CONNECTION_JSON_RPC:
-          w3 = new Web3(new Web3.providers.HttpProvider(
-            savedStore.getters.nodeUrl,
-            0, savedStore.getters.nodeUser, savedStore.getters.nodePass,
-          ));
-          break;
-        case CONNECTION_WEB_SOCKET:
-          w3 = new Web3(new Web3.providers.WebsocketProvider(savedStore.getters.nodeUrl()));
-          break;
-        default:
-          break;
+      const url = savedStore.getters.nodeUrl;
+      if (url.startsWith('ws')) {
+        // websockets
+        w3 = new Web3(new Web3.providers.WebsocketProvider(url));
+      } else {
+        // json rpc
+        w3 = new Web3(new Web3.providers.HttpProvider(
+          url,
+          0, savedStore.getters.nodeUser, savedStore.getters.nodePass,
+        ));
       }
+
       this.$store.commit('setWeb3', w3);
     },
     lib_goHome() {

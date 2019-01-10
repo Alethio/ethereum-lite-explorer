@@ -85,7 +85,6 @@ Adjust `.env.local` to your needs. You can remove the variables you do not wish 
 
 | ENV var | Description |
 | --- | --- |
-| VUE_APP_CONNECTION_TYPE | RPC Connection type. `'json_rpc'` for http(s)  or `'ws'` for websockets. Default `'json_rpc'`. |
 | VUE_APP_NODE_URL | URL of RPC enabled node. Default `'https://mainnet.infura.io/'` |
 | VUE_APP_INFURA_PROJECT_ID | Infura Project ID. You can get this from your [Infura Dashboard](https://infura.io/dashboard). Adding this will enable a dropdown to select from the available Infura endpoints.
 | VUE_APP_BASE_URL | Path of your app. Use `'/'` for root directory, `'subfolder-path'` if your app live in another folder or `''` if you want to open the app directly from the file system without any server. Default `'/'`. |

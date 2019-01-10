@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-/* global CFG_INFURA, CFG_URL, CFG_USER, CFG_PASS, CFG_CONN */
+/* global CFG_INFURA, CFG_URL, CFG_USER, CFG_PASS */
 const INFURA_PROJECT_ID = CFG_INFURA || process.env.VUE_APP_INFURA_PROJECT_ID || '';
 const NODE_URL = CFG_URL || process.env.VUE_APP_NODE_URL;
 const NODE_URL_USER = CFG_USER || process.env.VUE_APP_NODE_USER;
@@ -13,7 +13,6 @@ const defaultNodeUrls = [{ label: 'Mainnet', value: `https://mainnet.infura.io/v
   { label: 'Kovan', value: `https://kovan.infura.io/v3/${INFURA_PROJECT_ID}` },
   { label: 'Rinkeby', value: `https://rinkeby.infura.io/v3/${INFURA_PROJECT_ID}` },
   { label: 'Ropsten', value: `https://ropsten.infura.io/v3/${INFURA_PROJECT_ID}` }];
-const CONNECTION_TYPE = CFG_CONN || process.env.VUE_APP_CONNECTION_TYPE || 'json_rpc';
 const DEFAULT_LABELS = ['Mainnet', 'Kovan', 'Rinkeby', 'Ropsten'];
 const DEFAULT_INFURA_URL = 'https://mainnet.infura.io/';
 
@@ -74,7 +73,6 @@ const getPreselectedWeb3Url = () => {
 const store = new Vuex.Store({
   state: {
     nodeUrl: getPreselectedWeb3Url(),
-    connectionType: CONNECTION_TYPE,
     nodeUser: NODE_URL_USER,
     nodePass: NODE_URL_PASS,
     infuraProjectID: INFURA_PROJECT_ID,
@@ -156,7 +154,6 @@ const store = new Vuex.Store({
 
   },
   getters: {
-    connectionType: state => state.connectionType,
     nodeUrl: state => state.nodeUrl,
     nodeUser: state => state.nodeUser,
     nodePass: state => state.nodePass,
