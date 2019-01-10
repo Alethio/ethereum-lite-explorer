@@ -21,6 +21,7 @@ No need for servers, hosting or trusting any third parties to display chain data
         + [With Infura](#with-infura)
         + [With Parity Light Client](#with-parity-light-client)
         + [With Ganache](#with-ganache)
+        + [Pantheon Dev Mode](#with-pantheon) - private chain example
     * [Example Deployments](#example-deployments)
         + [surge.sh](#surgesh)
 - [Contributing](CONTRIBUTING.md)
@@ -33,7 +34,7 @@ No need for servers, hosting or trusting any third parties to display chain data
     * [x] Infura Nodes Dropdown selector
     * [ ] Re-add Docker build 
 - Milstone 1.0 - React-ified 
-    * [ ] Release [EthStats](ethstats.io) React primitive components
+    * [ ] Release [EthStats](https://ethstats.io/) React primitive components
     * [ ] Migrate app to React
 
 ### Technical Details
@@ -62,9 +63,10 @@ Please make sure you have the following installed and running properly
 - NPM >= 5.0 (NPM is distributed with Node.js. For more infos see: https://www.npmjs.com/get-npm)
 - a JSON-RPC enabled and accessible Ethereum Client, some examples:
     * [An Infura Account](#with-infura)
-    * [Parity Light Client](#with-parity-light)
+    * [Parity Light Client](#with-parity-light-client)
     * [Ganache](#with-ganache)
-
+    * [Pantheon Dev Mode](#with-pantheon) - private chain example
+    
 ### Setup/Build Instructions
 Clone the explorer in a folder of your choosing
 ```sh
@@ -151,6 +153,24 @@ First of all, if you do not have it, download and install [Ganache](https://truf
 After setting up and starting Ganache, update the `.env.local` file and set `VUE_APP_NODE_URL` to `'http://localhost:7545'`.
 
 Start Lite explorer 
+```sh
+$ npm run serve
+```
+
+#### With Pantheon
+This is a great way to use a full featured client, and to see how the explorer works with a private network.
+
+To get started, run a pantheon node in development mode, with the rpcs and websockets enabled, mining enabled, allowing traffic from all hosts and CORS origins (this is not a recommended way to run a production node securely).
+```sh
+$ pantheon --dev-mode --rpc-enabled --ws-enabled --miner-enabled --miner-coinbase=fe3b557e8fb62b89f4916b721be55ceb828dbd73 --host-whitelist=* --rpc-cors-origins=*
+```
+
+After running pantheon, update the `.env.local` fie, and set `VUE_APP_NODE_URL` to point to your running pantheon:
+```
+VUE_APP_NODE_URL='http://127.0.0.1:8545/'
+```
+
+Start Lite explorer
 ```sh
 $ npm run serve
 ```
