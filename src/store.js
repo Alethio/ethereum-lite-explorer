@@ -124,8 +124,10 @@ const store = new Vuex.Store({
     },
     setLastBlockFull(state, block) {
       if (state.lastBlockFull) {
-        if (state.lastBlockFull.number < block.number) {
-          state.lastBlockFull = block;
+        if (block && block.number) {
+          if (state.lastBlockFull.number < block.number) {
+            state.lastBlockFull = block;
+          }
         }
       } else {
         state.lastBlockFull = block;
