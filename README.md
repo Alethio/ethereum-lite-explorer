@@ -16,6 +16,7 @@ No need for servers, hosting or trusting any third parties to display chain data
         + [Data](#data)
 - [Getting started](#getting-started)
     * [Prerequisites](#prerequisites)
+    * [Running in Docker](#running-in-docker)
     * [Setup/Build Instructions](#setup-build-instructions)
     * [Example setups](#example-setups)
         + [With Infura](#with-infura)
@@ -59,14 +60,44 @@ The data that are available through the project are:
 
 ### Prerequisites 
 Please make sure you have the following installed and running properly
-- [Node.js](https://nodejs.org/en/download/) >= 8.0  
-- NPM >= 5.0 (NPM is distributed with Node.js. For more information see: https://www.npmjs.com/get-npm)
-- a JSON-RPC enabled and accessible Ethereum Client, some examples:
+- [Node.js](https://nodejs.org/en/download/) >= 8.0 or [Docker](https://www.docker.com/)
+- If building it you will also need NPM >= 5.0 (NPM is distributed with Node.js. For more information see: https://www.npmjs.com/get-npm)
+- A JSON-RPC enabled and accessible Ethereum Client, some examples:
     * [An Infura Account](#with-infura)
     * [Parity Light Client](#with-parity-light-client)
     * [Ganache](#with-ganache)
     * [Pantheon Dev Mode](#with-pantheon) - private chain example
     
+### Running in Docker
+You can run the Lite Explorer in Docker without having to get the source code and build it.  
+The simplest command to run i is
+
+```sh
+$ docker run -p 80:80 alethio/ethstats-lite-explorer
+```
+which will start a container on port 80 of your computer with a nginx embedded to serve the pre-build explorer. You can then open [localhost](http://localhost) in your browser to use it.
+
+To configure it you have the following environment variables you can set
+
+| ENV var | Description |
+| --- | --- |
+| NODE_URL | URL of RPC enabled node. |
+| NODE_URL_USER | If your RPC node is behind HTTP Basic Authentification then use this to set the username. |
+| NODE_URL_PASS | HTTP Basic Authentification Password. |
+| INFURA_PROJECT_ID | Infura Project ID. You can get this from your [Infura Dashboard](https://infura.io/dashboard). Adding this will enable a dropdown to select from the available Infura endpoints.
+
+> NOTICE: if `NODE_URL` and `NFURA_PROJECT_ID` are both missing, the explorer will start with the Infura mainnet endpoint in anonymous mode (https://mainnet.infura.io/).
+
+So for example if you want to start the explorer with both infura and a custom node url, and have the container auto delete itself after you close it, you would run something like
+```sh
+docker \
+    run --rm \
+    -p 80:80 \
+    -e INFURA_PROJECT_ID=your-infura-proj-id \
+    -e NODE_URL=https://kovan.infura.io \
+    alethio/ethstats-lite-explorer
+```
+
 ### Setup/Build Instructions
 Clone the explorer in a folder of your choosing
 ```sh
