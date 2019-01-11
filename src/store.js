@@ -4,19 +4,22 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-const CONNECTION_JSON_RPC = 'json_rpc';
+/* global CFG_INFURA, CFG_URL, CFG_USER, CFG_PASS */
+const INFURA_PROJECT_ID = CFG_INFURA || process.env.VUE_APP_INFURA_PROJECT_ID || '';
+const NODE_URL = CFG_URL || process.env.VUE_APP_NODE_URL;
+const NODE_URL_USER = CFG_USER || process.env.VUE_APP_NODE_USER;
+const NODE_URL_PASS = CFG_PASS || process.env.VUE_APP_NODE_PASS;
+const defaultNodeUrls = [{ label: 'Mainnet', value: `https://mainnet.infura.io/v3/${INFURA_PROJECT_ID}` },
+  { label: 'Kovan', value: `https://kovan.infura.io/v3/${INFURA_PROJECT_ID}` },
+  { label: 'Rinkeby', value: `https://rinkeby.infura.io/v3/${INFURA_PROJECT_ID}` },
+  { label: 'Ropsten', value: `https://ropsten.infura.io/v3/${INFURA_PROJECT_ID}` }];
 const DEFAULT_LABELS = ['Mainnet', 'Kovan', 'Rinkeby', 'Ropsten'];
-const INFURA_USER = process.env.VUE_APP_INFURA_PROJECT_ID || '';
 const DEFAULT_INFURA_URL = 'https://mainnet.infura.io/';
-const defaultNodeUrls = [{ label: 'Mainnet', value: `https://mainnet.infura.io/v3/${INFURA_USER}` },
-  { label: 'Kovan', value: `https://kovan.infura.io/v3/${INFURA_USER}` },
-  { label: 'Rinkeby', value: `https://rinkeby.infura.io/v3/${INFURA_USER}` },
-  { label: 'Ropsten', value: `https://ropsten.infura.io/v3/${INFURA_USER}` }];
 
 const findNodeUrl = () => {
   let foundDeployUrl = false;
   let foundIndex = -1;
-  const deployUrl = `${process.env.VUE_APP_NODE_URL}${INFURA_USER}`;
+  const deployUrl = `${process.env.VUE_APP_NODE_URL}${INFURA_PROJECT_ID}`;
   for (let i = 0; i < defaultNodeUrls.length; i += 1) {
     if (deployUrl.includes(defaultNodeUrls[i].value)) {
       foundDeployUrl = true;
@@ -32,19 +35,19 @@ const getNodeUrlsArray = () => {
     return defaultNodeUrls;
   }
   defaultNodeUrls.push({
-    label: process.env.VUE_APP_NODE_URL,
-    value: process.env.VUE_APP_NODE_URL,
+    label: NODE_URL,
+    value: NODE_URL,
   });
   return defaultNodeUrls;
 };
 
 const getPreselectedNodeUrl = () => {
   const localSave = localStorage.getItem('nodeUrl');
-  if (localSave && process.env.VUE_APP_INFURA_PROJECT_ID) {
+  if (localSave && INFURA_PROJECT_ID) {
     const parsedSave = JSON.parse(localSave);
     if (DEFAULT_LABELS.indexOf(parsedSave.label) < 0) {
-      if (process.env.VUE_APP_NODE_URL !== parsedSave.value) {
-        return { label: process.env.VUE_APP_NODE_URL, value: process.env.VUE_APP_NODE_URL };
+      if (NODE_URL !== parsedSave.value) {
+        return { label: NODE_URL, value: NODE_URL };
       }
     }
     return parsedSave;
@@ -53,16 +56,16 @@ const getPreselectedNodeUrl = () => {
   if (checkForNode.foundUrl) {
     return defaultNodeUrls[checkForNode.atIndex];
   }
-  return { label: 'Host:port', value: process.env.VUE_APP_NODE_URL };
+  return { label: 'Host:port', value: NODE_URL };
 };
 
 const getPreselectedWeb3Url = () => {
   const localSave = localStorage.getItem('nodeUrl');
-  if (localSave && process.env.VUE_APP_INFURA_PROJECT_ID) {
+  if (localSave && INFURA_PROJECT_ID) {
     return JSON.parse(localSave).value;
   }
-  if (process.env.VUE_APP_NODE_URL) {
-    return process.env.VUE_APP_NODE_URL;
+  if (NODE_URL) {
+    return NODE_URL;
   }
   return DEFAULT_INFURA_URL;
 };
@@ -70,10 +73,9 @@ const getPreselectedWeb3Url = () => {
 const store = new Vuex.Store({
   state: {
     nodeUrl: getPreselectedWeb3Url(),
-    connectionType: process.env.VUE_APP_CONNECTION_TYPE || CONNECTION_JSON_RPC,
-    nodeUser: process.env.VUE_APP_NODE_USER,
-    nodePass: process.env.VUE_APP_NODE_PASS,
-    infuraProjectID: process.env.VUE_APP_INFURA_PROJECT_ID,
+    nodeUser: NODE_URL_USER,
+    nodePass: NODE_URL_PASS,
+    infuraProjectID: INFURA_PROJECT_ID,
     w3: null,
     nodeUrls: getNodeUrlsArray(),
     selectedUrl: getPreselectedNodeUrl(),
@@ -152,7 +154,6 @@ const store = new Vuex.Store({
 
   },
   getters: {
-    connectionType: state => state.connectionType,
     nodeUrl: state => state.nodeUrl,
     nodeUser: state => state.nodeUser,
     nodePass: state => state.nodePass,
