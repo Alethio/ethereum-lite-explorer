@@ -461,6 +461,7 @@ th:last-child {
     display: flex;
     flex-direction: column;
     position: relative;
+    justify-content: space-between;
 }
 .centered-absolute {
     position: absolute;
@@ -604,5 +605,23 @@ th:last-child {
     min-height: 0!important;
 }
 
-.v-select li {
+.github-link-container {
+    color: #A7B5D1;
+    padding-bottom: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.github-link {
+    margin-left: 5px;
+    transition: all linear 0.1s;
+}
+.github-link a {
+    color: #A7B5D1;
+}
+a.github-link:visited {
+    color: #A7B5D1;
+}
+a.github-link:hover {
+    color: #273656;
 }

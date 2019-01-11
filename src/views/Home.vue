@@ -52,6 +52,13 @@
       </div>
     </div>
   </div>
+  <div class="github-link-container">
+    Available on <a href="https://github.com/Alethio/ethstats-lite-explorer"
+                    target="_blank"
+                    rel="noopener"
+                    class="github-link">
+    GitHub</a>
+  </div>
 </section>
 </template>
 
