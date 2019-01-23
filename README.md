@@ -190,14 +190,18 @@ $ npm run serve
 #### With Pantheon
 This is a great way to use a full featured client, and to see how the explorer works with a private network.
 
-First of all, if you do not have it, download and install [Pantheon](https://docs.pantheon.pegasys.tech/en/latest/Installation/Install-Binaries/).
+First of all, if you do not have it, [download and install Pantheon stable release](https://docs.pantheon.pegasys.tech/en/stable/Installation/Install-Binaries/).
 
-To get started, run a pantheon node in development mode, with the rpcs and websockets enabled, mining enabled, allowing traffic from all hosts and CORS origins (this is not a recommended way to run a production node securely).
+To get started, run a Pantheon node in development mode, with the HTTP and WebSockets JSON-RPC services enabled, mining enabled, allowing traffic from all hosts and CORS origins :
+
 ```sh
 $ pantheon --dev-mode --rpc-enabled --ws-enabled --miner-enabled --miner-coinbase=fe3b557e8fb62b89f4916b721be55ceb828dbd73 --host-whitelist=* --rpc-cors-origins=*
+
 ```
 
-After running pantheon, update the `.env.local` fie, and set `VUE_APP_NODE_URL` to point to your running pantheon:
+_(Note: using "*" values for host whitelist and CORS origins is not a recommended way to run a production node securely, this configuration is intended for test or developement purpose only. For more information about these options, refer to the [Pantheon CLI reference](https://docs.pantheon.pegasys.tech/en/stable/Reference/Pantheon-CLI-Syntax/))._
+
+After running Pantheon, update the `.env.local` file, and set `VUE_APP_NODE_URL` to point to your running Pantheon URL:
 ```
 VUE_APP_NODE_URL='http://127.0.0.1:8545/'
 ```
