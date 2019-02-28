@@ -1,0 +1,13 @@
+[
+    {
+        "country": "us",
+        "locale": "en-US",
+        "label": "English (US)",
+        "default": true
+    },
+    {
+        "country": "cn",
+        "locale": "zh-CN",
+        "label": "简体中文"
+    }
+]

@@ -1,0 +1,7 @@
+{
+    "APP_DEFAULT_LOCALE": "en-US",
+    "APP_NETSTATS_URL": "https://net.ethstats.io",
+    "APP_NODE_URL": "https://mainnet.infura.io/",
+    "APP_INFURA_PROJECT_ID": "",
+    "APP_ROUTER_HISTORY_MODE": true
+}

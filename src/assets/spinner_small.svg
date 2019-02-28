@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_dashboard_black_18px</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="1" y1="0.5" x2="0.5" y2="1.2" id="br">
+            <stop stop-color="#357CFF" stop-opacity="0.4" offset="0%"/>
+            <stop stop-color="#357CFF" stop-opacity="1" offset="100%"/>
+        </linearGradient>
+        <linearGradient x1="0.5" y1="0" x2="1.1" y2="1" id="tr">
+            <stop stop-color="#357CFF" stop-opacity="0.1" offset="0%"/>
+            <stop stop-color="#357CFF" stop-opacity="0.4" offset="100%"/>
+        </linearGradient>
+        <linearGradient x1="0" y1="0.5" x2="0.5" y2="0" id="tl">
+            <stop stop-color="#357CFF" stop-opacity="0" offset="0%"/>
+            <stop stop-color="#357CFF" stop-opacity="0.1" offset="100%"/>
+        </linearGradient>
+    </defs>
+    <g id="Rules" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iconOption" transform="translate(-12.000000, -12.000000)">
+            <g id="icon" transform="translate(10.000000, 10.000000)">
+                <g id="ic_dashboard_black_18px" transform="translate(2.000000, 2.000000)">
+                    <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                    <circle id="Oval" stroke="#D9E4EF" fill="#FFFFFF" cx="12" cy="12" r="11.5"></circle>
+                    <!-- <path d="M12,18 C15.3137085,18 18,15.3137085 18,12 C18,8.6862915 15.3137085,6 12,6 C8.6862915,6 6,8.6862915 6,12" id="Oval" stroke="url(#a)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> -->
+                    <path d="M12,18 12,18" id="Oval" stroke="#357CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M12,18 C15.3137085,18 18,15.3137085 18,12" id="Oval" stroke="url(#br)" stroke-width="2"></path>
+                    <path d="M18,12 C18,8.6862915 15.3137085,6 12,6" id="Oval" stroke="url(#tr)" stroke-width="2"></path>
+                    <path d="M12,6 C8.6862915,6 6,8.6862915 6,12" id="Oval" stroke="url(#tl)" stroke-width="2"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

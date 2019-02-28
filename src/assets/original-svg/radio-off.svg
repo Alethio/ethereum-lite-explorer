@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>radiobox</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Rules" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="menuDropdown" transform="translate(-24.000000, -88.000000)">
+            <g id="checkboxes" transform="translate(16.000000, 80.000000)">
+                <g id="radiobox" transform="translate(4.000000, 4.000000)">
+                    <g id="inactive">
+                        <g id="radiobox">
+                            <g id="ic_check_box_black_24px">
+                                <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                                <path d="M12,20 C7.581722,20 4,16.418278 4,12 C4,7.581722 7.581722,4 12,4 C16.418278,4 20,7.581722 20,12 C20,16.418278 16.418278,20 12,20 Z M12,18 C15.3137085,18 18,15.3137085 18,12 C18,8.6862915 15.3137085,6 12,6 C8.6862915,6 6,8.6862915 6,12 C6,15.3137085 8.6862915,18 12,18 Z" id="Combined-Shape" fill="#D0DEF2"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

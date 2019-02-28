@@ -1,16 +1,18 @@
-FROM node:9-alpine AS build
+FROM node:8 AS build
 
 WORKDIR /build
 
-RUN apk add --update git python build-base
+RUN apt-get update && apt-get install -y
 COPY package.json package-lock.json ./
 RUN npm install
 
 COPY . .
 
-RUN npm run build
+RUN npm run build --verbose
 
 FROM nginx:stable-alpine
+
+RUN apk add --update jq
 
 COPY --from=build /build/dist /usr/share/nginx/html
 COPY .docker/nginx.conf /etc/nginx/conf.d/default.conf

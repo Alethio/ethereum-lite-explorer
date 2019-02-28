@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_dashboard_black_18px</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="reCreate" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="blockView" transform="translate(-733.000000, -392.000000)">
+            <g id="Group-5" transform="translate(325.000000, 128.000000)">
+                <g id="Group-3" transform="translate(8.000000, 248.000000)">
+                    <g id="optionSelect" transform="translate(177.000000, 0.000000)">
+                        <g id="iconOption" transform="translate(207.000000, 0.000000)">
+                            <g id="icon" transform="translate(10.000000, 10.000000)">
+                                <g id="ic_dashboard_black_18px" transform="translate(2.000000, 2.000000)">
+                                    <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                                    <path d="M4,20 L8,20 L8,4 L4,4 L4,20 Z M10,4 L10,20 L14,20 L14,4 L10,4 Z M16,4 L16,20 L20,20 L20,4 L16,4 Z" id="Shape" fill="#D0DEF2" fill-rule="nonzero"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
