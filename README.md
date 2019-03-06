@@ -11,22 +11,24 @@ No need for servers, hosting or trusting any third parties to display chain data
 
 ## Contents
 - [Short Term Roadmap](#short-term-roadmap)
-    * [Technical Details](#technical-details)
-        + [Structure](#structure)
-        + [Data](#data)
+- [Technical Details](#technical-details)
+    - [Project structure](#project-structure)
+    - [Managing SVG icons](#managing-svg-icons)
 - [Getting started](#getting-started)
-    * [Prerequisites](#prerequisites)
-    * [Running in Docker](#running-in-docker)
-    * [Setup/Build Instructions](#setup-build-instructions)
-    * [Example setups](#example-setups)
-        + [With Infura](#with-infura)
-        + [With Parity Light Client](#with-parity-light-client)
-        + [With Ganache](#with-ganache)
-        + [Pantheon Dev Mode](#with-pantheon) - private chain example
-    * [Example Deployments](#example-deployments)
-        + [surge.sh](#surgesh)
+    - [Prerequisites](#prerequisites)
+    - [Running in Docker](#running-in-docker)
+    - [Setup/Build Instructions](#setupbuild-instructions)
+    - [Running tests](#running-tests)
+    - [Example setups](#example-setups)
+        - [With Infura](#with-infura)
+        - [With Parity Light Client](#with-parity-light-client)
+        - [With Ganache](#with-ganache)
+        - [With Pantheon](#with-pantheon)
+    - [Example Deployments](#example-deployments)
+        - [surge.sh](#surgesh)
 - [Contributing](CONTRIBUTING.md)
 - [License](LICENSE.md)
+
 
 ## Short Term Roadmap
 - 1.0 - React-ified
@@ -160,7 +162,7 @@ Finally you can run the explorer with
 $ npm start
 ```
 
-### Running the tests
+### Running tests
 
 `npm test` (or `npm run test-coverage` to generate code coverage as well).
 
