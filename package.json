@@ -11,15 +11,18 @@
     "clean": "rimraf ./dist",
     "build-js-prod": "webpack --config=./webpack.config.prod.js",
     "build-js-dev": "webpack --config=./webpack.config.dev.js",
-    "deploy-gh": "npm run build && cp ./dist/index.html ./dist/200.html && cp ./dist/index.html ./dist/404.html && gh-pages -d dist -m 'gh deploy [ci skip]'",
     "watch": "webpack-runner --config=./webpack.config.dev.js --watch",
     "install": "cd dev && npm install && cd .. || true",
     "start": "cd dev && npm start && cd ..",
     "test": "mocha",
-    "test-coverage": "nyc npm test"
+    "test-coverage": "nyc npm test",
+    "deploy-gh": "npm run build && cp ./dist/index.html ./dist/200.html && cp ./dist/index.html ./dist/404.html && gh-pages -d dist -m 'gh deploy [ci skip]'"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "ethereum",
+    "block explorer",
+    "ethstats"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@types/fontfaceobserver": "0.0.6",
