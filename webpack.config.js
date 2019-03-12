@@ -181,7 +181,7 @@ function getConfig(isProduction) {
         },
         resolve: {
             alias: {
-                web3$: path.resolve(__dirname, "src/vendor/web3/web3-1.0.0-beta.35.min.js"),
+                web3$: path.resolve(__dirname, "src/vendor/web3/web3-1.0.0-beta.34.min.js"),
                 "3box$": path.resolve(__dirname, "src/vendor/3box/3box-1.2.1.min.js")
             },
             modules: [
