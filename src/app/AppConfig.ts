@@ -78,9 +78,11 @@ export class AppConfig {
     getInfuraIpfsUrlMask() {
         return this.data.APP_INFURA_IPFS_URL_MASK;
     }
+
     checkForNetworkMonitorUrl() {
         return this.data.APP_NETWORK_MONITOR_URL !== undefined;
     }
+
     getNetworkMonitorUrl() {
         return this.data.APP_NETWORK_MONITOR_URL;
     }
@@ -121,7 +123,7 @@ export class AppConfig {
                 value: "https://goerli.prylabs.net/"
             }];
         }
-        if (this.checkForInfuraProjectId()) {
+        if (this.checkForInfuraProjectId() && this.data.APP_INFURA_PROJECT_ID !== "") {
             let standardArray = [{
                 key: "Mainnet",
                 label: "Mainnet",
