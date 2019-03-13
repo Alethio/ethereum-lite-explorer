@@ -167,11 +167,13 @@ export class App extends React.Component<IAppProps> {
                 }
             />
             <ResponsiveContainer behavior="hide" forScreenWidth={{lowerThan: MinimumWidth.ForFullView}}>
-                <ToolbarItem title={translation.get("toolbar.netstats.label")}>
-                    <ExternalLink href={this.props.appConfig.getNetstatsUrl()} rel="noopener noreferrer">
-                        <ToolbarIconButton Icon={NetStatsIcon} />
-                    </ExternalLink>
-                </ToolbarItem>
+                { this.props.appConfig.checkForNetworkMonitorUrl() &&
+                    <ToolbarItem title={translation.get("toolbar.netstats.label")}>
+                        <ExternalLink href={this.props.appConfig.getNetworkMonitorUrl()} rel="noopener noreferrer">
+                            <ToolbarIconButton Icon={NetStatsIcon} />
+                        </ExternalLink>
+                    </ToolbarItem>
+                }
             </ResponsiveContainer>
             <Filler />
             <ToolbarItem title={translation.get("toolbar.feedback.label")} >
