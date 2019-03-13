@@ -253,6 +253,9 @@ Surge.sh is a simple, single-command web publishing service that you can use to 
 Make sure you have set a proper and accessible `APP_NODE_URL`
 
 ```sh
+# copy and edit a config file
+$ cp config.default.json config.deploy.json
+# install surge
 $ npm install --global surge
 # build explorer
 $ npm run build

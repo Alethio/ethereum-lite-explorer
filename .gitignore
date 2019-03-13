@@ -8,3 +8,4 @@ coverage
 .env
 config.dev.jsonc
 config.dev.json
+config.deploy.json
