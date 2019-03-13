@@ -4,7 +4,7 @@ declare var APP_DEFAULT_LOCALE: string;
 declare var APP_AVAILABLE_LOCALES: string;
 
 interface IAppConfigData {
-    APP_NETSTATS_URL?: string;
+    APP_NETWORK_MONITOR_URL?: string;
     APP_SENTRY_ENABLED?: string;
     APP_SENTRY_APPNAME?: string;
     APP_SENTRY_DSN?: string;
@@ -78,9 +78,11 @@ export class AppConfig {
     getInfuraIpfsUrlMask() {
         return this.data.APP_INFURA_IPFS_URL_MASK;
     }
-
-    getNetstatsUrl() {
-        return this.data.APP_NETSTATS_URL;
+    checkForNetworkMonitorUrl() {
+        return this.data.APP_NETWORK_MONITOR_URL !== undefined;
+    }
+    getNetworkMonitorUrl() {
+        return this.data.APP_NETWORK_MONITOR_URL;
     }
 
     checkForInfuraProjectId() {
