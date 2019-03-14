@@ -191,9 +191,9 @@ After that you have two options:
 
   Update `.env.local` file and set `APP_INFURA_PROJECT_ID` to your project id to get a dropdown of all the available Infura networks.
 
-Start Lite explorer
+Build and start Lite Explorer
 ```sh
-$ npm start
+$ npm run build && npm start
 ```
 
 ####  With Parity Light Client
@@ -209,9 +209,9 @@ As a simple step, if you have Docker, you could just run
 $ docker run -d --restart always --name parity-light -p 127.0.0.1:8545:8545 parity/parity:stable --light --jsonrpc-interface all
 ```
 
-Start Lite explorer
+Build and start Lite Explorer
 ```sh
-$ npm start
+$ npm run build && npm start
 ```
 
 #### With Ganache
@@ -219,9 +219,9 @@ First of all, if you do not have it, download and install [Ganache](https://truf
 
 After setting up and starting Ganache, update the `.env.local` file and set `APP_NODE_URL` to `'http://localhost:7545'`.
 
-Start Lite explorer
+Build and start Lite Explorer
 ```sh
-$ npm start
+$ npm run build && npm start
 ```
 
 #### With Pantheon
@@ -243,9 +243,9 @@ After running Pantheon, update the `config.dev.json` file, and set `APP_NODE_URL
 APP_NODE_URL='http://127.0.0.1:8545/'
 ```
 
-Start Lite explorer
+Build and start Lite Explorer
 ```sh
-$ npm start
+$ npm run build && npm start
 ```
 
 ### Example Deployments
