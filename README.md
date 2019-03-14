@@ -16,6 +16,7 @@ No need for servers, hosting or trusting any third parties to display chain data
     - [Managing SVG icons](#managing-svg-icons)
 - [Getting started](#getting-started)
     - [Prerequisites](#prerequisites)
+    - [Configuration](#configuration)
     - [Running in Docker](#running-in-docker)
     - [Setup/Build Instructions](#setupbuild-instructions)
     - [Running tests](#running-tests)
@@ -89,6 +90,21 @@ Please make sure you have the following installed and running properly
     * [Ganache](#with-ganache)
     * [Pantheon Dev Mode](#with-pantheon) - private chain example
 
+### Configuration
+You can set any of the following variables either in config.dev.json, config.json or as environment variables for the Docker image to change the behavior of the explorer.
+
+
+| ENV var | Description |
+| --- | --- |
+| APP_NODE_URL | URL of RPC enabled node. |
+| APP_NODE_URL_USER | If your RPC node is behind HTTP Basic Authentification then use this to set the username. |
+| APP_NODE_URL_PASS | HTTP Basic Authentification Password. |
+| APP_INFURA_PROJECT_ID | Infura Project ID. You can get this from your [Infura Dashboard](https://infura.io/dashboard). Adding this will enable a dropdown to select from the available Infura endpoints. |
+| APP_ROUTER_HISTORY_MODE | When `false` (default mode) the explorer uses the URL hash for routing. Works with all browsers/servers, including those that do not support HTML5 History API. `true` requires HTML5 History API and server config to redirect all requests that do not have a file to index.html so they are picked by the react router. |
+| APP_NETWORK_MONITOR_URL | Setting this variable to an URL will add a menu item in the sidebar with a link to the set url |
+
+> NOTICE: if `APP_NODE_URL` and `APP_INFURA_PROJECT_ID` are both missing, the explorer will start with the Infura endpoints in anonymous mode (https://mainnet.infura.io/, https://kovan.infura.io/, ...).
+
 ### Running in Docker
 You can run the Lite Explorer in Docker without having to get the source code and build it.
 The simplest command to run i is
@@ -98,16 +114,8 @@ $ docker run -p 80:80 alethio/ethstats-lite-explorer
 ```
 which will start a container on port 80 of your computer with a nginx embedded to serve the pre-build explorer. You can then open [localhost](http://localhost) in your browser to use it.
 
-To configure it you have the following environment variables you can set
+To configure the container at runtime please see [configuration](#configuration)
 
-| ENV var | Description |
-| --- | --- |
-| APP_NODE_URL | URL of RPC enabled node. |
-| APP_NODE_URL_USER | If your RPC node is behind HTTP Basic Authentification then use this to set the username. |
-| APP_NODE_URL_PASS | HTTP Basic Authentification Password. |
-| APP_INFURA_PROJECT_ID | Infura Project ID. You can get this from your [Infura Dashboard](https://infura.io/dashboard). Adding this will enable a dropdown to select from the available Infura endpoints.
-
-> NOTICE: if `APP_NODE_URL` and `APP_INFURA_PROJECT_ID` are both missing, the explorer will start with the Infura mainnet endpoint in anonymous mode (https://mainnet.infura.io/).
 
 So for example if you want to start the explorer with both infura and a custom node url, and have the container auto delete itself after you close it, you would run something like
 ```sh
@@ -133,17 +141,7 @@ Copy the sample config variables
 ```sh
 $ cp config.default.json config.dev.json
 ```
-Adjust `config.dev.json` to your needs. You can remove the variables you do not wish to change from default.
-
-| ENV var | Description |
-| --- | --- |
-| APP_NODE_URL | URL of RPC enabled node. Default `'https://mainnet.infura.io/'` |
-| APP_NODE_USER | If your RPC node is behind HTTP Basic Authentification then use this to set the username. |
-| APP_NODE_PASSWORD | HTTP Basic Authentification Password. |
-| APP_INFURA_PROJECT_ID | Infura Project ID. You can get this from your [Infura Dashboard](https://infura.io/dashboard). Adding this will enable a dropdown to select from the available Infura endpoints.
-| APP_ROUTER_HISTORY_MODE | When `false` (default mode) the explorer uses the URL hash for routing. Works with all browsers/servers, including those that do not support HTML5 History API. `true` requires HTML5 History API and server config to redirect all requests that do not have a file to index.html so they are picked by the react router.
-
-> NOTICE: if `APP_NODE_URL` and `APP_INFURA_PROJECT_ID` are both missing, the explorer will start with the Infura mainnet endpoint in anonymous mode (https://mainnet.infura.io/).
+Adjust `config.dev.json` to your needs. You can remove the variables you do not wish to change from default. Full list of options available [here](#configuration)
 
 After which you can build the explorer for production
 ```sh
