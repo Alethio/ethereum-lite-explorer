@@ -76,6 +76,9 @@ Original SVG sources should be kept in the `src/assets/original-svg` folder. To 
 
 ## Getting started
 
+> Known Issues
+> Currently nodes behind HTTP basic auth do not work.
+
 ### Prerequisites
 Please make sure you have the following installed and running properly
 - [Node.js](https://nodejs.org/en/download/) >= 8.0 or [Docker](https://www.docker.com/)
@@ -135,9 +138,9 @@ Adjust `config.dev.json` to your needs. You can remove the variables you do not 
 | ENV var | Description |
 | --- | --- |
 | APP_NODE_URL | URL of RPC enabled node. Default `'https://mainnet.infura.io/'` |
-| APP_INFURA_PROJECT_ID | Infura Project ID. You can get this from your [Infura Dashboard](https://infura.io/dashboard). Adding this will enable a dropdown to select from the available Infura endpoints.
 | APP_NODE_USER | If your RPC node is behind HTTP Basic Authentification then use this to set the username. |
 | APP_NODE_PASSWORD | HTTP Basic Authentification Password. |
+| APP_INFURA_PROJECT_ID | Infura Project ID. You can get this from your [Infura Dashboard](https://infura.io/dashboard). Adding this will enable a dropdown to select from the available Infura endpoints.
 | APP_ROUTER_HISTORY_MODE | When `false` (default mode) the explorer uses the URL hash for routing. Works with all browsers/servers, including those that do not support HTML5 History API. `true` requires HTML5 History API and server config to redirect all requests that do not have a file to index.html so they are picked by the react router.
 
 > NOTICE: if `APP_NODE_URL` and `APP_INFURA_PROJECT_ID` are both missing, the explorer will start with the Infura mainnet endpoint in anonymous mode (https://mainnet.infura.io/).
@@ -190,7 +193,7 @@ After that you have two options:
 
 Start Lite explorer
 ```sh
-$ npm run serve
+$ npm start
 ```
 
 ####  With Parity Light Client
@@ -208,7 +211,7 @@ $ docker run -d --restart always --name parity-light -p 127.0.0.1:8545:8545 pari
 
 Start Lite explorer
 ```sh
-$ npm run serve
+$ npm start
 ```
 
 #### With Ganache
@@ -218,7 +221,7 @@ After setting up and starting Ganache, update the `.env.local` file and set `APP
 
 Start Lite explorer
 ```sh
-$ npm run serve
+$ npm start
 ```
 
 #### With Pantheon
@@ -235,14 +238,14 @@ $ pantheon --dev-mode --rpc-enabled --ws-enabled --miner-enabled --miner-coinbas
 
 _(Note: using "*" values for host whitelist and CORS origins is not a recommended way to run a production node securely, this configuration is intended for test or developement purpose only. For more information about these options, refer to the [Pantheon CLI reference](https://docs.pantheon.pegasys.tech/en/stable/Reference/Pantheon-CLI-Syntax/))._
 
-After running Pantheon, update the `.env.local` file, and set `APP_NODE_URL` to point to your running Pantheon URL:
+After running Pantheon, update the `config.dev.json` file, and set `APP_NODE_URL` to point to your running Pantheon URL:
 ```
 APP_NODE_URL='http://127.0.0.1:8545/'
 ```
 
 Start Lite explorer
 ```sh
-$ npm run serve
+$ npm start
 ```
 
 ### Example Deployments
@@ -262,7 +265,7 @@ $ npm run build
 # go to build dir
 $ cd dist
 # make push state work as it should
-$ cp index.html 200.html && cp index.html 404.html
+$ cp ../config.deploy.json && cp index.html 200.html && cp index.html 404.html
 # deploy
 $ surge
 ```
