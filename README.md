@@ -115,7 +115,7 @@ docker \
     run --rm \
     -p 80:80 \
     -e APP_INFURA_PROJECT_ID=your-infura-proj-id \
-    -e NODE_URL=https://kovan.infura.io \
+    -e APP_NODE_URL=https://kovan.infura.io \
     alethio/ethstats-lite-explorer
 ```
 
