@@ -120,7 +120,7 @@ export class AppConfig {
             {
                 key: "Görli",
                 label: "Görli",
-                value: "https://goerli.prylabs.net/"
+                value: "https://goerli.infura.io/"
             }];
         }
         if (this.checkForInfuraProjectId() && this.data.APP_INFURA_PROJECT_ID !== "") {
@@ -147,7 +147,7 @@ export class AppConfig {
             {
                 key: "Görli",
                 label: "Görli",
-                value: "https://goerli.prylabs.net/"
+                value: `https://goerli.infura.io/v3/${this.data.APP_INFURA_PROJECT_ID}`
             }];
             if (this.data.APP_NODE_URL !== undefined && this.data.APP_NODE_URL.includes("infura")) {
                 return standardArray;
