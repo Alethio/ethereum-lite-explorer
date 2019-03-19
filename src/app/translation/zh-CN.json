@@ -161,6 +161,7 @@
     "txView.content.timeSpent.value": "%d秒",
     "txView.content.inputData.label": "输入数据",
     "txView.content.error.label": "错误",
+    "txView.content.error.genericValue": "已返回",
 
     "txView.content.txSummary.label": "内容概览",
     "txView.content.txSummary.contractMessages.label": "合约消息",
