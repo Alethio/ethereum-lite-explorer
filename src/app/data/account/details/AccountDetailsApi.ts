@@ -1,5 +1,6 @@
 import { AccountDetailsReader } from "./AccountDetailsReader";
 import { Web3EthApi } from "app/data/web3/Web3EthApi";
+import { BigNumber } from "app/util/BigNumber";
 
 export class AccountDetailsApi {
     constructor(
@@ -21,6 +22,7 @@ export class AccountDetailsApi {
         if (!accountCode) {
             throw new Error(`No contract code found  for address "${accountBalance}"`);
         }
-        return this.accountDetailsReader.read(accountAddress.replace(/^0x/, ""), accountBalance, accountCode);
+        return this.accountDetailsReader.read(accountAddress.replace(/^0x/, ""),
+        new BigNumber(accountBalance), accountCode);
     }
 }

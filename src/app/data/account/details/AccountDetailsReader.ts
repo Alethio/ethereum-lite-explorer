@@ -3,7 +3,7 @@ import { IAccountDetails } from "./IAccountDetails";
 import { BigNumber } from "app/util/BigNumber";
 
 export class AccountDetailsReader {
-    read(address: string, balance: number, code: string) {
+    read(address: string, balance: BigNumber, code: string) {
         let type = code && code !== "0x" ? "Contract Account" : "External Account";
         let account: IAccountDetails = {
             address,
