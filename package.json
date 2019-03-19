@@ -40,7 +40,7 @@
     "@types/react-transition-group": "^2.0.11",
     "@types/recharts": "^1.0.24",
     "@types/vis": "^4.21.7",
-    "@types/web3": "^1.0.3",
+    "@types/web3": "^1.0.18",
     "@types/webpack-env": "^1.13.0",
     "bundlesize": "github:siddharthkp/bundlesize#brotli-optional",
     "copy-webpack-plugin": "^4.5.1",
