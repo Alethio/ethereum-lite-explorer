@@ -152,10 +152,6 @@ or development
 $ npm run build-dev
 ```
 
-or build it for deployment
-```sh
-$ npm run build
-```
 the `dist` folder will then contain the minimised and optimised version fo the app. Got ahead and [deploy it](#example-deployments) somewhere.
 
 Finally you can run the explorer with
