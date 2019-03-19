@@ -1,12 +1,12 @@
-var webpack = require('webpack');
-var path = require('path');
+var webpack = require("webpack");
+var path = require("path");
 var fs = require("fs");
-var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var InterpolateHtmlPlugin = require('interpolate-html-plugin');
-var MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
-var FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+var CopyWebpackPlugin = require("copy-webpack-plugin");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
+var InterpolateHtmlPlugin = require("interpolate-html-plugin");
+var MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
+var FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 var GitRevisionPlugin = require("git-revision-webpack-plugin");
 var ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 var createStyledComponentsTransformer = require("typescript-plugin-styled-components").default;
@@ -49,20 +49,20 @@ function getConfig(isProduction) {
             languages: ["solidity", "json"],
             features: ["contextmenu", "clipboard", "find", "folding"]
         }),
-        // These are preprocessor constants which are replaced inline (that's why the extra quotes)
+        // These are preprocessor constants which are replaced inline (that"s why the extra quotes)
         new webpack.DefinePlugin({
             // This is needed to be able to activate some features for development (like ReduxDevTools)
             // and, also, some libs (like React) have an optimized (smaller&faster) builds
             // if NODE_ENV is set to "production"
-            'process.env.NODE_ENV': JSON.stringify(isDebug ? 'development' : 'production'),
+            "process.env.NODE_ENV": JSON.stringify(isDebug ? "development" : "production"),
 
             // Git version info is needed by Sentry
-            'GIT_VERSION': JSON.stringify(gitRevisionPlugin.version()),
-            'GIT_COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
-            'GIT_BRANCH': JSON.stringify(gitRevisionPlugin.branch()),
+            "GIT_VERSION": JSON.stringify(gitRevisionPlugin.version()),
+            "GIT_COMMITHASH": JSON.stringify(gitRevisionPlugin.commithash()),
+            "GIT_BRANCH": JSON.stringify(gitRevisionPlugin.branch()),
 
-            'APP_AVAILABLE_LOCALES': JSON.stringify(availableLocales.join(",")),
-            'APP_DEFAULT_LOCALE': JSON.stringify(defaultLocale)
+            "APP_AVAILABLE_LOCALES": JSON.stringify(availableLocales.join(",")),
+            "APP_DEFAULT_LOCALE": JSON.stringify(defaultLocale)
         }),
         new CopyWebpackPlugin([
             {
@@ -91,7 +91,7 @@ function getConfig(isProduction) {
             template: path.join(sourcePublicRoot, "index.html")
         }),
         new InterpolateHtmlPlugin({
-            'APP_DEFAULT_LOCALE': defaultLocale
+            "APP_DEFAULT_LOCALE": defaultLocale
         }),
         new FaviconsWebpackPlugin({
             logo: path.join(assetsRoot, "block-explorer-logo.svg"),
@@ -111,13 +111,13 @@ function getConfig(isProduction) {
             // The key is a bundle name, the value is the entry file
             // If you are using async require, you also need to add
             // __webpack_public_path__ to the top of the entry file
-            "js/app": './index'
+            "js/app": "./index"
         },
         output: {
             path: outputRoot,
-            jsonpFunction: '__webpackJsonp',
-            hotUpdateFunction: '__webpackHotUpdate',
-            sourcePrefix: '',
+            jsonpFunction: "__webpackJsonp",
+            hotUpdateFunction: "__webpackHotUpdate",
+            sourcePrefix: "",
             crossOriginLoading: "anonymous",
             filename: "[name].bundle.js",
             chunkFilename: "js/[contentHash].bundle.js",
@@ -158,7 +158,7 @@ function getConfig(isProduction) {
                 },
                 {
                     test: /\.tsx?$/,
-                    loader: 'ts-loader?configFile=' + tsConfigJsonFilename,
+                    loader: "ts-loader?configFile=" + tsConfigJsonFilename,
                     options: {
                         transpileOnly: true,
                         getCustomTransformers: () => ({ before: [styledComponentsTransformer] })
@@ -166,7 +166,7 @@ function getConfig(isProduction) {
                 },
                 {
                     test: /\.(png|jpe?g|gif|svg)$/i,
-                    loader: 'url-loader',
+                    loader: "url-loader",
                     options: {
                         limit: 8192,
                         outputPath: "img/"
@@ -175,7 +175,7 @@ function getConfig(isProduction) {
                 // Needed for monaco-editor
                 {
                     test: /\.css$/,
-                    use: ['style-loader', 'css-loader']
+                    use: ["style-loader", "css-loader"]
                 }
             ]
         },
@@ -188,11 +188,11 @@ function getConfig(isProduction) {
                 sourceRoot,
                 nodeModulesPath
             ],
-            extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+            extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
         },
         // If incremental build performance becomes an issue, this option can be enabled
         // to generate faster source maps
-        devtool: /*isDebug ? 'eval-source-map' : */'source-map',
+        devtool: /*isDebug ? 'eval-source-map' : */"source-map",
         // Uncomment this to use polling instead of file watchers (e.g. too few available
         // from environment)
         watchOptions: {

@@ -1,1 +1,1 @@
-module.exports = require('./webpack.config')(true);
+module.exports = require("./webpack.config")(true);
