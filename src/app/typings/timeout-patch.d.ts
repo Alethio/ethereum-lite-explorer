@@ -2,6 +2,6 @@
 /// <reference types="node" />
 
 declare function setTimeout(callback: (...args: any[]) => void, ms: number, ...args: any[]): any;
-declare function clearTimeout(timeoutId: NodeJS.Timer|number): void;
+declare function clearTimeout(timeoutId: NodeJS.Timer | number): void;
 declare function setInterval(callback: (...args: any[]) => void, ms: number, ...args: any[]): any;
-declare function clearInterval(intervalId: NodeJS.Timer|number): void;
+declare function clearInterval(intervalId: NodeJS.Timer | number): void;
