@@ -2,7 +2,7 @@ FROM node:8 AS build
 
 WORKDIR /build
 
-RUN apt-get update && apt-get install -y
+RUN apt-get update && apt-get install -y --no-install-recommends
 COPY package.json package-lock.json ./
 RUN npm install
 
