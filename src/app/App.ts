@@ -28,9 +28,11 @@ import { NodeFields } from "app/page/dashboard/nodeDropdown/NodeFields";
 import { DashboardLastBlockState } from "app/page/dashboard/DashboardLastBlockState";
 import { DashboardStore } from "app/data/dashboard/DashboardStore";
 import { HttpRequest } from "@puzzl/browser/lib/network/HttpRequest";
+import { NodeStatsWatcher } from "app/data/watchers/NodeStatsWatcher";
 
 export class App {
     private lastBlockWatcher: LastBlockWatcher | undefined;
+    private nodeStatsWatcher: NodeStatsWatcher | undefined;
     async init(target: HTMLElement) {
         let storage = new StorageFactory(window.localStorage).create();
         let userPreferences = new UserPreferences(storage);
@@ -102,9 +104,14 @@ export class App {
         if (this.lastBlockWatcher) {
             this.lastBlockWatcher.stop();
         }
-        let lastBlockWatcher = this.lastBlockWatcher = new LastBlockWatcher(web3EthApi, blockStateStore, dashboardStore,
-            logger);
+        let lastBlockWatcher = this.lastBlockWatcher = new LastBlockWatcher(web3EthApi, blockStateStore, logger);
         lastBlockWatcher.watch();
+
+        if (this.nodeStatsWatcher) {
+            this.nodeStatsWatcher.stop();
+        }
+        let nodeStatsWatcher = this.nodeStatsWatcher = new NodeStatsWatcher(web3EthApi, dashboardStore, logger);
+        nodeStatsWatcher.watch();
 
         // TODO: proper connection state handling (availability and fallback)
         when(() => blockStateStore.getLatest() !== void 0 /*&& blockLatestValueStore.getLatestValues() !== void 0*/,
