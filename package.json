@@ -16,7 +16,7 @@
     "start": "cd dev && npm start && cd ..",
     "test": "mocha",
     "test-coverage": "nyc npm test",
-    "deploy-gh": "npm run build && cp ./dist/index.html ./dist/200.html && cp ./dist/index.html ./dist/404.html && gh-pages -d dist -m 'gh deploy [ci skip]'"
+    "deploy-gh": "npm run build && cp ./dist/index.html ./dist/200.html && cp ./dist/index.html ./dist/404.html && cp config.deploy.json ./dist/config.json && gh-pages -d dist -m 'gh deploy [ci skip]'"
   },
   "keywords": [
     "ethereum",
