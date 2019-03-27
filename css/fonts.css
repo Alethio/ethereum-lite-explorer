@@ -1,0 +1,151 @@
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 100;
+    src: url(/fonts/Barlow-Thin.woff) format('woff'),
+        url(/fonts/Barlow-Thin.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: italic;
+    font-weight: 100;
+    src: url(/fonts/Barlow-ThinItalic.woff) format('woff'),
+        url(/fonts/Barlow-ThinItalic.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 200;
+    src: url(/fonts/Barlow-ExtraLight.woff) format('woff'),
+        url(/fonts/Barlow-ExtraLight.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: italic;
+    font-weight: 200;
+    src: url(/fonts/Barlow-ExtraLightItalic.woff) format('woff'),
+        url(/fonts/Barlow-ExtraLightItalic.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 300;
+    src: url(/fonts/Barlow-Light.woff) format('woff'),
+        url(/fonts/Barlow-Light.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: italic;
+    font-weight: 300;
+    src: url(/fonts/Barlow-LightItalic.woff) format('woff'),
+        url(/fonts/Barlow-LightItalic.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/fonts/Barlow-Regular.woff) format('woff'),
+        url(/fonts/Barlow-Regular.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: italic;
+    font-weight: 400;
+    src: url(/fonts/Barlow-Italic.woff) format('woff'),
+        url(/fonts/Barlow-Italic.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 500;
+    src: url(/fonts/Barlow-Medium.woff) format('woff'),
+        url(/fonts/Barlow-Medium.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: italic;
+    font-weight: 500;
+    src: url(/fonts/Barlow-MediumItalic.woff) format('woff'),
+        url(/fonts/Barlow-MediumItalic.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 600;
+    src: url(/fonts/Barlow-SemiBold.woff) format('woff'),
+        url(/fonts/Barlow-SemiBold.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: italic;
+    font-weight: 600;
+    src: url(/fonts/Barlow-SemiBoldItalic.woff) format('woff'),
+        url(/fonts/Barlow-SemiBoldItalic.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 700;
+    src: url(/fonts/Barlow-Bold.woff) format('woff'),
+        url(/fonts/Barlow-Bold.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: italic;
+    font-weight: 700;
+    src: url(/fonts/Barlow-BoldItalic.woff) format('woff'),
+        url(/fonts/Barlow-BoldItalic.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 800;
+    src: url(/fonts/Barlow-ExtraBold.woff) format('woff'),
+        url(/fonts/Barlow-ExtraBold.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: italic;
+    font-weight: 800;
+    src: url(/fonts/Barlow-ExtraBoldItalic.woff) format('woff'),
+        url(/fonts/Barlow-ExtraBoldItalic.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 900;
+    src: url(/fonts/Barlow-Black.woff) format('woff'),
+        url(/fonts/Barlow-Black.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: italic;
+    font-weight: 900;
+    src: url(/fonts/Barlow-BlackItalic.woff) format('woff'),
+        url(/fonts/Barlow-BlackItalic.ttf) format('truetype')
+}
+
+/* latin */
+@font-face {
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Mono'), local('RobotoMono-Regular'), url(/fonts/RobotoMono-Regular.ttf) format('truetype');
+}
