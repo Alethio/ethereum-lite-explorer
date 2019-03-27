@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= htmlWebpackPlugin.options.title %></title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta property="og:url" content="https://ethereum.ethstats.io">
+        <meta property="og:title" content="<%= htmlWebpackPlugin.options.title %>">
+        <meta property="og:description" content="<%= htmlWebpackPlugin.options.description %>">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="https://ethereum.ethstats.io/img/og-image.jpg">
+        <meta property="og:image:width" content="1080">
+        <meta property="og:image:height" content="600">
+
+        <base href="/" />
+        <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="css/fonts.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+    </head>
+    <body>
+        <div id="react-root"></div>
+        <script type="text/javascript">
+            var supportsEs6 = true;
+            try {
+                eval('"use strict"; class foo {}');
+            } catch (e) {
+                supportsEs6 = false;
+            }
+
+            if (!supportsEs6) {
+                alert("You are using an outdated browser. Please upgrade to the latest version.");
+            }
+        </script>
+    </body>
+</html>

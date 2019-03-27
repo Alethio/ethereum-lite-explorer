@@ -1,0 +1,1 @@
+Flags from https://github.com/lipis/flag-icon-css

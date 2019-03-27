@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>iconArrowDown</title>
+    <desc>Created with Sketch.</desc>
+    <g id="reCreate" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-21" transform="translate(-6.000000, -6.000000)" fill="#A7B5D1" fill-rule="nonzero">
+            <g id="valueExpandable">
+                <g id="txt">
+                    <g id="iconArrowDown" transform="translate(18.000000, 18.000000) rotate(-270.000000) translate(-18.000000, -18.000000) translate(6.000000, 6.000000)">
+                        <polygon id="Shape" points="16.59 8.59 12 13.17 7.41 8.59 6 10 12 16 18 10"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "moduleResolution": "node",
+        "strict": true,
+        "strictPropertyInitialization": false,
+        "strictFunctionTypes": false,
+        "noImplicitReturns": true,
+        "sourceMap": true,
+        "outDir": "./dist",
+        "experimentalDecorators": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "lib": [
+            "dom",
+            "es5",
+            "es6"
+        ],
+        "forceConsistentCasingInFileNames": true
+    }
+}

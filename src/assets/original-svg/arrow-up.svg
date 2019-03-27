@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="8px" viewBox="0 0 12 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>iconArrowDown</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Rules" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-1074.000000, -3437.000000)">
+            <g id="listDropdown" transform="translate(745.000000, 3225.000000)">
+                <g id="valueExpanded" transform="translate(49.000000, 192.000000)">
+                    <g id="valueExpandable" transform="translate(40.000000, 0.000000)">
+                        <g id="txt" transform="translate(8.000000, 6.000000)">
+                            <g id="iconArrowDown" transform="translate(238.000000, 18.000000) scale(1, -1) translate(-238.000000, -18.000000) translate(226.000000, 6.000000)">
+                                <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                                <polygon id="Shape" fill="#A7B5D1" fill-rule="nonzero" points="16.59 8.59 12 13.17 7.41 8.59 6 10 12 16 18 10"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

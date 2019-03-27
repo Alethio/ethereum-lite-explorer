@@ -1,81 +1,105 @@
 {
-  "name": "ethstats-light",
-  "version": "0.4.0",
-  "private": true,
+  "name": "block-explorer-lite",
+  "version": "1.0.0-beta.1",
+  "private": false,
+  "description": "Blockchain Explorer Lite",
+  "main": "dist/index.js",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "build": "npm run clean && npm run build-js-prod && npm run check-prod-bundle-size",
+    "build-dev": "npm run clean && npm run build-js-dev",
+    "check-prod-bundle-size": "bundlesize -f \"dist/js/app.bundle.js\" -s 850kB -c none",
+    "clean": "rimraf ./dist",
+    "build-js-prod": "webpack --config=./webpack.config.prod.js",
+    "build-js-dev": "webpack --config=./webpack.config.dev.js",
+    "watch": "webpack-runner --config=./webpack.config.dev.js --watch",
+    "install": "cd dev && npm install && cd .. || true",
+    "start": "cd dev && npm start && cd ..",
+    "test": "mocha",
+    "test-coverage": "nyc npm test",
     "deploy-gh": "npm run build && cp ./dist/index.html ./dist/200.html && cp ./dist/index.html ./dist/404.html && gh-pages -d dist -m 'gh deploy [ci skip]'"
   },
-  "dependencies": {
-    "apexcharts": "^2.1.5",
-    "bignumber.js": "^7.2.1",
-    "buefy": "^0.6.7",
-    "ethereum-blockies": "^0.1.1",
-    "identicon.js": "^2.3.3",
-    "uuid": "^3.3.2",
-    "v-tooltip": "^2.0.0-rc.33",
-    "vue": "^2.5.17",
-    "vue-apexcharts": "^1.2.2",
-    "vue-router": "^3.0.2",
-    "vue-select": "^2.5.1",
-    "vue-timeago": "^5.0.0",
-    "vuex": "^3.0.1",
-    "web3": "0.20.3",
-    "websocket": "^1.0.28"
-  },
+  "keywords": [
+    "ethereum",
+    "block explorer",
+    "ethstats"
+  ],
+  "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
-    "@vue/cli-plugin-babel": "^3.2.0",
-    "@vue/cli-plugin-eslint": "^3.2.1",
-    "@vue/cli-service": "^3.3.0",
-    "@vue/eslint-config-airbnb": "^3.0.5",
+    "@types/fontfaceobserver": "0.0.6",
+    "@types/gapi": "0.0.36",
+    "@types/gapi.auth2": "0.0.48",
+    "@types/mocha": "^2.2.40",
+    "@types/node": "^8.10.18",
+    "@types/qrcode": "^1.2.0",
+    "@types/react": "^16.7.3",
+    "@types/react-dom": "^16.0.9",
+    "@types/react-is": "^16.3.0",
+    "@types/react-joyride": "^1.11.1",
+    "@types/react-router-dom": "^4.2.6",
+    "@types/react-router-hash-link": "^1.2.0",
+    "@types/react-transition-group": "^2.0.11",
+    "@types/recharts": "^1.0.24",
+    "@types/vis": "^4.21.7",
+    "@types/web3": "^1.0.18",
+    "@types/webpack-env": "^1.13.0",
+    "bundlesize": "github:siddharthkp/bundlesize#brotli-optional",
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^1.0.0",
+    "esm": "^3.0.84",
+    "favicons-webpack-plugin": "0.0.9",
+    "file-loader": "^1.1.11",
+    "fork-ts-checker-webpack-plugin": "^0.4.15",
     "gh-pages": "^2.0.1",
-    "vue-template-compiler": "^2.5.17"
+    "git-revision-webpack-plugin": "^3.0.3",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^1.0.0-rc.9",
+    "interpolate-html-plugin": "^3.0.0",
+    "mocha": "^5.1.1",
+    "monaco-editor-webpack-plugin": "^1.5.1",
+    "nyc": "^11.8.0",
+    "rimraf": "^2.6.2",
+    "source-map-loader": "^0.2.3",
+    "source-map-support": "^0.4.14",
+    "style-loader": "^0.23.0",
+    "ts-loader": "^4.4.2",
+    "ts-node": "^5.0.1",
+    "tsconfig-paths": "^3.4.2",
+    "tslib": "^1.9.3",
+    "tslint": "^5.11.0",
+    "typemoq": "^2.1.0",
+    "typescript": "^3.0.1",
+    "typescript-plugin-styled-components": "^1.0.0",
+    "typescript-styled-plugin": "^0.10.0",
+    "typescript-tslint-plugin": "^0.1.0",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-runner": "^3.1.0"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "@vue/airbnb"
-    ],
-    "rules": {
-      "no-param-reassign": [
-        "error",
-        {
-          "props": true,
-          "ignorePropertyModificationsFor": [
-            "acc",
-            "accumulator",
-            "e",
-            "ctx",
-            "req",
-            "request",
-            "res",
-            "response",
-            "$scope",
-            "state"
-          ]
-        }
-      ]
-    },
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  "dependencies": {
+    "@puzzl/browser": "^1.0.0-beta.1",
+    "@puzzl/core": "^1.0.0-beta.1",
+    "@sentry/browser": "^4.4.0",
+    "bignumber.js": "^8.0.1",
+    "datetime-difference": "^1.0.1",
+    "ethstats-ui": "^1.0.0-beta.1",
+    "fontfaceobserver": "^2.0.13",
+    "identicon.js": "^2.3.2",
+    "mobx": "^4.3.0",
+    "mobx-react": "^5.1.2",
+    "monaco-editor": "^0.14.3",
+    "qrcode": "^1.2.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-graph-vis": "^1.0.2",
+    "react-joyride": "^1.11.4",
+    "react-minimal-pie-chart": "^3.0.2",
+    "react-popper": "^1.0.2",
+    "react-router-dom": "^4.2.2",
+    "react-router-hash-link": "^1.2.1",
+    "react-transition-group": "^2.4.0",
+    "recharts": "^1.1.0",
+    "styled-components": "^3.4.2"
+  }
 }

@@ -1,0 +1,24 @@
+{
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.rulers": [120],
+    "files.insertFinalNewline": true,
+    "files.encoding": "utf8",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "dist/*": true,
+        "coverage/*": true
+    },
+    "files.trimTrailingWhitespace": true,
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.preferences.quoteStyle": "double",
+    "lcov.watch": [{
+        "pattern": "**/*.spec.ts",
+        "command": "npm run test-coverage"
+    }]
+}

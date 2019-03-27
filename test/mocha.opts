@@ -1,0 +1,7 @@
+--require ./test/bootstrap.js
+--require esm
+--require source-map-support/register
+--full-trace
+--bail
+./src/**/*.spec.ts
+./test/**/*.spec.ts

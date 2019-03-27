@@ -26,8 +26,10 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
-      # run tests!
-      - run: npm run lint
 
+      # run tests!
+      - run: npm run test-coverage
+
+      - store_artifacts:
+          path: coverage
 

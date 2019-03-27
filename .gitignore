@@ -1,23 +1,11 @@
-.DS_Store
+npm-debug.log
 node_modules
-
-# build folder
-/dist
-
-# local env files
-.env.local
-.env.*.local
-
-# Log files
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Editor directories and files
+dist
+src/styles/*.css
+coverage
+.nyc_output
 .idea
-.vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw*
+.env
+config.dev.jsonc
+config.dev.json
+config.deploy.json

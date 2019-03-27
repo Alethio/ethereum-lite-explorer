@@ -1,0 +1,75 @@
+{
+    "extends": "tslint:recommended",
+    "defaultSeverity": "warn",
+    "linterOptions": {
+        "exclude": [
+            "**/*.json"
+        ]
+    },
+    "rules": {
+        "align": [true,
+            "statements"
+        ],
+        "arrow-return-shorthand": true,
+        "arrow-parens": false,
+        "array-type": [
+            true,
+            "array"
+        ],
+        "await-promise": true,
+        "callable-types": false,
+        "comment-format": [false,
+            "check-space"
+        ],
+        "import-spacing": true,
+        "interface-name": true,
+        "member-access": [
+            false
+        ],
+        "member-ordering": [true, {
+            "order": [
+                "static-field",
+                "instance-field",
+                "static-method",
+                "constructor",
+                "instance-method"
+            ]
+        }],
+        "no-angle-bracket-type-assertion": true,
+        "no-console": [true, "log", "info", "warn", "error"],
+        "no-empty-interface": false,
+        "no-default-export": true,
+        "no-floating-promises": true,
+        "no-inferrable-types": [true],
+        "no-string-throw": true,
+        "object-literal-sort-keys": false,
+        "ordered-imports": [false,
+            {
+                "import-sources-order": "case-insensitive",
+                "named-imports-order": "case-insensitive"
+            }
+        ],
+        "prefer-const": false,
+        "prefer-method-signature": true,
+        "quotemark": [true, "double"],
+        "trailing-comma": [
+            true,
+            {
+                "multiline": "never",
+                "singleline": "never"
+            }
+        ],
+        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
+        "import-blacklist": [true, "bignumber.js", "@sentry/browser", "styled-components"],
+        "whitespace": [true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-rest-spread",
+            "check-type",
+            "check-type-operator",
+            "check-preblock"
+        ]
+    }
+}

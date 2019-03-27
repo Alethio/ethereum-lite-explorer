@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-ic_error_black_18px">
+            <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+            <path d="M12,5 C8.136,5 5,8.136 5,12 C5,15.864 8.136,19 12,19 C15.864,19 19,15.864 19,12 C19,8.136 15.864,5 12,5 Z M13,16 L11,16 L11,14 L13,14 L13,16 Z M13,13 L11,13 L11,8 L13,8 L13,13 Z" id="Shape" fill="#F65555" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>
