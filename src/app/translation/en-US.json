@@ -88,7 +88,7 @@
     "chainView.grid.header.beneficiary.label": "Mined by",
     "chainView.grid.header.rewardEth.label": "Reward (ETH)",
 
-    "dashboardView.title": "EthStats Lite Explorer",
+    "dashboardView.title": "Ethereum Lite Explorer",
     "dashboardView.subTitle": "An open source Ethereum block explorer. Available on ",
     "dashboardView.github": "GitHub",
     "dashboardView.lastBlocksChart.title.label": "Last blocks transactions",
