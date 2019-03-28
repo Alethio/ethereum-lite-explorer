@@ -1,4 +1,4 @@
 {
     "APP_DEFAULT_LOCALE": "en-US",
-    "APP_NETSTATS_URL": "https://net.ethstats.io",
+    "APP_NETSTATS_URL": "https://net.ethstats.io"
 }
