@@ -1,8 +1,8 @@
 {
-  "name": "block-explorer-lite",
+  "name": "ethereum-lite-explorer",
   "version": "1.0.0-beta.1",
   "private": false,
-  "description": "Blockchain Explorer Lite",
+  "description": "Ethereum Lite Explorer",
   "main": "dist/index.js",
   "scripts": {
     "build": "npm run clean && npm run build-js-prod && npm run check-prod-bundle-size",
@@ -21,7 +21,9 @@
   "keywords": [
     "ethereum",
     "block explorer",
-    "ethstats"
+    "ethstats",
+    "alethio",
+    "lite explorer"
   ],
   "license": "MIT",
   "devDependencies": {
