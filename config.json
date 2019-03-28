@@ -1,4 +1,5 @@
 {
     "APP_DEFAULT_LOCALE": "en-US",
+    "APP_INFURA_PROJECT_ID": "db8747a6d21c4125855809ecf259c211",
     "APP_NETSTATS_URL": "https://net.ethstats.io"
 }
