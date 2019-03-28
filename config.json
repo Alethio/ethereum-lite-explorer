@@ -1,8 +1,4 @@
 {
     "APP_DEFAULT_LOCALE": "en-US",
-    "APP_SENTRY_ENABLED": "false",
-    "APP_NETWORK_MONITOR_URL": "https://net.ethstats.io",
-    "APP_NODE_URL": "https://mainnet.infura.io/v3/",
-    "APP_INFURA_PROJECT_ID": "db8747a6d21c4125855809ecf259c211",
-    "APP_ROUTER_HISTORY_MODE": false
+    "APP_NETSTATS_URL": "https://net.ethstats.io",
 }
