@@ -9,7 +9,7 @@ interface IAppConfigData {
     APP_SENTRY_APPNAME?: string;
     APP_SENTRY_DSN?: string;
     APP_SENTRY_ENV?: string;
-    APP_NODE_URL?: string;
+    APP_NODE_URL: string;
     APP_INFURA_PROJECT_ID?: string;
     APP_INFURA_IPFS_URL_MASK?: string;
     APP_ROUTER_HISTORY_MODE?: boolean;
@@ -91,8 +91,16 @@ export class AppConfig {
         return this.data.APP_INFURA_PROJECT_ID !== undefined;
     }
 
+    getInfuraProjectId() {
+        return this.data.APP_INFURA_PROJECT_ID;
+    }
+
     checkForNodeURL() {
         return this.data.APP_NODE_URL !== undefined;
+    }
+
+    getNodeUrl() {
+        return this.data.APP_NODE_URL;
     }
 
     createFieldsArray() {
@@ -100,36 +108,38 @@ export class AppConfig {
             let standardArray = [{
                 key: "Mainnet",
                 label: "Mainnet",
-                value: `https://mainnet.infura.io/v3/${this.data.APP_INFURA_PROJECT_ID}`
+                value: `https://mainnet.infura.io/v3/${this.getInfuraProjectId()}`
             },
             {
                 key: "Kovan",
                 label: "Kovan",
-                value: `https://kovan.infura.io/v3/${this.data.APP_INFURA_PROJECT_ID}`
+                value: `https://kovan.infura.io/v3/${this.getInfuraProjectId()}`
             },
             {
                 key: "Rinkeby",
                 label: "Rinkeby",
-                value: `https://rinkeby.infura.io/v3/${this.data.APP_INFURA_PROJECT_ID}`
+                value: `https://rinkeby.infura.io/v3/${this.getInfuraProjectId()}`
             },
             {
                 key: "Ropsten",
                 label: "Ropsten",
-                value: `https://ropsten.infura.io/v3/${this.data.APP_INFURA_PROJECT_ID}`
+                value: `https://ropsten.infura.io/v3/${this.getInfuraProjectId()}`
             },
             {
                 key: "Görli",
                 label: "Görli",
-                value: `https://goerli.infura.io/v3/${this.data.APP_INFURA_PROJECT_ID}`
+                value: `https://goerli.infura.io/v3/${this.getInfuraProjectId()}`
             }];
-            if (this.data.APP_NODE_URL !== undefined && this.data.APP_NODE_URL.includes("infura")) {
+            if (this.checkForNodeURL() && this.getNodeUrl().includes("infura")) {
                 return standardArray;
-            } else if (this.data.APP_NODE_URL !== undefined) {
+            } else if (this.checkForNodeURL()) {
                 standardArray.push({
                     key: this.data.APP_NODE_URL,
                     label: this.data.APP_NODE_URL,
                     value: this.data.APP_NODE_URL
                 });
+                return standardArray;
+            } else {
                 return standardArray;
             }
         } else {
@@ -139,34 +149,12 @@ export class AppConfig {
                     label: this.data.APP_NODE_URL,
                     value: this.data.APP_NODE_URL
                 }];
-            } else {
-                return [{
-                    key: "Mainnet",
-                    label: "Mainnet",
-                    value: `https://mainnet.infura.io/`
-                },
-                {
-                    key: "Kovan",
-                    label: "Kovan",
-                    value: `https://kovan.infura.io/`
-                },
-                {
-                    key: "Rinkeby",
-                    label: "Rinkeby",
-                    value: `https://rinkeby.infura.io/`
-                },
-                {
-                    key: "Ropsten",
-                    label: "Ropsten",
-                    value: `https://ropsten.infura.io/`
-                },
-                {
-                    key: "Görli",
-                    label: "Görli",
-                    value: "https://goerli.infura.io/"
-                }];
             }
         }
-        return [];
+        return [{
+            key: "",
+            label: "",
+            value: ""
+        }];
     }
 }
