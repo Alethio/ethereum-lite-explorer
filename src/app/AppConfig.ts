@@ -96,33 +96,6 @@ export class AppConfig {
     }
 
     createFieldsArray() {
-        if (!this.checkForNodeURL()) {
-            return [{
-                key: "Mainnet",
-                label: "Mainnet",
-                value: `https://mainnet.infura.io/`
-            },
-            {
-                key: "Kovan",
-                label: "Kovan",
-                value: `https://kovan.infura.io/`
-            },
-            {
-                key: "Rinkeby",
-                label: "Rinkeby",
-                value: `https://rinkeby.infura.io/`
-            },
-            {
-                key: "Ropsten",
-                label: "Ropsten",
-                value: `https://ropsten.infura.io/`
-            },
-            {
-                key: "Görli",
-                label: "Görli",
-                value: "https://goerli.infura.io/"
-            }];
-        }
         if (this.checkForInfuraProjectId() && this.data.APP_INFURA_PROJECT_ID !== "") {
             let standardArray = [{
                 key: "Mainnet",
@@ -159,12 +132,40 @@ export class AppConfig {
                 });
                 return standardArray;
             }
-        } else if (this.data.APP_NODE_URL !== undefined) {
-            return [{
-                key: this.data.APP_NODE_URL,
-                label: this.data.APP_NODE_URL,
-                value: this.data.APP_NODE_URL
-            }];
+        } else {
+            if (this.checkForNodeURL()) {
+                return [{
+                    key: this.data.APP_NODE_URL,
+                    label: this.data.APP_NODE_URL,
+                    value: this.data.APP_NODE_URL
+                }];
+            } else {
+                return [{
+                    key: "Mainnet",
+                    label: "Mainnet",
+                    value: `https://mainnet.infura.io/`
+                },
+                {
+                    key: "Kovan",
+                    label: "Kovan",
+                    value: `https://kovan.infura.io/`
+                },
+                {
+                    key: "Rinkeby",
+                    label: "Rinkeby",
+                    value: `https://rinkeby.infura.io/`
+                },
+                {
+                    key: "Ropsten",
+                    label: "Ropsten",
+                    value: `https://ropsten.infura.io/`
+                },
+                {
+                    key: "Görli",
+                    label: "Görli",
+                    value: "https://goerli.infura.io/"
+                }];
+            }
         }
         return [];
     }
