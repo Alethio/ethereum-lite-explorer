@@ -16,7 +16,7 @@
     "start": "cd dev && npm start && cd ..",
     "test": "mocha",
     "test-coverage": "nyc npm test",
-    "deploy-gh": "npm run build  && cp 404.html ./dist/404.html && cp config.deploy.json ./dist/config.json && gh-pages -d dist -m 'gh deploy [ci skip]'"
+    "deploy-gh": "npm run build  && cp 404.html ./dist/404.html && cp config.deploy.json ./dist/config.json && echo 'lite-explorer.aleth.io' > ./dist/CNAME && gh-pages -d dist -m 'gh deploy [ci skip]'"
   },
   "keywords": [
     "ethereum",
