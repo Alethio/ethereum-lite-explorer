@@ -102,7 +102,7 @@ You can set any of the following variables either in config.dev.json, config.jso
 | APP_ROUTER_HISTORY_MODE | When `false` (default mode) the explorer uses the URL hash for routing. Works with all browsers/servers, including those that do not support HTML5 History API. `true` requires HTML5 History API and server config to redirect all requests that do not have a file to index.html so they are picked by the react router. |
 | APP_NETWORK_MONITOR_URL | Setting this variable to an URL will add a menu item in the sidebar with a link to the set url |
 
-> NOTICE: if `APP_NODE_URL` and `APP_INFURA_PROJECT_ID` are both missing, the explorer will start with the Infura endpoints in anonymous mode (https://mainnet.infura.io/, https://kovan.infura.io/, ...).
+> NOTICE: you must specify at least one of `APP_NODE_URL` or `APP_INFURA_PROJECT_ID`.
 
 Only when building you also have access to
 | ENV var | Description |
