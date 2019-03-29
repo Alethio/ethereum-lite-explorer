@@ -104,6 +104,12 @@ You can set any of the following variables either in config.dev.json, config.jso
 
 > NOTICE: if `APP_NODE_URL` and `APP_INFURA_PROJECT_ID` are both missing, the explorer will start with the Infura endpoints in anonymous mode (https://mainnet.infura.io/, https://kovan.infura.io/, ...).
 
+Only when building you also have access to
+| ENV var | Description |
+| --- | --- |
+| APP_BASE_URL | Deployment URL. This used in `index.html` for `og:tags`  |
+
+
 ### Running in Docker
 You can run the Lite Explorer in Docker without having to get the source code and build it.
 The simplest command to run i is
