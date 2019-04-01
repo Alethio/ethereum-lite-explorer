@@ -16,11 +16,7 @@ jobs:
       - restore_cache:
           keys:
           - v1.0-dependencies-{{ checksum "package-lock.json" }}
-          # fallback to using the latest cache if no exact match is found
           - v1.0-dependencies-
-
-      - run: sudo npm install surge --global
-      - run: sudo npm install surge-teardown-branches --global
 
       - run: npm install
 
@@ -60,11 +56,9 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+      - run: sudo npm install surge --global
+      - run: sudo npm install surge-teardown-branches --global
       - run: surge list
-
-  cleanup:
-    <<: *executor_config
-    steps:
       - run: surge-teardown-branches lite-explorer.surge.sh
 
 workflows:
@@ -79,8 +73,5 @@ workflows:
           requires:
             - test
       - deploy:
-          requires:
-            - build
-      - cleanup:
           requires:
             - build
