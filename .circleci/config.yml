@@ -20,8 +20,6 @@ jobs:
           - v1.0-dependencies-
 
       - run: npm install
-      #- run: npm install surge --global
-      #- run: npm install surge-teardown-branches --global
 
       - save_cache:
           paths:
@@ -50,6 +48,25 @@ jobs:
 
       - run: npm run build
 
+      - persist_to_workspace:
+          root: .
+          paths: dist
+
+  deploy:
+    <<: *executor_config
+    steps:
+      - attach_workspace:
+          at: .
+
+      - run: ls
+      - run: npm install surge --global
+
+  cleanup:
+    <<: *executor_config
+    steps:
+      - run: npm install surge-teardown-branches --global
+      - run: surge-teardown-branches lite-explorer.surge.sh
+
 workflows:
   version: 2
   build-test-deploy:
@@ -61,7 +78,9 @@ workflows:
       - build:
           requires:
             - test
-#
-#      - deploy:
-#          requires:
-#            - test
+      - deploy:
+          requires:
+            - build
+      - cleanup:
+          requires:
+            - deploy
