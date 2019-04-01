@@ -58,13 +58,12 @@ jobs:
       - attach_workspace:
           at: .
 
-      - run: ls
-      - run: npm install surge --global
+      - run: sudo npm install surge --global
 
   cleanup:
     <<: *executor_config
     steps:
-      - run: npm install surge-teardown-branches --global
+      - run: sudo npm install surge-teardown-branches --global
       - run: surge-teardown-branches lite-explorer.surge.sh
 
 workflows:
@@ -83,4 +82,4 @@ workflows:
             - build
       - cleanup:
           requires:
-            - deploy
+            - build
