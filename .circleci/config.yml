@@ -1,13 +1,18 @@
 version: 2.0
-jobs:
-  build:
+
+references:
+
+  executor_config: &executor_config
     docker:
       - image: circleci/node:10.14
     working_directory: ~/app
+
+jobs:
+  setup:
+    <<: *executor_config
     steps:
       - checkout
 
-      # Download and cache dependencies
       - restore_cache:
           keys:
           - v1.0-dependencies-{{ checksum "package-lock.json" }}
@@ -27,26 +32,35 @@ jobs:
           paths: .
 
   test:
-    docker:
-      - image: circleci/node:10.14
-    working_directory: ~/app
+    <<: *executor_config
     steps:
       - attach_workspace:
-          at: ~/app
-      # run tests!
+          at: .
+
       - run: npm run test-coverage
 
       - store_artifacts:
           path: coverage
+  build:
+    <<: *executor_config
+    steps:
+      - attach_workspace:
+          at: .
+
+      - run: npm run build
 
 workflows:
   version: 2
   build-test-deploy:
     jobs:
-      - build
+      - setup
       - test:
           requires:
-            - build
+            - setup
+      - build:
+          requires:
+            - test
+#
 #      - deploy:
 #          requires:
 #            - test
