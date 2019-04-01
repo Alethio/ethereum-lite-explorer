@@ -88,7 +88,8 @@ function getConfig(isProduction) {
             hash: true,
             title: translation["title"],
             description: translation["description"],
-            template: path.join(sourcePublicRoot, "index.html")
+            template: path.join(sourcePublicRoot, "index.html"),
+            baseUrl: process.env.APP_BASE_URL || "https://lite-explorer.aleth.io/"
         }),
         new InterpolateHtmlPlugin({
             "APP_DEFAULT_LOCALE": defaultLocale

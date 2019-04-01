@@ -91,7 +91,7 @@ export class DashboardContent extends React.Component<IDashboardContentProps> {
         return <DashboardContentCenter>
             <Title>{ tr.get("dashboardView.title") }</Title>
             <SubTitle>{tr.get("dashboardView.subTitle")}
-                <GithubLink href="https://github.com/Alethio/ethstats-lite-explorer"
+                <GithubLink href="https://github.com/Alethio/ethereum-lite-explorer"
                     target="_blank"
                 >
                     {tr.get("dashboardView.github")}

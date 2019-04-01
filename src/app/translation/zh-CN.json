@@ -1,5 +1,5 @@
 {
-    "title": "EthStats轻量版区块链浏览器",
+    "title": "以太坊精简版浏览器",
     "description": "面向客户定制的极轻量、完全开源的以太坊区块链浏览器。",
 
     "general.error.notFound": "404 - 未找到",
@@ -88,7 +88,7 @@
     "chainView.grid.header.beneficiary.label": "矿工",
     "chainView.grid.header.rewardEth.label": "区块奖励（以太币）",
 
-    "dashboardView.title": "EthStats轻量版浏览器",
+    "dashboardView.title": "以太坊精简版浏览器",
     "dashboardView.subTitle": "开源的以太坊区块浏览器。",
     "dashboardView.github": "GitHub可查看项目详情。",
     "dashboardView.lastBlocksChart.title.label": "最新区块交易",

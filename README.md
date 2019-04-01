@@ -1,15 +1,15 @@
-# EthStats Lite Explorer
+# Ethereum Lite Explorer by Alethio
 The **Lite Explorer**  is a client-side only web application that connects directly to a [Ethereum JSON RPC](https://github.com/ethereum/wiki/wiki/JSON-RPC) compatible node.
 This means you can have your own private Ethereum Explorer should you wish so.
 No need for servers, hosting or trusting any third parties to display chain data.
 
-[![CircleCI](https://circleci.com/gh/Alethio/ethstats-lite-explorer.svg?style=svg)](https://circleci.com/gh/Alethio/ethstats-lite-explorer)
+[![CircleCI](https://circleci.com/gh/Alethio/ethereum-lite-explorer.svg?style=svg)](https://circleci.com/gh/Alethio/ethereum-lite-explorer)
 
 > **WARNING v1.x.x is a breaking update from previous v0.x.x releases**
 
 > NOTICE
 > This is a big piece of work in progress.
-> Please report any bugs using Github's [issues](https://github.com/Alethio/ethstats-lite-explorer/issues/)
+> Please report any bugs using Github's [issues](https://github.com/Alethio/ethereum-lite-explorer/issues/)
 
 ## Contents
 - [Short Term Roadmap](#short-term-roadmap)
@@ -34,9 +34,6 @@ No need for servers, hosting or trusting any third parties to display chain data
 
 
 ## Short Term Roadmap
-- 1.0 - React-ified
-    * [x] Release [EthStats](https://ethstats.io/) React primitive components
-    * [x] Migrate app to React
 - Post 1.0
     * [ ] Plugins System
 
@@ -105,14 +102,20 @@ You can set any of the following variables either in config.dev.json, config.jso
 | APP_ROUTER_HISTORY_MODE | When `false` (default mode) the explorer uses the URL hash for routing. Works with all browsers/servers, including those that do not support HTML5 History API. `true` requires HTML5 History API and server config to redirect all requests that do not have a file to index.html so they are picked by the react router. |
 | APP_NETWORK_MONITOR_URL | Setting this variable to an URL will add a menu item in the sidebar with a link to the set url |
 
-> NOTICE: if `APP_NODE_URL` and `APP_INFURA_PROJECT_ID` are both missing, the explorer will start with the Infura endpoints in anonymous mode (https://mainnet.infura.io/, https://kovan.infura.io/, ...).
+> NOTICE: you must specify at least one of `APP_NODE_URL` or `APP_INFURA_PROJECT_ID`.
+
+Only when building you also have access to
+| ENV var | Description |
+| --- | --- |
+| APP_BASE_URL | Deployment URL. This used in `index.html` for `og:tags`  |
+
 
 ### Running in Docker
 You can run the Lite Explorer in Docker without having to get the source code and build it.
 The simplest command to run i is
 
 ```sh
-$ docker run -p 80:80 alethio/ethstats-lite-explorer
+$ docker run -p 80:80 alethio/ethereum-lite-explorer
 ```
 which will start a container on port 80 of your computer with a nginx embedded to serve the pre-build explorer. You can then open [localhost](http://localhost) in your browser to use it.
 
@@ -126,14 +129,14 @@ docker \
     -p 80:80 \
     -e APP_INFURA_PROJECT_ID=your-infura-proj-id \
     -e APP_NODE_URL=https://kovan.infura.io \
-    alethio/ethstats-lite-explorer
+    alethio/ethereum-lite-explorer
 ```
 
 ### Setup/Build Instructions
 Clone the explorer in a folder of your choosing
 ```sh
-$ git clone https://github.com/Alethio/ethstats-lite-explorer.git
-$ cd ethstats-lite-explorer
+$ git clone https://github.com/Alethio/ethereum-lite-explorer.git
+$ cd ethereum-lite-explorer
 ```
 Install npm packages
 ```sh

@@ -1,4 +1,4 @@
-# Contributing to ethstats-lite-explorer
+# Contributing to ethereum-lite-explorer
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
 - Reporting a bug
@@ -19,8 +19,8 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 5. Make sure your code lints.
 6. Issue that pull request!
 
-### Report bugs using Github's [issues](https://github.com/Alethio/ethstats-lite-explorer/issues/)
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/Alethio/ethstats-lite-explorer/issues/new); it's that easy!
+### Report bugs using Github's [issues](https://github.com/Alethio/ethereum-lite-explorer/issues/)
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/Alethio/ethereum-lite-explorer/issues/new); it's that easy!
 
 **Great Bug Reports** tend to have:
 
@@ -38,7 +38,7 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 ## License
 By contributing, you agree that your contributions will be licensed under its [MIT License](LICENSE.md).
 
-In short, when you submit code changes, your submissions are understood to be under the same license that covers this project. 
+In short, when you submit code changes, your submissions are understood to be under the same license that covers this project.
 
 Feel free to contact the maintainers if that's a concern.
 

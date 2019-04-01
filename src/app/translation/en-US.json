@@ -1,5 +1,5 @@
 {
-    "title": "EthStats Lite Blockchain Explorer",
+    "title": "Ethereum Lite Blockchain Explorer",
     "description": "Client only, super light weight and entirely open source Ethereum blockchain explorer.",
 
     "general.error.notFound": "404 - Not Found",
@@ -88,7 +88,7 @@
     "chainView.grid.header.beneficiary.label": "Mined by",
     "chainView.grid.header.rewardEth.label": "Reward (ETH)",
 
-    "dashboardView.title": "EthStats Lite Explorer",
+    "dashboardView.title": "Ethereum Lite Explorer",
     "dashboardView.subTitle": "An open source Ethereum block explorer. Available on ",
     "dashboardView.github": "GitHub",
     "dashboardView.lastBlocksChart.title.label": "Last blocks transactions",
