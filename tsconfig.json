@@ -11,6 +11,7 @@
         "noUnusedLocals": true,
         "sourceMap": true,
         "outDir": "./dist",
+        "resolveJsonModule": true,
         "experimentalDecorators": true,
         "removeComments": true,
         "preserveConstEnums": true,
