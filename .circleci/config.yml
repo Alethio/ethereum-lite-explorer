@@ -1,14 +1,10 @@
-version: 2
+version: 2.0
 jobs:
   build:
-    branches:
-      ignore:
-        - gh-pages
-
     docker:
       - image: circleci/node:10.14
 
-    working_directory: ~/repo
+    working_directory: ~/app
 
     steps:
       - checkout
@@ -16,20 +12,50 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v0.1-dependencies-{{ checksum "package-lock.json" }}
+          - v1.0-dependencies-{{ checksum "package-lock.json" }}
           # fallback to using the latest cache if no exact match is found
-          - v0.1-dependencies-
+          - v1.0-dependencies-
 
       - run: npm install
+      #- run: npm install surge --global
+      #- run: npm install surge-teardown-branches --global
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: .
+          paths: .
 
+      # run tests!
+      #- run: npm run test-coverage
+
+      #- store_artifacts:
+      #    path: coverage
+
+  test:
+    docker:
+      - image: circleci/node:10.14
+
+    working_directory: ~/app
+    steps:
+      - attach_workspace:
+          at: .
       # run tests!
       - run: npm run test-coverage
 
       - store_artifacts:
           path: coverage
 
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+#      - deploy:
+#          requires:
+#            - test

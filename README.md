@@ -264,7 +264,7 @@ $ npm run build
 # go to build dir
 $ cd dist
 # make push state work as it should
-$ cp ../config.deploy.json && cp index.html 200.html && cp index.html 404.html
+$ cp ../config.deploy.json config.json && cp index.html 200.html
 # deploy
 $ surge
 ```
