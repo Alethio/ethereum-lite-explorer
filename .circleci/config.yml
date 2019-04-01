@@ -41,6 +41,7 @@ jobs:
 
       - store_artifacts:
           path: coverage
+
   build:
     <<: *executor_config
     steps:
