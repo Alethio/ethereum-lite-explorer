@@ -3,9 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:10.14
-
     working_directory: ~/app
-
     steps:
       - checkout
 
@@ -28,20 +26,13 @@ jobs:
           root: .
           paths: .
 
-      # run tests!
-      #- run: npm run test-coverage
-
-      #- store_artifacts:
-      #    path: coverage
-
   test:
     docker:
       - image: circleci/node:10.14
-
     working_directory: ~/app
     steps:
       - attach_workspace:
-          at: .
+          at: ~/app
       # run tests!
       - run: npm run test-coverage
 
