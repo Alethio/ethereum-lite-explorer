@@ -19,6 +19,9 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1.0-dependencies-
 
+      - run: sudo npm install surge --global
+      - run: sudo npm install surge-teardown-branches --global
+
       - run: npm install
 
       - save_cache:
@@ -57,13 +60,11 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-
-      - run: sudo npm install surge --global
+      - run: surge list
 
   cleanup:
     <<: *executor_config
     steps:
-      - run: sudo npm install surge-teardown-branches --global
       - run: surge-teardown-branches lite-explorer.surge.sh
 
 workflows:
