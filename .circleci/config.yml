@@ -59,6 +59,11 @@ jobs:
       - run: sudo npm install surge --global
       - run: sudo npm install surge-teardown-branches --global
       - run: surge dist/ ${CIRCLE_BRANCH}.lite-explorer.surge.sh
+      - run: |
+            mkdir -p ~/.ssh/
+            echo -e "Host github.com\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile /dev/null\n" > ~/.ssh/config
+            chmod 600 ~/.ssh/config
+            ssh-keyscan -Ht rsa github.com >> ~/.ssh/known_hosts
       - run: surge-teardown-branches lite-explorer.surge.sh
 
 workflows:
