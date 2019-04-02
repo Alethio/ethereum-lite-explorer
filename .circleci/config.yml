@@ -57,8 +57,10 @@ jobs:
       - attach_workspace:
           at: .
       - run: sudo npm install surge --global
-      - run: sudo npm install surge-teardown-branches --global
+      - run: echo ${CONFIG_JSON} > dist/config.json
       - run: surge dist/ ${CIRCLE_BRANCH}.lite-explorer.surge.sh
+
+      - run: sudo npm install surge-teardown-branches --global
       - run: |
             mkdir -p ~/.ssh/
             echo -e "Host github.com\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile /dev/null\n" > ~/.ssh/config
