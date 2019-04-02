@@ -1,7 +1,7 @@
 var webpack = require("webpack");
 var path = require("path");
 var fs = require("fs");
-var TerserPlugin = require("terser-webpack-plugin");
+var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var InterpolateHtmlPlugin = require("interpolate-html-plugin");
@@ -127,8 +127,8 @@ function getConfig(isProduction) {
         },
         optimization: isDebug ? void 0 : {
             minimizer: [
-                new TerserPlugin({
-                    terserOptions: {
+                new UglifyJsPlugin({
+                    uglifyOptions: {
                         // Don't merge statements with comma. This makes breakpoints unusable in debugger.
                         compress: {
                             sequences: false,
