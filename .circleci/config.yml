@@ -57,6 +57,7 @@ jobs:
           at: .
       - run: sudo npm install surge --global
       - run: echo ${CONFIG_JSON} > dist/config.json
+      - run: cp dist/index.html dist/200.html
       - run: surge dist/ ${CIRCLE_BRANCH}.lite-explorer.surge.sh
 
       #- run: sudo npm install surge-teardown-branches --global
