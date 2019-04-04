@@ -131,7 +131,7 @@ class $SearchInline extends React.Component<ISearchInlineProps> {
             return;
         }
 
-        let text = e.clipboardData.getData("text/plain");
+        let text = e.clipboardData!.getData("text/plain");
         // Should be non-empty string and it should look like a hash or block number
         if (text && text.match(/^(0x)?[a-fA-F0-9]+$/)) {
             setTimeout(() => {

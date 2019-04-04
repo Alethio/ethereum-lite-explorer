@@ -112,12 +112,14 @@ Only when building you also have access to
 
 ### Running in Docker
 You can run the Lite Explorer in Docker without having to get the source code and build it.
-The simplest command to run i is
+The simplest command to run it is
 
 ```sh
-$ docker run -p 80:80 alethio/ethereum-lite-explorer
+$ docker run -p 80:80 -e APP_INFURA_PROJECT_ID=429cef11213a44ada93a561fa8a85ff6 alethio/ethereum-lite-explorer
 ```
 which will start a container on port 80 of your computer with a nginx embedded to serve the pre-build explorer. You can then open [localhost](http://localhost) in your browser to use it.
+
+Please create an [Infura](https://infura.io) project and get your own project ID to replace the one in the example above.
 
 To configure the container at runtime please see [configuration](#configuration)
 
@@ -264,7 +266,7 @@ $ npm run build
 # go to build dir
 $ cd dist
 # make push state work as it should
-$ cp ../config.deploy.json && cp index.html 200.html && cp index.html 404.html
+$ cp ../config.deploy.json config.json && cp index.html 200.html
 # deploy
 $ surge
 ```

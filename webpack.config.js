@@ -6,7 +6,7 @@ var CopyWebpackPlugin = require("copy-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var InterpolateHtmlPlugin = require("interpolate-html-plugin");
 var MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
-var FaviconsWebpackPlugin = require("favicons-webpack-plugin");
+var WebappWebpackPlugin = require('webapp-webpack-plugin');
 var GitRevisionPlugin = require("git-revision-webpack-plugin");
 var ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 var createStyledComponentsTransformer = require("typescript-plugin-styled-components").default;
@@ -94,7 +94,7 @@ function getConfig(isProduction) {
         new InterpolateHtmlPlugin({
             "APP_DEFAULT_LOCALE": defaultLocale
         }),
-        new FaviconsWebpackPlugin({
+        new WebappWebpackPlugin({
             logo: path.join(assetsRoot, "block-explorer-logo.svg"),
             title: translation["title"]
         })

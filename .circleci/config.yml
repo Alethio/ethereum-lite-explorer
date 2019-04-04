@@ -1,24 +1,21 @@
-version: 2
-jobs:
-  build:
-    branches:
-      ignore:
-        - gh-pages
+version: 2.0
 
+references:
+  executor_config: &executor_config
     docker:
       - image: circleci/node:10.14
+    working_directory: ~/app
 
-    working_directory: ~/repo
-
+jobs:
+  setup:
+    <<: *executor_config
     steps:
       - checkout
 
-      # Download and cache dependencies
       - restore_cache:
           keys:
-          - v0.1-dependencies-{{ checksum "package-lock.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v0.1-dependencies-
+          - v1.0-dependencies-{{ checksum "package-lock.json" }}
+          - v1.0-dependencies-
 
       - run: npm install
 
@@ -26,10 +23,63 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: .
+          paths: .
 
-      # run tests!
+  test:
+    <<: *executor_config
+    steps:
+      - attach_workspace:
+          at: .
+
       - run: npm run test-coverage
 
       - store_artifacts:
           path: coverage
 
+  build:
+    <<: *executor_config
+    steps:
+      - attach_workspace:
+          at: .
+
+      - run: npm run build
+
+      - persist_to_workspace:
+          root: .
+          paths: .
+
+  deploy:
+    <<: *executor_config
+    steps:
+      - attach_workspace:
+          at: .
+      - run: sudo npm install surge --global
+      - run: echo ${CONFIG_JSON} > dist/config.json
+      - run: cp dist/index.html dist/200.html
+      - run: surge dist/ ${CIRCLE_BRANCH}.lite-explorer.surge.sh
+
+      #- run: sudo npm install surge-teardown-branches --global
+      #- run: |
+      #      mkdir -p ~/.ssh/
+      #      echo -e "Host github.com\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile /dev/null\n" > ~/.ssh/config
+      #      chmod 600 ~/.ssh/config
+      #      ssh-keyscan -Ht rsa github.com >> ~/.ssh/known_hosts
+      #- run: surge-teardown-branches lite-explorer.surge.sh
+      #- run: git ls-remote --heads
+
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+      - setup
+      - test:
+          requires:
+            - setup
+      - build:
+          requires:
+            - test
+      - deploy:
+          requires:
+            - build
