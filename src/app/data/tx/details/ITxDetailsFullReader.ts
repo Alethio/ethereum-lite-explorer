@@ -19,7 +19,7 @@ export class TxDetailsFullReader {
                 cumulativeGasUsed: new BigNumber(receipt["cumulativeGasUsed"]),
                 gasUsed: new BigNumber(receipt["gasUsed"]),
                 logsBloom: receipt["logsBloom"],
-                status: receipt["status"]
+                status: receipt["status"] || true
             },
             block: {
                 id: Number(data["blockNumber"])
