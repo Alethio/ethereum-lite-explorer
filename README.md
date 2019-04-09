@@ -3,7 +3,8 @@ The **Lite Explorer**  is a client-side only web application that connects direc
 This means you can have your own private Ethereum Explorer should you wish so.
 No need for servers, hosting or trusting any third parties to display chain data.
 
-[![CircleCI](https://circleci.com/gh/Alethio/ethereum-lite-explorer.svg?style=svg)](https://circleci.com/gh/Alethio/ethereum-lite-explorer)
+[![CircleCI](https://circleci.com/gh/Alethio/ethereum-lite-explorer.svg?style=svg)](https://circleci.com/gh/Alethio/ethereum-lite-explorer)  
+[![Docker](https://images.microbadger.com/badges/version/alethio/ethereum-lite-explorer.svg)](https://microbadger.com/images/alethio/ethereum-lite-explorer "Get your own version badge on microbadger.com")
 
 > **WARNING v1.x.x is a breaking update from previous v0.x.x releases**
 
