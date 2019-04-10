@@ -191,7 +191,7 @@ export class BlockContent extends React.PureComponent<IBlockContentProps> {
                     </LayoutRowItem>
                 </LayoutRow>
                 <LayoutRow>
-                    <LayoutRowItem>
+                    <LayoutRowItem autoHeight>
                         <Label>{tr.get("blockView.content.extraData.label")}</Label>
                         <DecodedHexData data={block.extraData} clipboard={clipboard} />
                     </LayoutRowItem>
