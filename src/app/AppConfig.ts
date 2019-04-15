@@ -13,6 +13,7 @@ interface IAppConfigData {
     APP_INFURA_PROJECT_ID?: string;
     APP_INFURA_IPFS_URL_MASK?: string;
     APP_ROUTER_HISTORY_MODE?: boolean;
+    APP_EXTRA_HEADER_TYPE: string;
 }
 
 declare var GIT_VERSION: string;
@@ -73,6 +74,12 @@ export class AppConfig {
             appName: this.data.APP_SENTRY_APPNAME,
             env: this.data.APP_SENTRY_ENV
         };
+    }
+    getExtraHeaderType() {
+        if (this.data.APP_EXTRA_HEADER_TYPE === undefined) {
+            return "hexstring"; // default fallback
+        }
+        return this.data.APP_EXTRA_HEADER_TYPE;
     }
 
     getInfuraIpfsUrlMask() {

@@ -3,5 +3,6 @@
     "APP_NETWORK_MONITOR_URL": "https://net.ethstats.io",
     "APP_NODE_URL": "https://mainnet.infura.io/",
     "APP_INFURA_PROJECT_ID": "",
-    "APP_ROUTER_HISTORY_MODE": true
+    "APP_ROUTER_HISTORY_MODE": true,
+    "APP_EXTRA_HEADER_TYPE": "hexstring"
 }
