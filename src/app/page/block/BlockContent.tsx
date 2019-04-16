@@ -202,7 +202,7 @@ export class BlockContent extends React.PureComponent<IBlockContentProps> {
                     </LayoutRow> : null}
                     <LayoutRow>
                         <LayoutRowItem fullRow>
-                            <Label>Validators</Label>
+                            <Label>{tr.get("blockView.content.ibft2.validators")}</Label>
                             {block.ibftExtraData.validators.map((item) =>
                                 <AddressHashBox key={item} clipboard={clipboard}>{item}</AddressHashBox>
                             )}
@@ -211,11 +211,13 @@ export class BlockContent extends React.PureComponent<IBlockContentProps> {
                     {block.ibftExtraData.votes.length !== 0 &&
                         <LayoutRow>
                             <LayoutRowItem fullRow>
-                                <Label>Votes</Label>
+                                <Label>{tr.get("blockView.content.ibft2.voting")}</Label>
                                 {block.ibftExtraData.votes.map((item) =>
                                     <React.Fragment key={item.address}>
                                         <AddressHashBox clipboard={clipboard}>{item.address}</AddressHashBox>
-                                        <ValueBox>{item.vote ? "Added" : "Removed"}</ValueBox>
+                                        <ValueBox>{item.vote ?
+                                            tr.get("blockView.content.ibft2.added") :
+                                            tr.get("blockView.content.ibft2.removed")}</ValueBox>
                                     </React.Fragment>
                                 )}
                             </LayoutRowItem>
@@ -223,14 +225,14 @@ export class BlockContent extends React.PureComponent<IBlockContentProps> {
                     }
                     <LayoutRow>
                         <LayoutRowItem>
-                            <Label>Tries</Label>
+                            <Label>{tr.get("blockView.content.ibft2.round")}</Label>
                             <NumberBox value={block.ibftExtraData.blockTries} locale={locale}></NumberBox>
                         </LayoutRowItem>
                     </LayoutRow>
                     {block.ibftExtraData.commitSeals.length !== 0 &&
                         <LayoutRow>
                             <LayoutRowItem fullRow>
-                                <Label>Commit Seals</Label>
+                                <Label>{tr.get("blockView.content.ibft2.commitSeals")}</Label>
                                 {block.ibftExtraData.commitSeals.map((item) =>
                                     <React.Fragment key={item}>
                                         <HashValueBox clipboard={clipboard}>{item}</HashValueBox>
