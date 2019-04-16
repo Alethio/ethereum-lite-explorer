@@ -107,6 +107,7 @@ You can set any of the following variables either in config.dev.json, config.jso
 > NOTICE: you must specify at least one of `APP_NODE_URL` or `APP_INFURA_PROJECT_ID`.
 
 Only when building you also have access to
+
 | ENV var | Description |
 | --- | --- |
 | APP_BASE_URL | Deployment URL. This used in `index.html` for `og:tags`  |
