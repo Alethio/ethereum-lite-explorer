@@ -34,6 +34,7 @@ import { UncleHashBox } from "app/components/content/box/uncle/UncleHashBox";
 import { UnclesCountBox } from "app/components/content/box/block/UnclesCountBox";
 import { AsyncData } from "app/data/AsyncData";
 import { ITxDetails } from "app/data/tx/details/ITxDetails";
+import { ValueBox } from "ethstats-ui/lib/layout/content/box/ValueBox";
 
 export interface IBlockContentProps {
     blockDetails: IBlockDetails;
@@ -190,12 +191,63 @@ export class BlockContent extends React.PureComponent<IBlockContentProps> {
                         <DifficultyBox value={block.difficulty} locale={locale} />
                     </LayoutRowItem>
                 </LayoutRow>
+                { block.ibftExtraData ?
+                <>
+                    {block.ibftExtraData.extraData.replace("0", "") === "x" ?
+                    <LayoutRow>
+                        <LayoutRowItem autoHeight>
+                            <Label>{tr.get("blockView.content.extraData.label")}</Label>
+                            <DecodedHexData data={block.ibftExtraData.extraData} clipboard={clipboard} />
+                        </LayoutRowItem>
+                    </LayoutRow> : null}
+                    <LayoutRow>
+                        <LayoutRowItem fullRow>
+                            <Label>{tr.get("blockView.content.ibft2.validators")}</Label>
+                            {block.ibftExtraData.validators.map((item) =>
+                                <AddressHashBox key={item} clipboard={clipboard}>{item}</AddressHashBox>
+                            )}
+                        </LayoutRowItem>
+                    </LayoutRow>
+                    {block.ibftExtraData.votes.length !== 0 &&
+                        <LayoutRow>
+                            <LayoutRowItem fullRow>
+                                <Label>{tr.get("blockView.content.ibft2.voting")}</Label>
+                                {block.ibftExtraData.votes.map((item) =>
+                                    <React.Fragment key={item.address}>
+                                        <AddressHashBox clipboard={clipboard}>{item.address}</AddressHashBox>
+                                        <ValueBox>{item.vote ?
+                                            tr.get("blockView.content.ibft2.added") :
+                                            tr.get("blockView.content.ibft2.removed")}</ValueBox>
+                                    </React.Fragment>
+                                )}
+                            </LayoutRowItem>
+                        </LayoutRow>
+                    }
+                    <LayoutRow>
+                        <LayoutRowItem>
+                            <Label>{tr.get("blockView.content.ibft2.round")}</Label>
+                            <NumberBox value={block.ibftExtraData.blockTries} locale={locale}></NumberBox>
+                        </LayoutRowItem>
+                    </LayoutRow>
+                    {block.ibftExtraData.commitSeals.length !== 0 &&
+                        <LayoutRow>
+                            <LayoutRowItem fullRow>
+                                <Label>{tr.get("blockView.content.ibft2.commitSeals")}</Label>
+                                {block.ibftExtraData.commitSeals.map((item) =>
+                                    <React.Fragment key={item}>
+                                        <HashValueBox clipboard={clipboard}>{item}</HashValueBox>
+                                    </React.Fragment>
+                                )}
+                            </LayoutRowItem>
+                        </LayoutRow>
+                    }
+                </> :
                 <LayoutRow>
-                    <LayoutRowItem>
+                    <LayoutRowItem autoHeight>
                         <Label>{tr.get("blockView.content.extraData.label")}</Label>
                         <DecodedHexData data={block.extraData} clipboard={clipboard} />
                     </LayoutRowItem>
-                </LayoutRow>
+                </LayoutRow> }
                 { block.mixHash ?
                 <LayoutRow minWidth={760}>
                     { block.mixHash ?

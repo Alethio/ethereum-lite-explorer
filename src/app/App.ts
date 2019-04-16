@@ -88,7 +88,7 @@ export class App {
         let blockStateStore = new BlockStateStore();
         let dashboardStore = new DashboardStore();
 
-        let blockDetailsStore = new BlockDetailsStoreFactory(web3EthApi).create(blockStateStore);
+        let blockDetailsStore = new BlockDetailsStoreFactory(web3EthApi, appConfig).create(blockStateStore);
         let blockValueStore = new BlockValueStoreFactory(web3EthApi).create(blockStateStore);
         let txDetailsStore = new TxDetailsStoreFactory(blockStateStore, web3EthApi).create();
         let uncleDetailsStore = new UncleDetailsStoreFactory(web3EthApi).create();

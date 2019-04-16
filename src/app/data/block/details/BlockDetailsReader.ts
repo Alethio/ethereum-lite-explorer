@@ -9,7 +9,6 @@ export class BlockDetailsReader {
     }
     read(data: any) {
         let blockNumber = Number(data["number"]);
-
         let block: IBlockDetails = {
             status: BlockStatus.Mined,
             id: blockNumber,
@@ -33,7 +32,6 @@ export class BlockDetailsReader {
                 return this.txDetailsReader.read(txData);
             })
         };
-
         return block;
     }
 }

@@ -100,6 +100,7 @@
     "react-router-dom": "^5.0.0",
     "react-router-hash-link": "^1.2.1",
     "react-transition-group": "^2.7.1",
+    "rlp": "^2.2.3",
     "styled-components": "^3.4.2"
   }
 }

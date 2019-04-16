@@ -136,6 +136,12 @@
     "blockView.content.mixHash.label": "Mix hash",
     "blockView.content.receiptsTrie.label": "Receipts Trie",
     "blockView.content.logsBloom.label": "Logs bloom",
+    "blockView.content.ibft2.voting": "Voting",
+    "blockView.content.ibft2.added": "Added",
+    "blockView.content.ibft2.removed": "Removed",
+    "blockView.content.ibft2.round": "Round",
+    "blockView.content.ibft2.validators": "Validators",
+    "blockView.content.ibft2.commitSeals": "CommitSeals",
 
     "txTooltip.value.label": "Value",
 

@@ -136,6 +136,12 @@
     "blockView.content.mixHash.label": "混淆哈希值",
     "blockView.content.receiptsTrie.label": "收据树哈希值",
     "blockView.content.logsBloom.label": "Bloom日志",
+    "blockView.content.ibft2.voting": "投票",
+    "blockView.content.ibft2.added": "添加",
+    "blockView.content.ibft2.removed": "移除",
+    "blockView.content.ibft2.round": "轮次",
+    "blockView.content.ibft2.validators": "验证者",
+    "blockView.content.ibft2.commitSeals": "授权封印",
 
     "txTooltip.value.label": "金额",
 

@@ -153,7 +153,7 @@ function getConfig(isProduction) {
             rules: [
                 {
                     test: /\.jsx?$/,
-                    exclude: /monaco-editor/,
+                    exclude: /monaco-editor|rlp/,
                     enforce: "pre",
                     loader: "source-map-loader"
                 },

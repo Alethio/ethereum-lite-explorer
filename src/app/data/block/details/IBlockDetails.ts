@@ -1,6 +1,7 @@
 import { BlockStatus } from "app/data/block/BlockStatus";
 import { BigNumber } from "app/util/BigNumber";
 import { ITxDetails } from "app/data/tx/details/ITxDetails";
+import { IIBFTDetails } from "app/data/block/details/IIBFTDetails";
 
 export interface IBlockDetails {
     status: BlockStatus.Mined;
@@ -20,6 +21,7 @@ export interface IBlockDetails {
     gasLimit: BigNumber;
     difficulty: BigNumber;
     extraData: string;
+    ibftExtraData?: IIBFTDetails;
     logsBloom: string;
     mixHash: string;
     transactionCount: number;
