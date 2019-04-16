@@ -3,7 +3,7 @@ The **Lite Explorer**  is a client-side only web application that connects direc
 This means you can have your own private Ethereum Explorer should you wish so.
 No need for servers, hosting or trusting any third parties to display chain data.
 
-[![CircleCI](https://circleci.com/gh/Alethio/ethereum-lite-explorer.svg?style=svg)](https://circleci.com/gh/Alethio/ethereum-lite-explorer)  
+[![CircleCI](https://circleci.com/gh/Alethio/ethereum-lite-explorer.svg?style=svg)](https://circleci.com/gh/Alethio/ethereum-lite-explorer)
 [![Docker](https://images.microbadger.com/badges/version/alethio/ethereum-lite-explorer.svg)](https://hub.docker.com/r/alethio/ethereum-lite-explorer "Get Ethereum Lite Explorer through Docker Hub")
 
 > **WARNING v1.x.x is a breaking update from previous v0.x.x releases**
@@ -102,6 +102,7 @@ You can set any of the following variables either in config.dev.json, config.jso
 | APP_INFURA_PROJECT_ID | Infura Project ID. You can get this from your [Infura Dashboard](https://infura.io/dashboard). Adding this will enable a dropdown to select from the available Infura endpoints. |
 | APP_ROUTER_HISTORY_MODE | When `false` (default mode) the explorer uses the URL hash for routing. Works with all browsers/servers, including those that do not support HTML5 History API. `true` requires HTML5 History API and server config to redirect all requests that do not have a file to index.html so they are picked by the react router. |
 | APP_NETWORK_MONITOR_URL | Setting this variable to an URL will add a menu item in the sidebar with a link to the set url |
+| APP_EXTRA_HEADER_TYPE | When `hexstring` (default mode) the explorer converts the block extra data from hex to ASCII. Other supported option it's `ibft2` for IBFT chains and enables the rlp decoding for extra data. For more information see: https://pegasys.tech/another-day-another-consensus-algorithm-why-ibft-2-0/ |
 
 > NOTICE: you must specify at least one of `APP_NODE_URL` or `APP_INFURA_PROJECT_ID`.
 
