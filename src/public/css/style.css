@@ -1,27 +1,3 @@
 body {
     font-family: 'Barlow', Arial, sans-serif;
 }
-
-/* TODO: find a way to inject a React component inside the react-graph-vis tooltip content */
-.vis-tooltip {
-    color: #273656;
-    z-index: 9990;
-    position: absolute;
-    padding: 6px 16px 7px;
-    background-color: white;
-    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
-    font-size: 16px;
-    letter-spacing: 0.6px
-}
-
-/* Hide Hotjar default feedback button */
-[id^="_hj"][id$="_feedback_minimized"],
-[id^="_hj"][id$="_open_close"] {
-    opacity: 0 !important;
-    pointer-events: none !important;
-    left: -1000px !important;
-}
-/* Show the close button in the hotjar popup, which is hidden by default for position bottom left */
-[id^="_hj"][id$="open_close_phone"] {
-    display: block !important;
-}

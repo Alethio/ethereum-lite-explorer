@@ -17,6 +17,8 @@ app.get("/config.json", (req, res) => {
 
 app.use("/", express.static(path.resolve("../dist")));
 
+app.use("/plugins", express.static(path.resolve("../dist/plugins"), { fallthrough: false }));
+
 // Fallback for HTML 5 routing
 app.use("/*", (req, res) => res.sendFile(path.resolve("../dist/index.html")));
 

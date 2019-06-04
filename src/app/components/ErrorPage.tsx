@@ -1,8 +1,8 @@
 import * as React from "react";
-import { ErrorBox } from "ethstats-ui/lib/ErrorBox";
-import { Content } from "ethstats-ui/lib/layout/Content";
-import { Container } from "ethstats-ui/lib/layout/Container";
-import { Translation } from "app/Translation";
+import { ErrorBox } from "@alethio/ui/lib/ErrorBox";
+import { Content } from "@alethio/ui/lib/layout/Content";
+import { Container } from "@alethio/ui/lib/layout/Container";
+import { Translation } from "@alethio/cms";
 
 export interface IErrorPageProps {
     translation: Translation;

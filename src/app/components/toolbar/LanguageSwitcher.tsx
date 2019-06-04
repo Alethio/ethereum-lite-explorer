@@ -1,16 +1,16 @@
 import * as React from "react";
-import { Translation } from "app/Translation";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
-import { ToolbarItem } from "ethstats-ui/lib/layout/toolbar/ToolbarItem";
-import { Popover } from "ethstats-ui/lib/overlay/Popover";
+import { ToolbarItem } from "@alethio/ui/lib/layout/toolbar/ToolbarItem";
+import { Popover } from "@alethio/ui/lib/overlay/Popover";
 import { AppConfig } from "app/AppConfig";
 import { UserPreferences } from "app/UserPreferences";
 import locales from "app/translation/locales.json";
-import styled from "app/styled-components";
 import { contains } from "@puzzl/browser/lib/dom";
-import { ToolbarIconButton } from "ethstats-ui/lib/layout/toolbar/ToolbarIconButton";
-import { LanguageIcon } from "ethstats-ui/lib/icon/LanguageIcon";
+import { ToolbarIconButton } from "@alethio/ui/lib/layout/toolbar/ToolbarIconButton";
+import { LanguageIcon } from "@alethio/ui/lib/icon/LanguageIcon";
+import styled from "@alethio/explorer-ui/lib/styled-components";
+import { Translation } from "@alethio/cms";
 
 const Flag = styled.img`
     cursor: pointer;

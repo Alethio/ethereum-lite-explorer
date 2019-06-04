@@ -1,7 +1,6 @@
 npm-debug.log
 node_modules
 dist
-src/styles/*.css
 coverage
 .nyc_output
 .idea

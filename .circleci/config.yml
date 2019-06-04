@@ -27,17 +27,6 @@ jobs:
           root: .
           paths: .
 
-  test:
-    <<: *executor_config
-    steps:
-      - attach_workspace:
-          at: .
-
-      - run: npm run test-coverage
-
-      - store_artifacts:
-          path: coverage
-
   build:
     <<: *executor_config
     steps:
@@ -74,12 +63,9 @@ workflows:
   build-test-deploy:
     jobs:
       - setup
-      - test:
-          requires:
-            - setup
       - build:
           requires:
-            - test
+            - setup
       - deploy:
           requires:
             - build
