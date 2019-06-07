@@ -18,7 +18,7 @@ jobs:
           - v1.0-dependencies-
 
       - run: npm install
-      - run: npm install -g @alethio/cms-plugin-tool
+      - run: sudo npm install -g @alethio/cms-plugin-tool
 
       - save_cache:
           paths:
