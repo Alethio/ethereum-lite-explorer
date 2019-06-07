@@ -45,7 +45,8 @@ jobs:
       - attach_workspace:
           at: .
       - run: sudo npm install surge --global
-      - run: echo ${CONFIG_JSON} > dist/config.json
+      - run: cp config.default.json dist/config.json
+      # - run: echo ${CONFIG_JSON} > dist/config.json
       - run: cp dist/index.html dist/200.html
       - run: surge dist/ ${CIRCLE_BRANCH}.lite-explorer.surge.sh
 
