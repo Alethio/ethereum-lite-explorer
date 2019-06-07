@@ -18,6 +18,7 @@ jobs:
           - v1.0-dependencies-
 
       - run: npm install
+      - run: npm install -g @alethio/cms-plugin-tool
 
       - save_cache:
           paths:
@@ -34,6 +35,12 @@ jobs:
           at: .
 
       - run: npm run build
+      - run: >
+          acp install
+          "@alethio/explorer-plugin-eth-common@1.0.2"
+          "@alethio/explorer-plugin-eth-lite@1.0.3"
+          "@alethio/explorer-plugin-eth-ibft2@1.0.1"
+          "@alethio/explorer-plugin-3box@1.0.1"
 
       - persist_to_workspace:
           root: .
