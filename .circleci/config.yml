@@ -3,7 +3,7 @@ version: 2.0
 references:
   executor_config: &executor_config
     docker:
-      - image: circleci/node:10.14
+      - image: circleci/node:10.16
     working_directory: ~/app
 
 jobs:
