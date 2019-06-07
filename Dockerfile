@@ -12,7 +12,7 @@ COPY . .
 
 RUN npm run build --verbose
 
-RUN acp install --dev \
+RUN acp install \
     @alethio/explorer-plugin-eth-common@1.0.2 \
     @alethio/explorer-plugin-eth-lite@1.0.3 \
     @alethio/explorer-plugin-eth-ibft2@1.0.1 \
