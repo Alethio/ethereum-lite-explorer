@@ -19,11 +19,18 @@ RUN acp install \
 
 FROM nginx:stable-alpine
 
-RUN apk add --update jq
+RUN apk update && \
+    apk add nodejs
 
 COPY --from=build /build/dist /usr/share/nginx/html
 COPY .docker/nginx.conf /etc/nginx/conf.d/default.conf
-# COPY .docker/entrypoint.sh .
 
-# ENTRYPOINT ["./entrypoint.sh"]
+WORKDIR /app
+
+COPY config.default.json .
+COPY set-env-vars.js .
+COPY .docker/entrypoint.sh .
+
+ENTRYPOINT ["./entrypoint.sh"]
+
 CMD ["nginx", "-g", "daemon off;"]

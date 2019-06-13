@@ -13,7 +13,7 @@
             "ipfsUrlMask": "https://ipfs.infura.io/ipfs/%s"
         },
         "plugin://aleth.io/eth-lite?v=1.0.3": {
-            "nodeUrl": "https://mainnet.infura.io/v3/db8747a6d21c4125855809ecf259c211"
+            "nodeUrl": ""
         }
     },
 
