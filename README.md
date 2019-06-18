@@ -9,11 +9,9 @@ No need for servers, hosting or trusting any third parties to display chain data
 > **WARNING v1.x.x is a breaking update from previous v0.x.x releases**
 
 > NOTICE
-> This is a big piece of work in progress.
 > Please report any bugs using Github's [issues](https://github.com/Alethio/ethereum-lite-explorer/issues/)
 
 ## Contents
-- [Short Term Roadmap](#short-term-roadmap)
 - [Technical Details](#technical-details)
     - [Project structure](#project-structure)
     - [Managing SVG icons](#managing-svg-icons)
@@ -33,19 +31,14 @@ No need for servers, hosting or trusting any third parties to display chain data
 - [Contributing](CONTRIBUTING.md)
 - [License](LICENSE.md)
 
-
-## Short Term Roadmap
-- Post 1.0
-    * [ ] Plugins System
-
 ## Technical Details
 
-The project is built using React, TypeScript and the [Ethstats UI Components](https://github.com/Alethio/ethstats-ui).
+The project is built on a React/MobX and TypeScript stack, using the [Alethio CMS](https://github.com/Alethio/cms) as a base to allow extension via 3rd party plugins. The basic explorer functionality is implemented via a series of open-source [core plugins](https://github.com/Alethio/explorer-core-plugins), which we also use internally for our [aleth.io](https://aleth.io) platform. Please refer to [Alethio CMS](https://github.com/Alethio/cms) for documentation on the plugin system.
 
 ### Project structure
 ```
-📁block-explorer
-├─📁dev             - dev server for serving the app and mocking block-explorer-api responses
+📁ethereum-lite-explorer
+├─📁dev             - dev server for serving the app
 ├─📁dist            - target folder for application that contains deployables
 └─📁src             - source files
   ├─📁app (*1)      - application source code
@@ -65,59 +58,53 @@ The project is built using React, TypeScript and the [Ethstats UI Components](ht
 ### Prerequisites
 Please make sure you have the following installed and running properly
 - [Node.js](https://nodejs.org/en/download/) >= 8.0 or [Docker](https://www.docker.com/)
-- If building it you will also need NPM >= 5.0 (NPM is distributed with Node.js. For more information see: https://www.npmjs.com/get-npm)
+- If building it you will also need NPM >= 6.9 (NPM is distributed with Node.js. For more information see: https://www.npmjs.com/get-npm)
 - A JSON-RPC enabled and accessible Ethereum Client, some examples:
     * [An Infura Account](#with-infura)
     * [Parity Light Client](#with-parity-light-client)
     * [Ganache](#with-ganache)
     * [Pantheon Dev Mode](#with-pantheon) - private chain example
+- If not using the pre-built Docker images, you will need an HTTP server for serving the app and it must be deployed at the root of the domain/subdomain.
 
 ### Configuration
-You can set any of the following variables either in config.dev.json, config.json or as environment variables for the Docker image to change the behavior of the explorer.
 
+The project uses a JSON configuration file which must be present at the application root. The pre-built Docker images are already configured with the `config.*.json` templates found in the base repo folder, so you don't need to provide one yourself. The Docker images will run with zero configuration, but basic options can be overriden via environment variables as well:
 
-| ENV var | Description |
-| --- | --- |
-| APP_NODE_URL | URL of RPC enabled node. |
-| APP_NODE_URL_USER | If your RPC node is behind HTTP Basic Authentification then use this to set the username. |
-| APP_NODE_URL_PASS | HTTP Basic Authentification Password. |
-| APP_INFURA_PROJECT_ID | Infura Project ID. You can get this from your [Infura Dashboard](https://infura.io/dashboard). Adding this will enable a dropdown to select from the available Infura endpoints. |
-| APP_ROUTER_HISTORY_MODE | When `false` (default mode) the explorer uses the URL hash for routing. Works with all browsers/servers, including those that do not support HTML5 History API. `true` requires HTML5 History API and server config to redirect all requests that do not have a file to index.html so they are picked by the react router. (`false`, `true`)|
-| APP_NETWORK_MONITOR_URL | Setting this variable to an URL will add a menu item in the sidebar with a link to the set url |
-| APP_EXTRA_HEADER_TYPE | This variable controls how the extraData block header is decoded and displayed. `hexstring` (default) converts the block extra data from hex to ASCII. `ibft2` uses a specific mechanism for [ibft2 based chains](https://pegasys.tech/another-day-another-consensus-algorithm-why-ibft-2-0/) (`hexstring`, `ibft2`) |
+| ENV var | Description | Default |
+| --- | --- | --- |
+| APP_NODE_URL | URL of RPC enabled node. (e.g. `https://user:pass@my.node.io/`) | https://mainnet.infura.io/ |
 
-> NOTICE: you must specify at least one of `APP_NODE_URL` or `APP_INFURA_PROJECT_ID`.
-
-Only when building you also have access to
+When building a custom docker image, you also have access to:
 
 | ENV var | Description |
 | --- | --- |
 | APP_BASE_URL | Deployment URL. This used in `index.html` for `og:tags`  |
 
+If more customization is needed, a full configuration file can be mounted in the application root (e.g. in the `/usr/share/nginx/html` folder, if using the Docker image). We provide sample configs for various cases:
+
+| Config name | Description |
+| --- | --- | --- |
+| config.default.json | Basic configuration file |
+| config.ibft2.json | Configuration file for [ibft2 based chains](https://pegasys.tech/another-day-another-consensus-algorithm-why-ibft-2-0/) |
+
+For advanced configuration editing, please refer to the [Alethio CMS documentation](https://github.com/Alethio/cms)
 
 ### Running in Docker
 You can run the Lite Explorer in Docker without having to get the source code and build it.
 The simplest command to run it is
 
 ```sh
-$ docker run -p 80:80 -e APP_INFURA_PROJECT_ID=429cef11213a44ada93a561fa8a85ff6 alethio/ethereum-lite-explorer
+$ docker run -p 80:80 alethio/ethereum-lite-explorer
 ```
-which will start a container on port 80 of your computer with a nginx embedded to serve the pre-build explorer. You can then open [localhost](http://localhost) in your browser to use it.
+which will start a container on port 80 of your computer with a nginx embedded to serve the pre-build explorer, running on Ethereum mainnet. You can then open [localhost](http://localhost) in your browser to use it.
 
-Please create an [Infura](https://infura.io) project and get your own project ID to replace the one in the example above.
+If using an infura node as the data source, please create an [Infura](https://infura.io) project and get your own project ID to avoid request throttling:
+
+```sh
+$ docker run -p 80:80 -e APP_NODE_URL="https://mainnet.infura.io/v3/<project_id>" alethio/ethereum-lite-explorer
+```
 
 To configure the container at runtime please see [configuration](#configuration)
-
-
-So for example if you want to start the explorer with both infura and a custom node url, and have the container auto delete itself after you close it, you would run something like
-```sh
-docker \
-    run --rm \
-    -p 80:80 \
-    -e APP_INFURA_PROJECT_ID=your-infura-proj-id \
-    -e APP_NODE_URL=https://kovan.infura.io \
-    alethio/ethereum-lite-explorer
-```
 
 ### Setup/Build Instructions
 Clone the explorer in a folder of your choosing
@@ -144,38 +131,21 @@ or development
 $ npm run build-dev
 ```
 
-the `dist` folder will then contain the minimised and optimised version fo the app. Got ahead and [deploy it](#example-deployments) somewhere.
+the `dist` folder will then contain the minimised and optimised version for the app. Go ahead and [deploy it](#example-deployments) somewhere.
 
 Finally you can run the explorer with
 ```sh
 $ npm start
 ```
 
-### Running tests
-
-`npm test` (or `npm run test-coverage` to generate code coverage as well).
-
-Test coverage is written to `./coverage` in HTML and LCOV formats.
-
-Configuration for the VSCode LCOV extension is already included in the project.
-
 ### Example setups
 
 #### With Infura
-[Sign-up](https://infura.io/register) for an account or [sign-in](https://infura.io/login) into your Infura account.
+- [Sign-up](https://infura.io/register) for an account or [sign-in](https://infura.io/login) into your Infura account.
 
-After that you have two options:
+- From the control panel, obtain your endpoint url for the network you are interested in (mainnet, ropsten, kovan, rinkeby). It will looks similar to `https://mainnet.infura.io/v3/aa11bb22cc33.....`.
 
-- connect to a single network
-  From the control panel, obtain your endpoint url for the network you are interested in (mainnet, ropsten, kovan, rinkeby).
-  It will looks similar to `https://mainnet.infura.io/v3/aa11bb22cc33.....`.
-
-  Update `.env.local` file and set `APP_NODE_URL` to your Infura endpoint.
-
-- have a choice of infura networks and be able to switch between them
-  From the control panel obtain your Infura Project ID
-
-  Update `.env.local` file and set `APP_INFURA_PROJECT_ID` to your project id to get a dropdown of all the available Infura networks.
+- Update `config.dev.json` file and set `nodeUrl` to your Infura endpoint.
 
 Build and start Lite Explorer
 ```sh
@@ -203,7 +173,7 @@ $ npm run build && npm start
 #### With Ganache
 First of all, if you do not have it, download and install [Ganache](https://truffleframework.com/ganache) which will give you your own personal test chain.
 
-After setting up and starting Ganache, update the `.env.local` file and set `APP_NODE_URL` to `'http://localhost:7545'`.
+After setting up and starting Ganache, update the `config.dev.json` file and set `nodeUrl` to `'http://localhost:7545'`.
 
 Build and start Lite Explorer
 ```sh
@@ -224,9 +194,9 @@ $ pantheon --dev-mode --rpc-enabled --ws-enabled --miner-enabled --miner-coinbas
 
 _(Note: using "*" values for host whitelist and CORS origins is not a recommended way to run a production node securely, this configuration is intended for test or developement purpose only. For more information about these options, refer to the [Pantheon CLI reference](https://docs.pantheon.pegasys.tech/en/stable/Reference/Pantheon-CLI-Syntax/))._
 
-After running Pantheon, update the `config.dev.json` file, and set `APP_NODE_URL` to point to your running Pantheon URL:
+After running Pantheon, update the `config.dev.json` file, and set `nodeUrl` to point to your running Pantheon URL:
 ```
-APP_NODE_URL='http://127.0.0.1:8545/'
+"nodeUrl": "http://127.0.0.1:8545/"
 ```
 
 Build and start Lite Explorer
@@ -239,11 +209,11 @@ $ npm run build && npm start
 #### surge.sh
 Surge.sh is a simple, single-command web publishing service that you can use to deploy your own version of the Lite Explorer.
 
-Make sure you have set a proper and accessible `APP_NODE_URL`
+Make sure you have set a proper and accessible `APP_NODE_URL` environment variable.
 
 ```sh
 # copy and edit a config file
-$ cp config.default.json config.deploy.json
+$ cp config.default.json config.json
 # install surge
 $ npm install --global surge
 # build explorer
@@ -251,7 +221,7 @@ $ npm run build
 # go to build dir
 $ cd dist
 # make push state work as it should
-$ cp ../config.deploy.json config.json && cp index.html 200.html
+$ cp ../config.json config.json && cp index.html 200.html
 # deploy
 $ surge
 ```
