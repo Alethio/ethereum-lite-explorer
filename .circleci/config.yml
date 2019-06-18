@@ -53,6 +53,9 @@ workflows:
   build-test-deploy:
     jobs:
       - setup
+          filters:
+            tags:
+              only: /.*/
       - build:
           requires:
             - setup
