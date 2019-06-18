@@ -18,7 +18,6 @@ jobs:
           - v1.0-dependencies-
 
       - run: npm install
-      - run: npm install --no-save @alethio/cms-plugin-tool
 
       - save_cache:
           paths:
@@ -35,36 +34,19 @@ jobs:
           at: .
 
       - run: npm run build
-      - run: >
-          npx acp install
-          "@alethio/explorer-plugin-eth-common@1.0.2"
-          "@alethio/explorer-plugin-eth-lite@1.0.3"
-          "@alethio/explorer-plugin-eth-ibft2@1.0.1"
-          "@alethio/explorer-plugin-3box@1.0.1"
 
       - persist_to_workspace:
           root: .
           paths: .
 
-  deploy:
+  trigger-docker-hub:
     <<: *executor_config
     steps:
       - attach_workspace:
           at: .
-      - run: sudo npm install surge --global
-      - run: cp config.default.json dist/config.json
-      # - run: echo ${CONFIG_JSON} > dist/config.json
-      - run: cp dist/index.html dist/200.html
-      - run: surge dist/ ${CIRCLE_BRANCH}.lite-explorer.surge.sh
-
-      #- run: sudo npm install surge-teardown-branches --global
-      #- run: |
-      #      mkdir -p ~/.ssh/
-      #      echo -e "Host github.com\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile /dev/null\n" > ~/.ssh/config
-      #      chmod 600 ~/.ssh/config
-      #      ssh-keyscan -Ht rsa github.com >> ~/.ssh/known_hosts
-      #- run: surge-teardown-branches lite-explorer.surge.sh
-      #- run: git ls-remote --heads
+      - run:
+          name: Trigger DockerHub
+          command: .docker/triggerDockerHub.sh
 
 workflows:
   version: 2
@@ -74,6 +56,14 @@ workflows:
       - build:
           requires:
             - setup
-      - deploy:
+      - trigger-docker-hub:
           requires:
             - build
+          filters:
+            tags:
+              only:
+                - latest
+                - /^v[0-9a-zA-Z.-]+$/
+            branches:
+              only:
+                - master
