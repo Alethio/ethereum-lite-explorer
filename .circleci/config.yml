@@ -56,6 +56,9 @@ workflows:
       - build:
           requires:
             - setup
+          filters:
+            tags:
+              only: /.*/
       - trigger-docker-hub:
           requires:
             - build
