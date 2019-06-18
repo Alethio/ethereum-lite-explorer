@@ -9,7 +9,7 @@ elif ! [ -z "$CIRCLE_TAG" ]; then
 else
     echo 'No branch or tag specified!';
     exit 1;
-fi
+fi;
 
 DOCKER_HUB_URL="https://cloud.docker.com/api/build/v1/source/$DOCKER_HUB_SOURCE/trigger/$DOCKER_HUB_TRIGGER/call/";
 HEADER="Content-Type: application/json";
