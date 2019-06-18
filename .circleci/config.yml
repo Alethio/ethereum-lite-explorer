@@ -52,7 +52,7 @@ workflows:
   version: 2
   build-test-deploy:
     jobs:
-      - setup
+      - setup:
           filters:
             tags:
               only: /.*/
