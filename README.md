@@ -83,7 +83,7 @@ When building a custom docker image, you also have access to:
 If more customization is needed, a full configuration file can be mounted in the application root (e.g. in the `/usr/share/nginx/html` folder, if using the Docker image). We provide sample configs for various cases:
 
 | Config name | Description |
-| --- | --- | --- |
+| --- | --- |
 | config.default.json | Basic configuration file |
 | config.ibft2.json | Configuration file for [ibft2 based chains](https://pegasys.tech/another-day-another-consensus-algorithm-why-ibft-2-0/) |
 
