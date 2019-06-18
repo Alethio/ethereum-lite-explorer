@@ -14,13 +14,11 @@ No need for servers, hosting or trusting any third parties to display chain data
 ## Contents
 - [Technical Details](#technical-details)
     - [Project structure](#project-structure)
-    - [Managing SVG icons](#managing-svg-icons)
 - [Getting started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Configuration](#configuration)
     - [Running in Docker](#running-in-docker)
     - [Setup/Build Instructions](#setupbuild-instructions)
-    - [Running tests](#running-tests)
     - [Example setups](#example-setups)
         - [With Infura](#with-infura)
         - [With Parity Light Client](#with-parity-light-client)
@@ -33,7 +31,8 @@ No need for servers, hosting or trusting any third parties to display chain data
 
 ## Technical Details
 
-The project is built on a React/MobX and TypeScript stack, using the [Alethio CMS](https://github.com/Alethio/cms) as a base to allow extension via 3rd party plugins. The basic explorer functionality is implemented via a series of open-source [core plugins](https://github.com/Alethio/explorer-core-plugins), which we also use internally for our [aleth.io](https://aleth.io) platform. Please refer to [Alethio CMS](https://github.com/Alethio/cms) for documentation on the plugin system.
+The project is built on a React/MobX and TypeScript stack, using the [Alethio CMS](https://github.com/Alethio/cms), which allows us to add extensions dynamically through 3rd party plugins.
+The basic functionality of the explorer is implemented via a series of open-source [core plugins](https://github.com/Alethio/explorer-core-plugins), which we also use internally for our [aleth.io](https://aleth.io) platform. Please refer to [Alethio CMS](https://github.com/Alethio/cms) for documentation on the plugin system.
 
 ### Project structure
 ```
@@ -68,43 +67,47 @@ Please make sure you have the following installed and running properly
 
 ### Configuration
 
-The project uses a JSON configuration file which must be present at the application root. The pre-built Docker images are already configured with the `config.*.json` templates found in the base repo folder, so you don't need to provide one yourself. The Docker images will run with zero configuration, but basic options can be overriden via environment variables as well:
+The app stores its configurations in a JSON file called `config.json` and for development environment should be `config.dev.json`.
+In this file are also defined the plugins that the app is using. The location of the config file must be in the root of the project. 
 
-| ENV var | Description | Default |
-| --- | --- | --- |
-| APP_NODE_URL | URL of RPC enabled node. (e.g. `https://user:pass@my.node.io/`) | https://mainnet.infura.io/ |
-
-When building a custom docker image, you also have access to:
-
-| ENV var | Description |
-| --- | --- |
-| APP_BASE_URL | Deployment URL. This used in `index.html` for `og:tags`  |
-
-If more customization is needed, a full configuration file can be mounted in the application root (e.g. in the `/usr/share/nginx/html` folder, if using the Docker image). We provide sample configs for various cases:
+Here are 2 sample config files as starting point.  
 
 | Config name | Description |
 | --- | --- |
-| config.default.json | Basic configuration file |
-| config.ibft2.json | Configuration file for [ibft2 based chains](https://pegasys.tech/another-day-another-consensus-algorithm-why-ibft-2-0/) |
+| config.default.json | Default configuration file which contains the core plugins of the app that are enough to run the explorer. |
+| config.ibft2.json | Configuration file that has the default core plugins plus an extra one useful for [IBFT2 based chains](https://pegasys.tech/another-day-another-consensus-algorithm-why-ibft-2-0/) that decodes the extraData field of a block. |
+
+The possibility to change the URL of the RPC enabled Ethereum node is done through the `eth-lite` core plugin. 
+See the [`nodeUrl`](https://github.com/Alethio/ethereum-lite-explorer/blob/master/config.default.json#L16) attribute for the plugin which has de default value set to `https://mainnet.infura.io/`. 
 
 For advanced configuration editing, please refer to the [Alethio CMS documentation](https://github.com/Alethio/cms)
 
 ### Running in Docker
-You can run the Lite Explorer in Docker without having to get the source code and build it.
-The simplest command to run it is
+You can run the Lite Explorer in Docker by using the already published images on [Docker Hub](https://hub.docker.com/r/alethio/ethereum-lite-explorer).
+The config file in the Docker images have the default values from the `config.default.json` sample file. 
+By default it will connect to `https://mainnet.infura.io/`.
 
+The simplest command to run it is
 ```sh
 $ docker run -p 80:80 alethio/ethereum-lite-explorer
 ```
-which will start a container on port 80 of your computer with a nginx embedded to serve the pre-build explorer, running on Ethereum mainnet. You can then open [localhost](http://localhost) in your browser to use it.
+which will start a container on port 80 of your computer with a nginx embedded to serve the pre-build explorer. You can now open [localhost](http://localhost) in your browser and use it. 
 
-If using an infura node as the data source, please create an [Infura](https://infura.io) project and get your own project ID to avoid request throttling:
+There are 2 env vars that can be passed in at runtime:
 
+| ENV var | Description |
+|---|---| 
+| APP_NODE_URL | URL of RPC enabled node. (e.g. `https://user:pass@host:port`). This overrides in the config file the `nodeUrl` attribute of the `eth-lite` core plugin. |
+| APP_BASE_URL | It is used ONLY in `index.html` for `og:tags`. Overrides build time defined value. |
+
+For example if you want to connect to your node on localhost with all default configs run the following command:
 ```sh
-$ docker run -p 80:80 -e APP_NODE_URL="https://mainnet.infura.io/v3/<project_id>" alethio/ethereum-lite-explorer
+$ docker run -p 80:80 -e APP_NODE_URL="http://localhost:8545" alethio/ethereum-lite-explorer
 ```
-
-To configure the container at runtime please see [configuration](#configuration)
+If more customization is needed, a full configuration file can be mounted in the application root (e.g. in the `/usr/share/nginx/html` folder).
+```sh
+$ docker run -p 80:80 -v /your-config-dir/config.json:/usr/share/nginx/html/config.json alethio/ethereum-lite-explorer
+```
 
 ### Setup/Build Instructions
 Clone the explorer in a folder of your choosing
