@@ -146,14 +146,16 @@ For IBFT2-enabled networks, you also need to install the respective plugin:
 $ acp install --dev @alethio/explorer-plugin-eth-ibft2
 ```
 
-The plugins will be copied, together with the base app, in the `dist` folder. Go ahead and [deploy it](#example-deployments) somewhere.
+The plugins will be copied, together with the base app, in the `dist` folder.
 
 **IMPORTANT**: Whenever you rebuild the base app, the plugins, which reside in the `dist` folder, will be deleted and you will have to reinstall them. To avoid this, use `npm run watch` instead of `npm run build-dev` for development. This does incremental builds and it will not clean the `dist` folder before each run.
 
-Finally you can run the explorer with
+Finally, you can run the explorer with
 ```sh
 $ npm start
 ```
+
+... or [deploy it](#example-deployments) somewhere.
 
 ### Example setups
 
