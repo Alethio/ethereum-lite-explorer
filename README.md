@@ -116,22 +116,39 @@ Install npm packages
 ```sh
 $ npm install
 ```
-Copy the sample config variables
+
+Copy the sample config file
 ```sh
 $ cp config.default.json config.dev.json
 ```
-Adjust `config.dev.json` to your needs. You can remove the variables you do not wish to change from default. Full list of options available [here](#configuration)
+Adjust `config.dev.json` to your needs. For development, you must also remove the version query strings `?v=#.#.#` from the `"plugins"` URIs. Full list of configuration options available [here](#configuration)
 
-After which you can build the explorer for production
+You can now build the explorer for production...
 ```sh
 $ npm run build
 ```
-or development
+... or development ...
 ```sh
 $ npm run build-dev
 ```
 
-the `dist` folder will then contain the minimised and optimised version for the app. Go ahead and [deploy it](#example-deployments) somewhere.
+... and install the default plugins:
+```sh
+$ npm i -g @alethio/cms-plugin-tool
+$ acp install --dev \
+    @alethio/explorer-plugin-eth-common \
+    @alethio/explorer-plugin-eth-lite \
+    @alethio/explorer-plugin-3box
+```
+
+For IBFT2-enabled networks, you also need to install the respective plugin:
+```sh
+$ acp install --dev @alethio/explorer-plugin-eth-ibft2
+```
+
+The plugins will be copied, together with the base app, in the `dist` folder. Go ahead and [deploy it](#example-deployments) somewhere.
+
+**IMPORTANT**: Whenever you rebuild the base app, the plugins, which reside in the `dist` folder, will be deleted and you will have to reinstall them. To avoid this, use `npm run watch` instead of `npm run build-dev` for development. This does incremental builds and it will not clean the `dist` folder before each run.
 
 Finally you can run the explorer with
 ```sh
