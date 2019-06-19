@@ -149,7 +149,7 @@ $ acp install --dev \
     @alethio/explorer-plugin-3box
 ```
 
-If you need other custom plugins like enabling the decode of the extraData field of a block for the IBFT2 based networks, you can install them at this step:
+If you need other custom plugins like for example to decode the extraData field of a block for the IBFT2 based networks, you can install them at this step:
 ```sh
 $ acp install --dev @alethio/explorer-plugin-eth-ibft2
 ```
