@@ -78,7 +78,7 @@ Here are 2 sample config files as starting point.
 | config.ibft2.json | Configuration file that has the default core plugins plus an extra one useful for [IBFT2 based chains](https://pegasys.tech/another-day-another-consensus-algorithm-why-ibft-2-0/) that decodes the extraData field of a block. |
 
 The possibility to change the URL of the RPC enabled Ethereum node is done through the `eth-lite` core plugin. 
-See the [`nodeUrl`](https://github.com/Alethio/ethereum-lite-explorer/blob/master/config.default.json#L16) attribute for the plugin which has de default value set to `https://mainnet.infura.io/`. 
+See the [`nodeUrl`](https://github.com/Alethio/ethereum-lite-explorer/blob/master/config.default.json#L16) attribute for the plugin which has the default value set to `https://mainnet.infura.io/`. 
 
 For advanced configuration editing, please refer to the [Alethio CMS documentation](https://github.com/Alethio/cms)
 
