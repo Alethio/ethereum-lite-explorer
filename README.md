@@ -67,8 +67,12 @@ Please make sure you have the following installed and running properly
 
 ### Configuration
 
-The app stores its configurations in a JSON file called `config.json` and for development environment should be `config.dev.json`.
-In this file are also defined the plugins that the app is using. The location of the config file must be in the root of the project. 
+The application requires a JSON configuration file which is loaded at runtime but with different approaches for `development` vs `production` environments.
+
+For `development` the config file is called `config.dev.json` located in the root of the repository.
+As for the `production` environment the config file is copied in the `dist` folder and renamed to `config.json`. 
+
+The `dist` is the target folder for the built application that needs to be served by an HTTP server.
 
 Here are 2 sample config files as starting point.  
 
@@ -97,7 +101,7 @@ There are 2 env vars that can be passed in at runtime:
 
 | ENV var | Description |
 |---|---| 
-| APP_NODE_URL | URL of RPC enabled node. (e.g. `https://user:pass@host:port`). This overrides in the config file the `nodeUrl` attribute of the `eth-lite` core plugin. |
+| APP_NODE_URL | URL of RPC enabled node. (e.g. `https://host:port`, also supports Basic Auth by prepending `user:pass@` to the `host`). This overrides in the config file the `nodeUrl` attribute of the `eth-lite` core plugin. |
 | APP_BASE_URL | It is used ONLY in `index.html` for `og:tags`. Overrides build time defined value. |
 
 For example if you want to connect to your node on localhost with all default configs run the following command:
@@ -124,18 +128,19 @@ Copy the sample config file
 ```sh
 $ cp config.default.json config.dev.json
 ```
-Adjust `config.dev.json` to your needs. For development, you must also remove the version query strings `?v=#.#.#` from the `"plugins"` URIs. Full list of configuration options available [here](#configuration)
+Make necessary modifications into `config.dev.json` if needed. For development, you must also remove the version query strings `?v=#.#.#` from the `"plugins"` URIs. Full list of configuration options available [here](#configuration)
 
-You can now build the explorer for production...
+To start the development build run the following command:
+```sh
+$ npm run watch
+```
+
+To build the minified version (used also for `production`) use:
 ```sh
 $ npm run build
 ```
-... or development ...
-```sh
-$ npm run build-dev
-```
 
-... and install the default plugins:
+Since the app is using the Alethio CMS for using the core plugins the next step is to install them:
 ```sh
 $ npm i -g @alethio/cms-plugin-tool
 $ acp install --dev \
@@ -144,21 +149,19 @@ $ acp install --dev \
     @alethio/explorer-plugin-3box
 ```
 
-For IBFT2-enabled networks, you also need to install the respective plugin:
+If you need other custom plugins like enabling the decode of the extraData field of a block for the IBFT2 based networks, you can install them at this step:
 ```sh
 $ acp install --dev @alethio/explorer-plugin-eth-ibft2
 ```
 
-The plugins will be copied, together with the base app, in the `dist` folder.
+The above command `acp` installs the plugins in the `dist` folder. Basically they will be copied, together with the base app.
 
-**IMPORTANT**: Whenever you rebuild the base app, the plugins, which reside in the `dist` folder, will be deleted and you will have to reinstall them. To avoid this, use `npm run watch` instead of `npm run build-dev` for development. This does incremental builds and it will not clean the `dist` folder before each run.
+**IMPORTANT**: Whenever you use `npm run build` or `npm run build-dev` the `dist` folder is emptied, thus the plugins are also deleted and they need to be reinstalled.
 
-Finally, you can run the explorer with
+Finally, you can start the explorer with
 ```sh
 $ npm start
 ```
-
-... or [deploy it](#example-deployments) somewhere.
 
 ### Example setups
 
@@ -167,7 +170,7 @@ $ npm start
 
 - From the control panel, obtain your endpoint url for the network you are interested in (mainnet, ropsten, kovan, rinkeby). It will looks similar to `https://mainnet.infura.io/v3/aa11bb22cc33.....`.
 
-- Update `config.dev.json` file and set `nodeUrl` to your Infura endpoint.
+- Update `config.dev.json` file and set the `nodeUrl` attribute for the `eth-lite` plugin to your Infura endpoint.
 
 Build and start Lite Explorer
 ```sh
@@ -187,6 +190,8 @@ As a simple step, if you have Docker, you could just run
 $ docker run -d --restart always --name parity-light -p 127.0.0.1:8545:8545 parity/parity:stable --light --jsonrpc-interface all
 ```
 
+Update `config.dev.json` file and set the `nodeUrl` attribute for the `eth-lite` plugin to `http://127.0.0.1:8545`.
+
 Build and start Lite Explorer
 ```sh
 $ npm run build && npm start
@@ -195,7 +200,7 @@ $ npm run build && npm start
 #### With Ganache
 First of all, if you do not have it, download and install [Ganache](https://truffleframework.com/ganache) which will give you your own personal test chain.
 
-After setting up and starting Ganache, update the `config.dev.json` file and set `nodeUrl` to `'http://localhost:7545'`.
+After setting up and starting Ganache, update the `config.dev.json` file and set the `nodeUrl` attribute for the `eth-lite` plugin to `http://127.0.0.1:7545`. 
 
 Build and start Lite Explorer
 ```sh
@@ -216,10 +221,7 @@ $ pantheon --dev-mode --rpc-enabled --ws-enabled --miner-enabled --miner-coinbas
 
 _(Note: using "*" values for host whitelist and CORS origins is not a recommended way to run a production node securely, this configuration is intended for test or developement purpose only. For more information about these options, refer to the [Pantheon CLI reference](https://docs.pantheon.pegasys.tech/en/stable/Reference/Pantheon-CLI-Syntax/))._
 
-After running Pantheon, update the `config.dev.json` file, and set `nodeUrl` to point to your running Pantheon URL:
-```
-"nodeUrl": "http://127.0.0.1:8545/"
-```
+After running Pantheon, update the `config.dev.json` file, and set the `nodeUrl` attribute for the `eth-lite` plugin to `http://127.0.0.1:8545`. 
 
 Build and start Lite Explorer
 ```sh
