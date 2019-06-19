@@ -86,7 +86,7 @@ function getConfig(isProduction) {
             "APP_DEFAULT_LOCALE": defaultLocale
         }),
         new WebappWebpackPlugin({
-            logo: path.join(assetsRoot, "block-explorer-logo.svg"),
+            logo: path.join(assetsRoot, "alethio-small.svg"),
             title: translation["title"]
         })
     ];

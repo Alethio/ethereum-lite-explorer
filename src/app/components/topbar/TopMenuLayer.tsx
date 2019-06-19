@@ -1,11 +1,12 @@
 import * as React from "react";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
-import { AlethioIconButton } from "@alethio/ui/lib/layout/toolbar/AlethioIconButton";
 import { LanguageSwitcher } from "app/components/toolbar/LanguageSwitcher";
 import { AppConfig } from "app/AppConfig";
 import { UserPreferences } from "app/UserPreferences";
 import { MenuItem, MenuLayer, Translation, ExternalLink } from "@alethio/cms";
+import { ToolbarIconButton } from "@alethio/ui/lib/layout/toolbar/ToolbarIconButton";
+import { BriefcaseIcon } from "@alethio/ui/lib/icon/BriefcaseIcon";
 
 export interface ITomMenuLayerProps {
     open: boolean;
@@ -35,8 +36,8 @@ export class TopMenuLayer extends React.Component<ITomMenuLayerProps> {
                 />
             </MenuItem>
             <MenuItem title={tr.get("toolbar.alethio.label")}>
-                <ExternalLink href="https://aleth.io" rel="noopener noreferrer">
-                    <AlethioIconButton />
+                <ExternalLink href="https://company.aleth.io" rel="noopener noreferrer">
+                    <ToolbarIconButton Icon={BriefcaseIcon} />
                 </ExternalLink>
             </MenuItem>
         </MenuLayer>;
