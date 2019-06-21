@@ -14,6 +14,9 @@
         },
         "plugin://aleth.io/eth-lite?v=2.0.4": {
             "nodeUrl": "https://mainnet.infura.io/"
+        },
+        "plugin://aleth.io/eth-ibft2?v=1.0.1": {
+
         }
     },
 
@@ -35,7 +38,10 @@
                     ],
                     "txs": [
                         { "def": "module://aleth.io/lite/block/txs" }
-                    ]
+                    ],
+                    "extraData": [{
+                        "def": "module://aleth.io/block/ibft2-extra-data"
+                    }]
                 }
             }]
         }

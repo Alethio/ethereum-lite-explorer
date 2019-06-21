@@ -3,7 +3,7 @@ version: 2.0
 references:
   executor_config: &executor_config
     docker:
-      - image: circleci/node:10.14
+      - image: circleci/node:10.16
     working_directory: ~/app
 
 jobs:
@@ -27,17 +27,6 @@ jobs:
           root: .
           paths: .
 
-  test:
-    <<: *executor_config
-    steps:
-      - attach_workspace:
-          at: .
-
-      - run: npm run test-coverage
-
-      - store_artifacts:
-          path: coverage
-
   build:
     <<: *executor_config
     steps:
@@ -50,36 +39,37 @@ jobs:
           root: .
           paths: .
 
-  deploy:
+  trigger-docker-hub:
     <<: *executor_config
     steps:
       - attach_workspace:
           at: .
-      - run: sudo npm install surge --global
-      - run: echo ${CONFIG_JSON} > dist/config.json
-      - run: cp dist/index.html dist/200.html
-      - run: surge dist/ ${CIRCLE_BRANCH}.lite-explorer.surge.sh
-
-      #- run: sudo npm install surge-teardown-branches --global
-      #- run: |
-      #      mkdir -p ~/.ssh/
-      #      echo -e "Host github.com\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile /dev/null\n" > ~/.ssh/config
-      #      chmod 600 ~/.ssh/config
-      #      ssh-keyscan -Ht rsa github.com >> ~/.ssh/known_hosts
-      #- run: surge-teardown-branches lite-explorer.surge.sh
-      #- run: git ls-remote --heads
+      - run:
+          name: Trigger DockerHub
+          command: .docker/triggerDockerHub.sh
 
 workflows:
   version: 2
   build-test-deploy:
     jobs:
-      - setup
-      - test:
-          requires:
-            - setup
+      - setup:
+          filters:
+            tags:
+              only: /.*/
       - build:
           requires:
-            - test
-      - deploy:
+            - setup
+          filters:
+            tags:
+              only: /.*/
+      - trigger-docker-hub:
           requires:
             - build
+          filters:
+            tags:
+              only:
+                - latest
+                - /^v[0-9a-zA-Z.-]+$/
+            branches:
+              only:
+                - master

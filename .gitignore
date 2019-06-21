@@ -1,11 +1,12 @@
 npm-debug.log
 node_modules
 dist
-src/styles/*.css
 coverage
 .nyc_output
 .idea
 .env
+config.jsonc
+config.json
 config.dev.jsonc
 config.dev.json
 config.deploy.json

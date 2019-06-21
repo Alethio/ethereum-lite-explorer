@@ -1,14 +1,13 @@
 import * as React from "react";
-import styled from "app/styled-components";
-import { Translation } from "app/Translation";
 import { observer } from "mobx-react";
-import { ToolbarIconButton } from "ethstats-ui/lib/layout/toolbar/ToolbarIconButton";
-import { TopbarItem } from "ethstats-ui/lib/layout/topbar/TopbarItem";
-import { SidebarIcon } from "ethstats-ui/lib/icon/SidebarIcon";
-import { SidebarMobileStore } from "app/components/topbar/SidebarMobileStore";
-import { Fade } from "ethstats-ui/lib/fx/Fade";
-import { Mask } from "ethstats-ui/lib/overlay/Mask";
-import { CloseIcon } from "ethstats-ui/lib/icon/CloseIcon";
+import { ToolbarIconButton } from "@alethio/ui/lib/layout/toolbar/ToolbarIconButton";
+import { TopbarItem } from "@alethio/ui/lib/layout/topbar/TopbarItem";
+import { SidebarIcon } from "@alethio/ui/lib/icon/SidebarIcon";
+import { Fade } from "@alethio/ui/lib/fx/Fade";
+import { Mask } from "@alethio/ui/lib/overlay/Mask";
+import { CloseIcon } from "@alethio/ui/lib/icon/CloseIcon";
+import styled from "@alethio/explorer-ui/lib/styled-components";
+import { ISidebarMobileStore } from "@alethio/cms";
 
 const Layer = styled.div`
     position: fixed;
@@ -25,8 +24,7 @@ const LayerContent = styled.div`
 `;
 
 export interface ISidebarMenuWrapperProps {
-    translation: Translation;
-    sidebarMobileStore: SidebarMobileStore;
+    sidebarMobileStore: ISidebarMobileStore;
 }
 
 @observer
@@ -35,7 +33,7 @@ export class SidebarMenuWrapper extends React.Component<ISidebarMenuWrapperProps
         return (
             <>
             <TopbarItem>
-                { this.props.sidebarMobileStore.instancesCount > 0 && !this.props.sidebarMobileStore.sidebarVisible ?
+                { this.props.sidebarMobileStore.instancesCount > 0 && !this.props.sidebarMobileStore.isSidebarOpen ?
                 <ToolbarIconButton Icon={SidebarIcon} iconSize={30} onClick={this.handleLayerToggle} />
                 : null }
             </TopbarItem>
@@ -60,6 +58,6 @@ export class SidebarMenuWrapper extends React.Component<ISidebarMenuWrapperProps
     }
 
     private toggleLayer() {
-        this.props.sidebarMobileStore.sidebarVisible = !this.props.sidebarMobileStore.sidebarVisible;
+        this.props.sidebarMobileStore.isSidebarOpen = !this.props.sidebarMobileStore.isSidebarVisible;
     }
 }

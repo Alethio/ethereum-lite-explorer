@@ -5,7 +5,6 @@ var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var InterpolateHtmlPlugin = require("interpolate-html-plugin");
-var MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 var WebappWebpackPlugin = require('webapp-webpack-plugin');
 var GitRevisionPlugin = require("git-revision-webpack-plugin");
 var ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
@@ -18,7 +17,7 @@ function getConfig(isProduction) {
     var appRoot = path.join(__dirname, "src/app");
     var nodeModulesPath = path.join(__dirname, "node_modules");
     var sourcePublicRoot = path.join(__dirname, "src/public");
-    var ethstatsUiPublicRoot = path.join(nodeModulesPath, "ethstats-ui/public");
+    var ethstatsUiPublicRoot = path.join(nodeModulesPath, "@alethio/ui/public");
     var assetsRoot = path.join(__dirname, "src/assets");
     var outputRoot = path.join(__dirname, "dist");
 
@@ -40,14 +39,6 @@ function getConfig(isProduction) {
             tsconfig: path.resolve(".", tsConfigJsonFilename),
             tslint: path.resolve(".", isProduction ? "tslint.prod.json" : "tslint.json"),
             async: false
-        }),
-        // Only include needed monaco-editor languages/features in bundle
-        // TODO: make separate build for monaco-editor in library mode
-        new MonacoWebpackPlugin({
-            // See https://github.com/Microsoft/monaco-editor-webpack-plugin for available options
-            output: "js/vs",
-            languages: ["solidity", "json"],
-            features: ["contextmenu", "clipboard", "find", "folding"]
         }),
         // These are preprocessor constants which are replaced inline (that"s why the extra quotes)
         new webpack.DefinePlugin({
@@ -95,7 +86,7 @@ function getConfig(isProduction) {
             "APP_DEFAULT_LOCALE": defaultLocale
         }),
         new WebappWebpackPlugin({
-            logo: path.join(assetsRoot, "block-explorer-logo.svg"),
+            logo: path.join(assetsRoot, "alethio-small.svg"),
             title: translation["title"]
         })
     ];
@@ -153,7 +144,6 @@ function getConfig(isProduction) {
             rules: [
                 {
                     test: /\.jsx?$/,
-                    exclude: /monaco-editor|rlp/,
                     enforce: "pre",
                     loader: "source-map-loader"
                 },
@@ -172,19 +162,10 @@ function getConfig(isProduction) {
                         limit: 8192,
                         outputPath: "img/"
                     }
-                },
-                // Needed for monaco-editor
-                {
-                    test: /\.css$/,
-                    use: ["style-loader", "css-loader"]
                 }
             ]
         },
         resolve: {
-            alias: {
-                web3$: path.resolve(__dirname, "src/vendor/web3/web3-1.0.0-beta.34.min.js"),
-                "3box$": path.resolve(__dirname, "src/vendor/3box/3box-1.2.1.min.js")
-            },
             modules: [
                 sourceRoot,
                 nodeModulesPath
