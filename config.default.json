@@ -12,7 +12,7 @@
         "plugin://aleth.io/3box?v=1.0.1": {
             "ipfsUrlMask": "https://ipfs.infura.io/ipfs/%s"
         },
-        "plugin://aleth.io/eth-lite?v=2.0.3": {
+        "plugin://aleth.io/eth-lite?v=2.0.4": {
             "nodeUrl": "https://mainnet.infura.io/"
         }
     },
