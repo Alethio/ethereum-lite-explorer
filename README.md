@@ -138,7 +138,9 @@ To start the development build run the following command:
 $ npm run watch
 ```
 
-To build the minified version (used also for `production`) use:
+This terminal will be kept open, as the above command continuously watches the source files for changes and triggers an incremental build on every change.
+
+Alternatively, to build the minified version (used also for `production`) use:
 ```sh
 $ npm run build
 ```
