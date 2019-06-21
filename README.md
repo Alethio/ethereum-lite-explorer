@@ -70,37 +70,37 @@ Please make sure you have the following installed and running properly
 The application requires a JSON configuration file which is loaded at runtime but with different approaches for `development` vs `production` environments.
 
 For `development` the config file is called `config.dev.json` located in the root of the repository.
-As for the `production` environment the config file is copied in the `dist` folder and renamed to `config.json`. 
+As for the `production` environment the config file is copied in the `dist` folder and renamed to `config.json`.
 
 The `dist` is the target folder for the built application that needs to be served by an HTTP server.
 
-Here are 2 sample config files as starting point.  
+Here are 2 sample config files as starting point.
 
 | Config name | Description |
 | --- | --- |
 | config.default.json | Default configuration file which contains the core plugins of the app that are enough to run the explorer. |
 | config.ibft2.json | Configuration file that has the default core plugins plus an extra one useful for [IBFT2 based chains](https://pegasys.tech/another-day-another-consensus-algorithm-why-ibft-2-0/) that decodes the extraData field of a block. |
 
-The possibility to change the URL of the RPC enabled Ethereum node is done through the `eth-lite` core plugin. 
-See the [`nodeUrl`](https://github.com/Alethio/ethereum-lite-explorer/blob/master/config.default.json#L16) attribute for the plugin which has the default value set to `https://mainnet.infura.io/`. 
+The possibility to change the URL of the RPC enabled Ethereum node is done through the `eth-lite` core plugin.
+See the [`nodeUrl`](https://github.com/Alethio/ethereum-lite-explorer/blob/master/config.default.json#L16) attribute for the plugin which has the default value set to `https://mainnet.infura.io/`.
 
 For advanced configuration editing, please refer to the [Alethio CMS documentation](https://github.com/Alethio/cms)
 
 ### Running in Docker
 You can run the Lite Explorer in Docker by using the already published images on [Docker Hub](https://hub.docker.com/r/alethio/ethereum-lite-explorer).
-The config file in the Docker images have the default values from the `config.default.json` sample file. 
+The config file in the Docker images have the default values from the `config.default.json` sample file.
 By default it will connect to `https://mainnet.infura.io/`.
 
 The simplest command to run it is
 ```sh
 $ docker run -p 80:80 alethio/ethereum-lite-explorer
 ```
-which will start a container on port 80 of your computer with a nginx embedded to serve the pre-build explorer. You can now open [localhost](http://localhost) in your browser and use it. 
+which will start a container on port 80 of your computer with a nginx embedded to serve the pre-build explorer. You can now open [localhost](http://localhost) in your browser and use it.
 
 There are 2 env vars that can be passed in at runtime:
 
 | ENV var | Description |
-|---|---| 
+|---|---|
 | APP_NODE_URL | URL of RPC enabled node. (e.g. `https://host:port`, also supports Basic Auth by prepending `user:pass@` to the `host`). This overrides in the config file the `nodeUrl` attribute of the `eth-lite` core plugin. |
 | APP_BASE_URL | It is used ONLY in `index.html` for `og:tags`. Overrides build time defined value. |
 
@@ -119,6 +119,9 @@ Clone the explorer in a folder of your choosing
 $ git clone https://github.com/Alethio/ethereum-lite-explorer.git
 $ cd ethereum-lite-explorer
 ```
+
+**IMPORTANT**: Make sure you are using npm 6.9+ for the next step. Older versions will NOT work due to `alias` feature usages introduced in npm 6.9.
+
 Install npm packages
 ```sh
 $ npm install
@@ -200,7 +203,7 @@ $ npm run build && npm start
 #### With Ganache
 First of all, if you do not have it, download and install [Ganache](https://truffleframework.com/ganache) which will give you your own personal test chain.
 
-After setting up and starting Ganache, update the `config.dev.json` file and set the `nodeUrl` attribute for the `eth-lite` plugin to `http://127.0.0.1:7545`. 
+After setting up and starting Ganache, update the `config.dev.json` file and set the `nodeUrl` attribute for the `eth-lite` plugin to `http://127.0.0.1:7545`.
 
 Build and start Lite Explorer
 ```sh
@@ -221,7 +224,7 @@ $ pantheon --dev-mode --rpc-enabled --ws-enabled --miner-enabled --miner-coinbas
 
 _(Note: using "*" values for host whitelist and CORS origins is not a recommended way to run a production node securely, this configuration is intended for test or developement purpose only. For more information about these options, refer to the [Pantheon CLI reference](https://docs.pantheon.pegasys.tech/en/stable/Reference/Pantheon-CLI-Syntax/))._
 
-After running Pantheon, update the `config.dev.json` file, and set the `nodeUrl` attribute for the `eth-lite` plugin to `http://127.0.0.1:8545`. 
+After running Pantheon, update the `config.dev.json` file, and set the `nodeUrl` attribute for the `eth-lite` plugin to `http://127.0.0.1:8545`.
 
 Build and start Lite Explorer
 ```sh
