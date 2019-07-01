@@ -3,7 +3,7 @@
     "HOTJAR_ID": null,
     "SENTRY_ENABLED": false,
 
-    "pluginsUrl": "/plugins",
+    "pluginsUrl": "plugins",
 
     "plugins": {
         "plugin://aleth.io/eth-common?v=2.0.0": {

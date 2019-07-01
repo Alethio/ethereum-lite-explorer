@@ -18,7 +18,7 @@ No need for servers, hosting or trusting any third parties to display chain data
     - [Prerequisites](#prerequisites)
     - [Configuration](#configuration)
     - [Running in Docker](#running-in-docker)
-    - [Setup/Build Instructions](#setupbuild-instructions)
+    - [Building from source](#building-from-source)
     - [Example setups](#example-setups)
         - [With Infura](#with-infura)
         - [With Parity Light Client](#with-parity-light-client)
@@ -102,7 +102,7 @@ There are 2 env vars that can be passed in at runtime:
 | ENV var | Description |
 |---|---|
 | APP_NODE_URL | URL of RPC enabled node. (e.g. `https://host:port`, also supports Basic Auth by prepending `user:pass@` to the `host`). This overrides in the config file the `nodeUrl` attribute of the `eth-lite` core plugin. |
-| APP_BASE_URL | It is used ONLY in `index.html` for `og:tags`. Overrides build time defined value. |
+| APP_BASE_URL | It is used ONLY in `index.html` for `og:tags` (e.g. `https://my.app.tld`). Overrides build time defined value. |
 
 For example if you want to connect to your node on localhost with all default configs run the following command:
 ```sh
@@ -113,7 +113,7 @@ If more customization is needed, a full configuration file can be mounted in the
 $ docker run -p 80:80 -v /your-config-dir/config.json:/usr/share/nginx/html/config.json alethio/ethereum-lite-explorer
 ```
 
-### Setup/Build Instructions
+### Building from source
 Clone the explorer in a folder of your choosing
 ```sh
 $ git clone https://github.com/Alethio/ethereum-lite-explorer.git
@@ -167,6 +167,19 @@ Finally, you can start the explorer with
 ```sh
 $ npm start
 ```
+
+#### Custom build arguments
+
+The following env vars can be passed when building from source:
+
+| ENV var | Description |
+|---|---|
+| APP_BASE_URL | It is used ONLY in `index.html` for `og:tags` (e.g. `https://my.app.tld`) |
+| APP_BASE_PATH | Enables serving the app on a sub-path instead of the domain root (e.g. `some/path/to/app`). |
+
+Example:
+If serving the app from `https://my.tld/path/to/app`:
+` $ APP_BASE_URL="https://my.tld" APP_BASE_PATH="path/to/app" npm run build`
 
 ### Example setups
 
