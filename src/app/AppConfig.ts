@@ -1,5 +1,5 @@
 import { UserPreferences } from "app/UserPreferences";
-import { IConfigData } from "@alethio/cms/dist/CmsConfig";
+import { IConfigData } from "@alethio/cms";
 
 declare var APP_DEFAULT_LOCALE: string;
 declare var APP_AVAILABLE_LOCALES: string;

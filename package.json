@@ -63,7 +63,7 @@
     "webpack-runner": "^3.1.0"
   },
   "dependencies": {
-    "@alethio/cms": "^1.0.0-beta.3",
+    "@alethio/cms": "^1.0.0-beta.4",
     "@alethio/explorer-ui": "^1.0.0-beta.0",
     "@alethio/ui": "^1.0.0-beta.12",
     "@puzzl/browser": "^1.0.0-beta.2",
