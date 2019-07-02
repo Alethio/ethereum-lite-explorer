@@ -24,6 +24,7 @@ No need for servers, hosting or trusting any third parties to display chain data
         - [With Parity Light Client](#with-parity-light-client)
         - [With Ganache](#with-ganache)
         - [With Pantheon](#with-pantheon)
+        - [Deployment to a domain sub-path](#deployment-to-a-domain-sub-path)
     - [Example Deployments](#example-deployments)
         - [surge.sh](#surgesh)
 - [Contributing](CONTRIBUTING.md)
@@ -244,6 +245,10 @@ Build and start Lite Explorer
 ```sh
 $ npm run build && npm start
 ```
+
+#### Deployment to a domain sub-path
+
+This case is supported only when building from source. You will have to pass the `APP_BASE_PATH` env variable to the build command. See [Custom build arguments](#custom-build-arguments) for reference and examples.
 
 ### Example Deployments
 
