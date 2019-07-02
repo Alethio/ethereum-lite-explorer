@@ -87,7 +87,7 @@ function getConfig(isProduction) {
             description: translation["description"],
             template: path.join(sourcePublicRoot, "index.html"),
             baseUrl: process.env.APP_BASE_URL ? process.env.APP_BASE_URL.replace(/\/$/, "") + "/" : "https://lite-explorer.aleth.io/",
-            basePath
+            basePath: basePath ? "/" + basePath + "/" : "/"
         }),
         new InterpolateHtmlPlugin({
             "APP_DEFAULT_LOCALE": defaultLocale
