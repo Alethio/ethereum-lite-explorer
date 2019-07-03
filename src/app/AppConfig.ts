@@ -1,4 +1,5 @@
 import { UserPreferences } from "app/UserPreferences";
+import { IConfigData } from "@alethio/cms";
 
 declare var APP_DEFAULT_LOCALE: string;
 declare var APP_AVAILABLE_LOCALES: string;
@@ -82,9 +83,13 @@ export class AppConfig {
         return this.data.HOTJAR_ID;
     }
 
-    getCmsConfig() {
+    getCmsConfig(): IConfigData {
+        let basePath = (__webpack_public_path__).replace(/\/$/, "");
         return {
-            pluginsBaseUrl: this.data.pluginsUrl,
+            basePath,
+            pluginsBaseUrl: !this.data.pluginsUrl.match(/^https?:\/\/|\//) ?
+                basePath + "/" + this.data.pluginsUrl :
+                this.data.pluginsUrl,
             plugins: this.data.plugins,
             pages: this.data.pages,
             rootModules: this.data.rootModules

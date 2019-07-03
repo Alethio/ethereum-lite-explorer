@@ -25,7 +25,12 @@
         "baseUrl": "./src",
         "paths": {
             "app/*": ["./app/*"],
-            "assets/*": ["./assets/*"]
+            "assets/*": ["./assets/*"],
+            "*": [
+                "../node_modules/@types/*",
+                "../node_modules/*",
+                "*"
+            ]
         },
         "forceConsistentCasingInFileNames": true,
         "plugins": [

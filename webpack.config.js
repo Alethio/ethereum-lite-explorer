@@ -1,3 +1,4 @@
+// @ts-check
 var webpack = require("webpack");
 var path = require("path");
 var fs = require("fs");
@@ -34,6 +35,8 @@ function getConfig(isProduction) {
     var tsConfigJsonFilename = "tsconfig.webpack.json";
     var styledComponentsTransformer = createStyledComponentsTransformer();
 
+    var basePath = (process.env.APP_BASE_PATH || "").replace(/^\//, "").replace(/\/$/, "");
+
     var plugins = [
         new ForkTsCheckerWebpackPlugin({
             tsconfig: path.resolve(".", tsConfigJsonFilename),
@@ -68,6 +71,9 @@ function getConfig(isProduction) {
             {
                 from: path.join(ethstatsUiPublicRoot, "css/fonts.css"),
                 to: path.join(outputRoot, "css/fonts.css"),
+                transform(content, path) {
+                    return content.toString().replace(/\/fonts/g, (basePath ? "/" + basePath : "") + "/fonts");
+                }
             },
             {
                 from: path.join(ethstatsUiPublicRoot, "css/normalize.css"),
@@ -80,7 +86,8 @@ function getConfig(isProduction) {
             title: translation["title"],
             description: translation["description"],
             template: path.join(sourcePublicRoot, "index.html"),
-            baseUrl: process.env.APP_BASE_URL || "https://lite-explorer.aleth.io/"
+            baseUrl: process.env.APP_BASE_URL ? process.env.APP_BASE_URL.replace(/\/$/, "") + "/" : "https://lite-explorer.aleth.io/",
+            basePath: basePath ? "/" + basePath + "/" : "/"
         }),
         new InterpolateHtmlPlugin({
             "APP_DEFAULT_LOCALE": defaultLocale
@@ -114,7 +121,7 @@ function getConfig(isProduction) {
             filename: "[name].bundle.js",
             chunkFilename: "js/[contentHash].bundle.js",
             pathinfo: !!isDebug,
-            publicPath: "/"
+            publicPath: (basePath ? "/" + basePath : "") + "/"
         },
         optimization: isDebug ? void 0 : {
             minimizer: [
