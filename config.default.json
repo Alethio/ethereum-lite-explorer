@@ -6,7 +6,7 @@
     "pluginsUrl": "plugins",
 
     "plugins": {
-        "plugin://aleth.io/eth-common?v=2.0.0": {
+        "plugin://aleth.io/eth-common?v=2.1.1": {
 
         },
         "plugin://aleth.io/3box?v=1.0.1": {

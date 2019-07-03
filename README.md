@@ -24,9 +24,12 @@ No need for servers, hosting or trusting any third parties to display chain data
         - [With Parity Light Client](#with-parity-light-client)
         - [With Ganache](#with-ganache)
         - [With Pantheon](#with-pantheon)
-        - [Deployment to a domain sub-path](#deployment-to-a-domain-sub-path)
     - [Example Deployments](#example-deployments)
         - [surge.sh](#surgesh)
+- [How to](#how-to)
+    - [Deploy to a domain sub-path](#deploy-to-a-domain-sub-path)
+    - [Show the network name](#show-the-network-name)
+    - [Link to a custom deployment of EthStats](#link-to-a-custom-deployment-of-ethstats)
 - [Contributing](CONTRIBUTING.md)
 - [License](LICENSE.md)
 
@@ -246,10 +249,6 @@ Build and start Lite Explorer
 $ npm run build && npm start
 ```
 
-#### Deployment to a domain sub-path
-
-This case is supported only when building from source. You will have to pass the `APP_BASE_PATH` env variable to the build command. See [Custom build arguments](#custom-build-arguments) for reference and examples.
-
 ### Example Deployments
 
 #### surge.sh
@@ -270,4 +269,66 @@ $ cd dist
 $ cp ../config.json config.json && cp index.html 200.html
 # deploy
 $ surge
+```
+
+## How to
+
+### Deploy to a domain sub-path
+
+This case is supported only when building from source. You will have to pass the `APP_BASE_PATH` env variable to the build command. See [Custom build arguments](#custom-build-arguments) for reference and examples.
+
+### Show the network name
+
+You can use our predefined module that shows the current network and an optional switch for navigating to other deployments/networks. To use this module, just add the following in `config.json`:
+
+```jsonc
+{
+    // ...
+    "pages": [
+        // ...
+        {
+            "def": "page://aleth.io/dashboard",
+            "children": {
+                "content": [
+                    {
+                        "def": "module://aleth.io/dashboard/network",
+                        "options": {
+                            "networkName": "MyTestNet",
+                            // This is optional
+                            "otherNetworks": [
+                                { "name": "Ethereum MainNet", "url": "https://aleth.io" }
+                            ]
+                        }
+                    },
+                    // ...
+                ]
+            }
+        }
+    ]
+}
+```
+
+### Link to a custom deployment of EthStats
+
+If you have a custom deployment of our [EthStats](https://github.com/Alethio/ethstats-network-dashboard) product, you can easily link to it from the main app toolbar using the predefined module. You'll have to edit `config.json` as shown below:
+
+```jsonc
+{
+    "plugins": {
+        // ...
+        "plugin://aleth.io/eth-common?v#.#.#": {
+            // ...
+            "ethstatsUrl": "https://ethstats.io"
+        }
+        // ...
+    },
+    // ...
+    "rootModules": {
+        "toolbarTop": [
+            // ...
+            { "def": "module://aleth.io/toolbar/ethstats" }
+        ],
+        // ...
+    }
+}
 ```
