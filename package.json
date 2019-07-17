@@ -65,7 +65,7 @@
   "dependencies": {
     "@alethio/cms": "^1.0.0-beta.4",
     "@alethio/explorer-ui": "^1.0.0-beta.0",
-    "@alethio/ui": "^1.0.0-beta.12",
+    "@alethio/ui": "^1.0.0-beta.18",
     "@puzzl/browser": "^1.0.0-beta.2",
     "@puzzl/core": "^1.0.0-beta.1",
     "@sentry/browser": "^4.4.0",
