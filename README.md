@@ -30,6 +30,7 @@ No need for servers, hosting or trusting any third parties to display chain data
     - [Deploy to a domain sub-path](#deploy-to-a-domain-sub-path)
     - [Show the network name](#show-the-network-name)
     - [Link to a custom deployment of EthStats](#link-to-a-custom-deployment-of-ethstats)
+    - [Use a custom ETH currency symbol](#use-a-custom-eth-currency-symbol)
 - [Contributing](CONTRIBUTING.md)
 - [License](LICENSE.md)
 
@@ -328,6 +329,24 @@ If you have a custom deployment of our [EthStats](https://github.com/Alethio/eth
             // ...
             { "def": "module://aleth.io/toolbar/ethstats" }
         ],
+        // ...
+    }
+}
+```
+
+### Use a custom ETH currency symbol
+
+If you are deploying for a private or test net, you can customize the main currency symbol by editing the config:
+
+
+```jsonc
+{
+    "plugins": {
+        // ...
+        "plugin://aleth.io/eth-lite?v#.#.#": {
+            // ...
+            "ethSymbol": "GöETH"
+        }
         // ...
     }
 }
