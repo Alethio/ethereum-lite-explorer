@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Fix search results clicks not working on touchpads and with slower mouse clicks
 - Support deployments on a domain sub-path (e.g. https://my.domain.tld/lite-explorer) via `APP_BASE_PATH` build-time env.
 - Cosmetic updates to theme colors
+- Fix Hotjar styling
 
 ## [1.0.0-beta.5] - 2019-06-21
 - Add support for plugins through the [Alethio CMS](https://github.com/Alethio/cms)

@@ -1,3 +1,5 @@
+import { injectGlobal } from "@alethio/explorer-ui/lib/styled-components";
+
 // tslint:disable
 
 declare global {
@@ -28,5 +30,19 @@ export class Hotjar {
             // @ts-ignore
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+
+        injectGlobal`
+            /* Hide Hotjar default feedback button */
+            [id^="_hj"][id$="_feedback_minimized"],
+            [id^="_hj"][id$="_open_close"] {
+                opacity: 0 !important;
+                pointer-events: none !important;
+                left: -1000px !important;
+            }
+            /* Show the close button in the hotjar popup, which is hidden by default for position bottom left */
+            [id^="_hj"][id$="open_close_phone"] {
+                display: block !important;
+            }
+        `;
     }
 }
