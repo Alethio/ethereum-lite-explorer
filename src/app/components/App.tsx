@@ -31,10 +31,18 @@ const ToolbarWrapper = styled.div`
     flex-shrink: 0;
 `;
 
+const CookieBannerWrapper = styled.div`
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    width: 100%;
+`;
+
 enum RootSlotType {
     ToolbarTop = "toolbarTop",
     ToolbarBottom = "toolbarBottom",
-    Topbar = "topbar"
+    Topbar = "topbar",
+    CookieBanner = "cookieBanner"
 }
 
 export interface IAppProps {
@@ -124,6 +132,11 @@ export class App extends React.Component<IAppProps> {
                         </ToolbarWrapper>
                         { routes }
                     </Page>
+                    { slots && slots[RootSlotType.CookieBanner] ?
+                    <CookieBannerWrapper>
+                        { slots[RootSlotType.CookieBanner] }
+                    </CookieBannerWrapper>
+                    : null }
                 </Container>;
             }}
         </Cms>;
