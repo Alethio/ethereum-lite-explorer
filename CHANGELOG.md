@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 - Fix APP_BASE_URL slash (/) escaping
-- Update plugins (eth-common@2.1.2, eth-lite@2.1.0)
+- Update plugins (eth-common@2.3.0, eth-lite@2.1.0)
 - Allow custom ETH currency symbol
 - Fix search results clicks not working on touchpads and with slower mouse clicks
 - Support deployments on a domain sub-path (e.g. https://my.domain.tld/lite-explorer) via `APP_BASE_PATH` build-time env.
