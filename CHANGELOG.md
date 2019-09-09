@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.0.0-beta.6] - 2019-09-09
 
 - Fix APP_BASE_URL slash (/) escaping
 - Update plugins (eth-common@2.3.0, eth-lite@2.1.0)
