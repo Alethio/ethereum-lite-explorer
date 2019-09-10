@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+- Update to @alethio/cms@1.0.0-beta.7, which adds support for dependencies between plugin data adapters
+- Update all plugins with support for new CMS version
+
 ## [1.0.0-beta.6] - 2019-09-09
 
 - Fix APP_BASE_URL slash (/) escaping
