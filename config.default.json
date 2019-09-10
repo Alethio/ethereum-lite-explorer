@@ -6,13 +6,13 @@
     "pluginsUrl": "plugins",
 
     "plugins": {
-        "plugin://aleth.io/eth-common?v=2.3.0": {
+        "plugin://aleth.io/eth-common?v=2.4.0": {
 
         },
-        "plugin://aleth.io/3box?v=1.0.1": {
+        "plugin://aleth.io/3box?v=1.1.0": {
             "ipfsUrlMask": "https://ipfs.infura.io/ipfs/%s"
         },
-        "plugin://aleth.io/eth-lite?v=2.1.0": {
+        "plugin://aleth.io/eth-lite?v=2.2.0": {
             "nodeUrl": "https://mainnet.infura.io/"
         }
     },
