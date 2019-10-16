@@ -156,6 +156,7 @@ $ npm i -g @alethio/cms-plugin-tool
 $ acp install --dev \
     @alethio/explorer-plugin-eth-common \
     @alethio/explorer-plugin-eth-lite \
+    @alethio/explorer-plugin-eth-memento \
     @alethio/explorer-plugin-3box
 ```
 
@@ -349,5 +350,39 @@ If you are deploying for a private or test net, you can customize the main curre
         }
         // ...
     }
+}
+```
+### Show the transactions per account in account page
+
+This module requires `@alethio/explorer-plugin-eth-memento` and access to call the api of a memento lite pipeline deployment.
+Edit the config:
+
+```jsonc
+{
+    "plugins": {
+        // ...
+        "plugin://aleth.io/eth-memento": {
+            "ethSymbol": "GoETH",
+            "accountTxApiUrlMask": "https://blk-api.ethstats.io/api/v3/account/%s/txs"
+        }
+        // ...
+    }
+}
+```
+
+And add the module to account page:
+
+```jsonc
+{
+    "pages": [{
+        "def": "page://aleth.io/account",
+        "children": {
+            // ...
+            "bottom": [
+                { "def": "module://aleth.io/memento/account/txs" }
+                // ...
+            ]
+        }
+    }]
 }
 ```
