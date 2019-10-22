@@ -15,8 +15,7 @@
         "plugin://aleth.io/eth-lite?v=2.2.0": {
             "nodeUrl": "https://mainnet.infura.io/"
         },
-        "plugin://aleth.io/eth-memento": {
-            "ethSymbol": "GoETH",
+        "plugin://aleth.io/eth-memento?v=1.0.0": {
             "accountTxApiUrlMask": "https://blk-api.ethstats.io/api/v3/account/%s/txs"
         }
     },

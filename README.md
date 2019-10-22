@@ -31,6 +31,7 @@ No need for servers, hosting or trusting any third parties to display chain data
     - [Show the network name](#show-the-network-name)
     - [Link to a custom deployment of EthStats](#link-to-a-custom-deployment-of-ethstats)
     - [Use a custom ETH currency symbol](#use-a-custom-eth-currency-symbol)
+    - [Show the transactions per account in account page](#show-the-transactions-per-account-in-account-page)
 - [Contributing](CONTRIBUTING.md)
 - [License](LICENSE.md)
 
@@ -79,12 +80,13 @@ As for the `production` environment the config file is copied in the `dist` fold
 
 The `dist` is the target folder for the built application that needs to be served by an HTTP server.
 
-Here are 2 sample config files as starting point.
+Here are 3 sample config files as starting point.
 
 | Config name | Description |
 | --- | --- |
 | config.default.json | Default configuration file which contains the core plugins of the app that are enough to run the explorer. |
 | config.ibft2.json | Configuration file that has the default core plugins plus an extra one useful for [IBFT2 based chains](https://pegasys.tech/another-day-another-consensus-algorithm-why-ibft-2-0/) that decodes the extraData field of a block. |
+| config.memento.json | Configuration file that has the default core plugins plus the memento plugin that uses memento pipeline to show account's transations in the account page |
 
 The possibility to change the URL of the RPC enabled Ethereum node is done through the `eth-lite` core plugin.
 See the [`nodeUrl`](https://github.com/Alethio/ethereum-lite-explorer/blob/master/config.default.json#L16) attribute for the plugin which has the default value set to `https://mainnet.infura.io/`.
@@ -361,9 +363,9 @@ Edit the config:
 {
     "plugins": {
         // ...
-        "plugin://aleth.io/eth-memento": {
+        "plugin://aleth.io/eth-memento?v#.#.#": {
             "ethSymbol": "GoETH",
-            "accountTxApiUrlMask": "https://blk-api.ethstats.io/api/v3/account/%s/txs"
+            "accountTxApiUrlMask": "https://memento-api.example.com/endpoint/account/%s/transactions"
         }
         // ...
     }
