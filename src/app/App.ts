@@ -18,7 +18,7 @@ export class App {
 
         let appConfigData: any;
         try {
-            appConfigData = await new HttpRequest().fetchJson("config.json");
+            appConfigData = await new HttpRequest().fetchJson(__webpack_public_path__ + "config.json");
         } catch (e) {
             // No logging support yet
             // tslint:disable-next-line:no-console
