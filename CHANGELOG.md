@@ -1,10 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.0.0-beta.7] - 2019-10-29
 
 - Update to @alethio/cms@1.0.0-beta.7, which adds support for dependencies between plugin data adapters
 - Update all plugins with support for new CMS version
+- Update instruction for memento pipeline setup - How to show the transactions per account in account page
 
 ## [1.0.0-beta.6] - 2019-09-09
 
