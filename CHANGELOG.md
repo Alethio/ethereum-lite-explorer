@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.0.0-beta.7] - 2019-10-29
+## [1.0.0-beta.7] - 2019-10-31
 
 - Update to @alethio/cms@1.0.0-beta.7, which adds support for dependencies between plugin data adapters
 - Update all plugins with support for new CMS version
