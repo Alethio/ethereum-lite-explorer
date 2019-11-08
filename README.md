@@ -200,7 +200,9 @@ If you don't have a Memento environment set up already, follow the instructions 
 
 > This requires Memento >= v1.1.0
 
-**IMPORTANT** The steps presented below assume you've gone through the steps in [Building from source](#building-from-source)
+**Easiest way to run with Memento** is to follow the steps from [Running in Docker](#running-in-docker) and mount `config.memento.js` as config file.
+
+**If you want a more customized setup**, follow [Building from source](#building-from-source) and the following steps 
 
 Build the Lite Explorer
 ```sh
