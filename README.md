@@ -198,6 +198,8 @@ The biggest advantage of using Memento as a data source is the indexed data whic
 
 If you don't have a Memento environment set up already, follow the instructions [here](https://github.com/Alethio/memento#installation)
 
+> This requires Memento >= v1.1.0
+
 **IMPORTANT** The steps presented below assume you've gone through the steps in [Building from source](#building-from-source)
 
 Build the Lite Explorer
