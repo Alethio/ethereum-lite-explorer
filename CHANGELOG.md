@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## unreleased
+- Update config.memento.json and Memento instructions
+- Update `eth-memento` plugin version to 1.1.0 in Dockerfile
+
 ## [1.0.0-beta.7] - 2019-10-31
 
 - Update to @alethio/cms@1.0.0-beta.7, which adds support for dependencies between plugin data adapters

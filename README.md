@@ -20,6 +20,7 @@ No need for servers, hosting or trusting any third parties to display chain data
     - [Running in Docker](#running-in-docker)
     - [Building from source](#building-from-source)
     - [Example setups](#example-setups)
+        - [With Memento](#with-memento)
         - [With Infura](#with-infura)
         - [With Parity Light Client](#with-parity-light-client)
         - [With Ganache](#with-ganache)
@@ -86,7 +87,7 @@ Here are 3 sample config files as starting point.
 | --- | --- |
 | config.default.json | Default configuration file which contains the core plugins of the app that are enough to run the explorer. |
 | config.ibft2.json | Configuration file that has the default core plugins plus an extra one useful for [IBFT2 based chains](https://pegasys.tech/another-day-another-consensus-algorithm-why-ibft-2-0/) that decodes the extraData field of a block. |
-| config.memento.json | Configuration file that has the default core plugins plus the memento plugin that uses memento pipeline to show account's transations in the account page |
+| config.memento.json | Configuration file that has the default core plugins plus the memento plugins to use the Memento API as a data source |
 
 The possibility to change the URL of the RPC enabled Ethereum node is done through the `eth-lite` core plugin.
 See the [`nodeUrl`](https://github.com/Alethio/ethereum-lite-explorer/blob/master/config.default.json#L16) attribute for the plugin which has the default value set to `https://mainnet.infura.io/`.
@@ -190,6 +191,52 @@ If serving the app from `https://my.tld/path/to/app`:
 ` $ APP_BASE_URL="https://my.tld" APP_BASE_PATH="path/to/app" npm run build`
 
 ### Example setups
+
+#### With Memento
+[Memento](https://github.com/Alethio/memento) is Alethio's open source tool for scraping and indexing Ethereum data from any web3-compatible node.
+The biggest advantage of using Memento as a data source is the indexed data which allows a faster access as well as the ability to show transactions on the account page.
+
+If you don't have a Memento environment set up already, follow the instructions [here](https://github.com/Alethio/memento#installation)
+
+**IMPORTANT** The steps presented below assume you've gone through the steps in [Building from source](#building-from-source)
+
+Build the Lite Explorer
+```sh
+$ npm run build
+```
+
+Install the necessary plugins
+```sh
+$ acp install --dev \
+    @alethio/explorer-plugin-eth-common \
+    @alethio/explorer-plugin-eth-memento \
+    @alethio/explorer-plugin-3box
+```
+
+Copy the config file
+```sh
+$ cp config.memento.json config.dev.json
+```
+
+Modify the `apiBasePath` to point to Memento's API and, since we are running in dev mode, remove the version query strings `?v=#.#.#` from the "plugins". The "plugins" section should look as follows:
+```sh
+"plugins": {
+    "plugin://aleth.io/eth-common": {
+
+    },
+    "plugin://aleth.io/3box": {
+        "ipfsUrlMask": "https://ipfs.infura.io/ipfs/%s"
+    },
+    "plugin://aleth.io/eth-memento": {
+        "apiBasePath": "http://localhost:3001/api/explorer"
+    }
+},
+```
+
+Start the explorer
+```sh
+$ npm start
+```
 
 #### With Infura
 - [Sign-up](https://infura.io/register) for an account or [sign-in](https://infura.io/login) into your Infura account.
@@ -365,7 +412,7 @@ Edit the config:
         // ...
         "plugin://aleth.io/eth-memento?v#.#.#": {
             "ethSymbol": "GoETH",
-            "accountTxApiUrlMask": "https://memento-api.example.com/endpoint/account/%s/transactions"
+            "apiBasePath": "http://memento-api.example/api/explorer"
         }
         // ...
     }
@@ -388,3 +435,5 @@ And add the module to account page:
     }]
 }
 ```
+
+If you want to use Memento as a full backend replacement (recommended), see the [With Memento](#with-memento) section.
