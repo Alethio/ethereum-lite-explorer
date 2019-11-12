@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## unreleased
+## [1.0.0-beta.8] - 2019-11-12
 - Update config.memento.json and Memento instructions
 - Update `eth-memento` plugin version to 1.1.0 in Dockerfile
 
