@@ -12,11 +12,8 @@
         "plugin://aleth.io/3box?v=1.1.0": {
             "ipfsUrlMask": "https://ipfs.infura.io/ipfs/%s"
         },
-        "plugin://aleth.io/eth-lite?v=2.2.0": {
-            "nodeUrl": "https://mainnet.infura.io/"
-        },
-        "plugin://aleth.io/eth-memento?v=1.0.1": {
-            "accountTxApiUrlMask": "https://blk-api.ethstats.io/api/v3/account/%s/txs"
+        "plugin://aleth.io/eth-memento?v=1.1.0": {
+            "apiBasePath": "http://localhost:3001/api/explorer"
         }
     },
 
@@ -30,23 +27,29 @@
                 ]
             }],
             "content": [{
-                "def": "module://aleth.io/lite/block/details",
+                "def": "module://aleth.io/memento/block/basic",
                 "pageCritical": true,
                 "children": {
                     "confirmations": [
                         { "def": "module://aleth.io/block/confirmations" }
-                    ],
-                    "txs": [
-                        { "def": "module://aleth.io/lite/block/txs" }
                     ]
                 }
+            }, {
+                "def": "module://aleth.io/memento/block/txs",
+                "pageCritical": true
+            }, {
+                "def": "module://aleth.io/memento/block/advanced",
+                "pageCritical": true
+            }, {
+                "def": "module://aleth.io/memento/block/logs-bloom",
+                "pageCritical": true
             }]
         }
     }, {
         "def": "page://aleth.io/uncle",
         "children": {
             "content": [{
-                "def": "module://aleth.io/lite/uncle/details",
+                "def": "module://aleth.io/memento/uncle/details",
                 "pageCritical": true
             }]
         }
@@ -54,24 +57,30 @@
         "def": "page://aleth.io/tx",
         "children": {
             "sidebar": [{
-                "def": "context://aleth.io/lite/tx/parentBlock",
+                "def": "context://aleth.io/memento/tx/parentBlock",
                 "children": [{
                     "def": "module://aleth.io/tx/list"
                 }]
             }],
             "content": [{
-                "def": "context://aleth.io/lite/tx/parentBlock",
+                "def": "context://aleth.io/memento/tx/parentBlock",
                 "pageCritical": true,
                 "children": [{
-                    "def": "module://aleth.io/lite/tx/details",
+                    "def": "module://aleth.io/memento/tx/basic",
                     "children": {
                         "blockConfirmations": [{
-                            "def": "context://aleth.io/lite/tx/parentBlock",
+                            "def": "context://aleth.io/memento/tx/parentBlock",
                             "children": [{
-                                 "def": "module://aleth.io/block/confirmations"
+                                "def": "module://aleth.io/block/confirmations"
                             }]
                         }]
                     }
+                }, {
+                    "def": "module://aleth.io/memento/tx/advanced"
+                }, {
+                    "def": "module://aleth.io/memento/tx/summary"
+                }, {
+                    "def": "module://aleth.io/memento/tx/payload"
                 }]
             }]
         }
@@ -85,11 +94,11 @@
                 }
             }],
             "top": [
-                { "def": "module://aleth.io/lite/account/details", "pageCritical": true }
+                { "def": "module://aleth.io/memento/account/details", "pageCritical": true }
             ],
             "bottom": [
                 { "def": "module://aleth.io/memento/account/txs" },
-                { "def": "module://aleth.io/lite/account/contract" }
+                { "def": "module://aleth.io/memento/account/contract" }
             ]
         }
     }, {
