@@ -4,8 +4,7 @@ set -e
 
 if [ ! -f /usr/share/nginx/html/config.json ]; then
     echo "Setting config"
-    /app/set-env-vars.js
-    cp /app/config.json /usr/share/nginx/html/config.json
+    /app/set-env-vars.js /app/config.default.json /usr/share/nginx/html/config.json
 fi
 
 if [[ ! -z "$APP_BASE_URL" ]]; then
