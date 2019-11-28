@@ -6,16 +6,16 @@
     "pluginsUrl": "plugins",
 
     "plugins": {
-        "plugin://aleth.io/eth-common?v=2.4.0": {
+        "plugin://aleth.io/eth-common?v=3.0.0": {
 
         },
         "plugin://aleth.io/3box?v=1.1.0": {
             "ipfsUrlMask": "https://ipfs.infura.io/ipfs/%s"
         },
-        "plugin://aleth.io/eth-lite?v=2.2.0": {
+        "plugin://aleth.io/eth-lite?v=4.0.0": {
             "nodeUrl": "https://mainnet.infura.io/"
         },
-        "plugin://aleth.io/eth-ibft2?v=1.1.0": {
+        "plugin://aleth.io/eth-ibft2?v=2.0.0": {
 
         }
     },
@@ -40,7 +40,7 @@
                         { "def": "module://aleth.io/lite/block/txs" }
                     ],
                     "extraData": [{
-                        "def": "module://aleth.io/block/ibft2-extra-data"
+                        "def": "module://aleth.io/eth-ibft2/block/lite/extra-data"
                     }]
                 }
             }]
