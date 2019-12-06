@@ -2,7 +2,7 @@ import * as express from "express";
 import * as path from "path";
 import * as fs from "fs";
 import * as morgan from "morgan";
-import opn = require("opn");
+import open = require("open");
 import { AddressInfo } from "net";
 
 const basePath = process.env.APP_BASE_PATH ?
@@ -26,9 +26,13 @@ app.use(`${basePath}plugins`, express.static(path.resolve("../dist/plugins"), { 
 // Fallback for HTML 5 routing
 app.use(`${basePath}*`, (req, res) => res.sendFile(path.resolve("../dist/index.html")));
 
-let server = app.listen(Number(process.env.PORT) || 3000, process.env.HOST || "127.0.0.1", () => {
+let server = app.listen(Number(process.env.PORT) || 3000, process.env.HOST || "127.0.0.1", async () => {
     let address = server.address() as AddressInfo;
     process.stdout.write(`Listening on ${address.address + ":" + address.port}\n`);
 
-    opn(`http://localhost:${address.port}${basePath}`);
+    try {
+        await open(`http://localhost:${address.port}${basePath}`);
+    } catch (e) {
+        process.stderr.write(`\nFailed to open web browser. You can open it yourself and ignore this error. ${e}`);
+    }
 });
