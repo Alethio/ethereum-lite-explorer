@@ -42,7 +42,8 @@ enum RootSlotType {
     ToolbarTop = "toolbarTop",
     ToolbarBottom = "toolbarBottom",
     Topbar = "topbar",
-    CookieBanner = "cookieBanner"
+    CookieBanner = "cookieBanner",
+    Root = "root"
 }
 
 export interface IAppProps {
@@ -137,6 +138,7 @@ export class App extends React.Component<IAppProps> {
                         { slots[RootSlotType.CookieBanner] }
                     </CookieBannerWrapper>
                     : null }
+                    { slots && slots[RootSlotType.Root] }
                 </Container>;
             }}
         </Cms>;
