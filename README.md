@@ -230,17 +230,19 @@ $ cp config.memento.json config.dev.json
 
 Modify the `apiBasePath` to point to Memento's API and, since we are running in dev mode, remove the version query strings `?v=#.#.#` from the "plugins". The "plugins" section should look as follows:
 ```sh
-"plugins": {
-    "plugin://aleth.io/eth-common": {
-
-    },
-    "plugin://aleth.io/3box": {
+"plugins": [{
+    "uri": "plugin://aleth.io/eth-common"
+}, {
+    "uri": "plugin://aleth.io/3box",
+    "config": {
         "ipfsUrlMask": "https://ipfs.infura.io/ipfs/%s"
-    },
-    "plugin://aleth.io/eth-memento": {
+    }
+}, {
+    "uri": "plugin://aleth.io/eth-memento",
+    "config": {
         "apiBasePath": "http://localhost:3001/api/explorer"
     }
-},
+}],
 ```
 
 Start the explorer
@@ -375,14 +377,13 @@ If you have a custom deployment of our [EthStats](https://github.com/Alethio/eth
 
 ```jsonc
 {
-    "plugins": {
-        // ...
-        "plugin://aleth.io/eth-common?v#.#.#": {
+    "plugins": [{
+        "uri": "plugin://aleth.io/eth-common?v#.#.#",
+        "config": {
             // ...
             "ethstatsUrl": "https://ethstats.io"
         }
-        // ...
-    },
+    }],
     // ...
     "rootModules": {
         "toolbarTop": [
@@ -401,14 +402,13 @@ If you are deploying for a private or test net, you can customize the main curre
 
 ```jsonc
 {
-    "plugins": {
-        // ...
-        "plugin://aleth.io/eth-lite?v#.#.#": {
+    "plugins": [{
+        "uri": "plugin://aleth.io/eth-lite?v#.#.#",
+        "config": {
             // ...
             "ethSymbol": "GöETH"
         }
-        // ...
-    }
+    }]
 }
 ```
 ### Show the transactions per account in account page
@@ -418,14 +418,13 @@ Edit the config:
 
 ```jsonc
 {
-    "plugins": {
-        // ...
-        "plugin://aleth.io/eth-memento?v#.#.#": {
+    "plugins": [{
+        "uri": "plugin://aleth.io/eth-memento?v#.#.#",
+        "config": {
             "ethSymbol": "GoETH",
             "apiBasePath": "http://memento-api.example/api/explorer"
         }
-        // ...
-    }
+    }]
 }
 ```
 
@@ -447,3 +446,25 @@ And add the module to account page:
 ```
 
 If you want to use Memento as a full backend replacement (recommended), see the [With Memento](#with-memento) section.
+
+### Override specific text strings (translations)
+
+You can customize texts for each plugin by overriding the corresponding translation keys in the plugin's configuration:
+
+```jsonc
+{
+    "plugins": [{
+        "uri": "plugin://aleth.io/eth-lite?v#.#.#",
+        "config": {
+            //...
+        },
+        "translations": {
+            "en-US": {
+                "dashboardView.title": "My Private Network Explorer"
+            }
+        }
+    }]
+}
+```
+
+You can refer to individual translation keys in the core plugins repo. Follow [this link](https://github.com/Alethio/explorer-core-plugins/tree/master/src/app/eth-lite/translation) for the eth-lite plugin translations and [this one](https://github.com/Alethio/explorer-core-plugins/tree/master/src/app/eth-common/translation) for eth-common plugin translations.
