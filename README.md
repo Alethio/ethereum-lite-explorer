@@ -172,10 +172,16 @@ The above command `acp` installs the plugins in the `dist` folder. Basically the
 
 **IMPORTANT**: Whenever you use `npm run build` or `npm run build-dev` the `dist` folder is emptied, thus the plugins are also deleted and they need to be reinstalled.
 
-Finally, you can start the explorer with
+Finally, you can start the local Explorer development server with
 ```sh
 $ npm start
 ```
+
+#### Deploying the built assets to production
+
+When building from source, you are responsible for setting up your own production environment. There are two available options: you can either start from our existing Dockerfile found in the root of the repo and customize that, or you can use your own custom solution.
+
+For a custom deployment, first make sure you have built the Explorer distributables for production, using `npm run build`. Assuming you already have a web server, such as Nginx, you will need to copy everything from the `dist/` folder to the public folder of the web server (e.g. /usr/share/nginx/html). Then, in the same target folder you need a valid `config.json` file. Note the filename, which is different from the development version. You can use the `config.*.json` from the root of the repo as templates. Make sure to also fill in the `nodeUrl` in the `eth-lite` plugin config section. Lastly, make sure that your web server redirects all routes to the `index.html` to enable HTML5 routing. You can refer to `.docker/nginx.conf` as an example.
 
 #### Custom build arguments
 
@@ -202,7 +208,7 @@ If you don't have a Memento environment set up already, follow the instructions 
 
 **Easiest way to run with Memento** is to follow the steps from [Running in Docker](#running-in-docker) and mount `config.memento.js` as config file.
 
-**If you want a more customized setup**, follow [Building from source](#building-from-source) and the following steps 
+**If you want a more customized setup**, follow [Building from source](#building-from-source) and the following steps
 
 Build the Lite Explorer
 ```sh
