@@ -5,17 +5,19 @@
 
     "pluginsUrl": "plugins",
 
-    "plugins": {
-        "plugin://aleth.io/eth-common?v=3.0.0": {
-
-        },
-        "plugin://aleth.io/3box?v=1.1.0": {
+    "plugins": [{
+        "uri": "plugin://aleth.io/eth-common?v=3.0.0"
+    }, {
+        "uri": "plugin://aleth.io/3box?v=1.1.0",
+        "config": {
             "ipfsUrlMask": "https://ipfs.infura.io/ipfs/%s"
-        },
-        "plugin://aleth.io/eth-lite?v=4.0.0": {
+        }
+    }, {
+        "uri": "plugin://aleth.io/eth-lite?v=4.1.0",
+        "config": {
             "nodeUrl": "https://mainnet.infura.io/"
         }
-    },
+    }],
 
     "pages": [{
         "def": "page://aleth.io/block",

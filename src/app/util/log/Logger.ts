@@ -21,7 +21,11 @@ export class Logger implements ILogger {
     warn(message: string, context?: any) {
         this.transports.forEach(t => {
             try {
-                t.warn(message, context);
+                if (context !== void 0) {
+                    t.warn(message, context);
+                } else {
+                    t.warn(message);
+                }
             } catch (e) {
                 // Nothing we can do about it
             }

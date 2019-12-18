@@ -13,8 +13,14 @@ let defaultConfig = JSON.parse(fs.readFileSync(path.resolve(inFile), "utf-8"));
 
 if (process.env.APP_NODE_URL) {
     let pluginConfigs = defaultConfig["plugins"];
-    let litePluginKey = Object.keys(pluginConfigs).find(k => k.match(/^plugin:\/\/aleth.io\/eth-lite/));
-    pluginConfigs[litePluginKey]["nodeUrl"] = process.env.APP_NODE_URL;
+    if (Array.isArray(pluginConfigs)) {
+        let litePluginConfig = pluginConfigs.find(plugin => plugin.uri.match(/^plugin:\/\/aleth.io\/eth-lite/)).config;
+        litePluginConfig["nodeUrl"] = process.env.APP_NODE_URL;
+    } else {
+        // Legacy format: removing this will be a breaking change for Docker setups with custom config mounted.
+        let litePluginKey = Object.keys(pluginConfigs).find(k => k.match(/^plugin:\/\/aleth.io\/eth-lite/));
+        pluginConfigs[litePluginKey]["nodeUrl"] = process.env.APP_NODE_URL;
+    }
 }
 
 fs.writeFileSync(path.resolve(outFile), JSON.stringify(defaultConfig, undefined, "\t"));
