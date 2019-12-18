@@ -12,6 +12,9 @@ No need for servers, hosting or trusting any third parties to display chain data
 > Please report any bugs using Github's [issues](https://github.com/Alethio/ethereum-lite-explorer/issues/)
 
 ## Contents
+<!-- TOC depthFrom:2 depthTo:4 -->
+
+- [Contents](#contents)
 - [Technical Details](#technical-details)
     - [Project structure](#project-structure)
 - [Getting started](#getting-started)
@@ -19,6 +22,8 @@ No need for servers, hosting or trusting any third parties to display chain data
     - [Configuration](#configuration)
     - [Running in Docker](#running-in-docker)
     - [Building from source](#building-from-source)
+        - [Deploying the built assets to production](#deploying-the-built-assets-to-production)
+        - [Custom build arguments](#custom-build-arguments)
     - [Example setups](#example-setups)
         - [With Memento](#with-memento)
         - [With Infura](#with-infura)
@@ -33,6 +38,9 @@ No need for servers, hosting or trusting any third parties to display chain data
     - [Link to a custom deployment of EthStats](#link-to-a-custom-deployment-of-ethstats)
     - [Use a custom ETH currency symbol](#use-a-custom-eth-currency-symbol)
     - [Show the transactions per account in account page](#show-the-transactions-per-account-in-account-page)
+    - [Override specific text strings (translations)](#override-specific-text-strings-translations)
+
+<!-- /TOC -->
 - [Contributing](CONTRIBUTING.md)
 - [License](LICENSE.md)
 
