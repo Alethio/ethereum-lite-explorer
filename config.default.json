@@ -13,7 +13,7 @@
             "ipfsUrlMask": "https://ipfs.infura.io/ipfs/%s"
         }
     }, {
-        "uri": "plugin://aleth.io/eth-lite?v=4.0.0",
+        "uri": "plugin://aleth.io/eth-lite?v=4.1.0",
         "config": {
             "nodeUrl": "https://mainnet.infura.io/"
         }
