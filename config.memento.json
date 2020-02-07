@@ -6,14 +6,14 @@
     "pluginsUrl": "plugins",
 
     "plugins": [{
-        "uri": "plugin://aleth.io/eth-common?v=3.0.0"
+        "uri": "plugin://aleth.io/eth-common?v=4.0.0"
     }, {
-        "uri": "plugin://aleth.io/3box?v=1.1.0",
+        "uri": "plugin://aleth.io/3box?v=1.1.1",
         "config": {
             "ipfsUrlMask": "https://ipfs.infura.io/ipfs/%s"
         }
     }, {
-        "uri": "plugin://aleth.io/eth-memento?v=2.0.0",
+        "uri": "plugin://aleth.io/eth-memento?v=2.0.2",
         "config": {
             "apiBasePath": "http://localhost:3001/api/explorer"
         }
