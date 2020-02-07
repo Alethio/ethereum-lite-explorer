@@ -1,7 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+
+- Update to @alethio/cms@1.0.0-beta.11. Older plugins may need to be updated. See the @alethio/cms changelog for more info.
+- Adds support for new plugin configuration structure, allowing translation strings overrides. See the @alethio/cms readme for more info.
+- Fix error that occurred when starting the local development server on some Linux systems
+
 ## [1.0.0-beta.8] - 2019-11-12
+
 - Update config.memento.json and Memento instructions
 - Update `eth-memento` plugin version to 1.1.0 in Dockerfile
 
