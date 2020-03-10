@@ -135,9 +135,7 @@ You can deploy the Lite Explorer in Kubernetes using the following steps:
 - Run `./deploy.sh` to deploy
 - Run `./remove.sh` to remove
 
-The default `APP_NODE_URL` is set to `http://localhost:8545` in `.kubernetes/explorer-deployment.yaml`. Change `APP_NODE_URL` to your own URL of a RPC enabled node if needed.
-
-
+Change `.kubernetes/configmap.yaml` to your needs
 
 ### Building from source
 Clone the explorer in a folder of your choosing

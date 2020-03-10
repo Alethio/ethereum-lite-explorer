@@ -1,26 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: lite-explorer
   labels:
-    app: ethereum-lite-explorer
-  name: ethereum-lite-explorer
+    app: lite-explorer
 spec:
   replicas: 1
-  strategy: {}
   selector:
     matchLabels:
-      app: ethereum-lite-explorer
+      app: lite-explorer
   template:
     metadata:
+      # Optional, if this'd be wrapped in a helm chart it can be generated as the SHA256 of the configmap
+      # to pod rolling updates reloads on configmap change
+      annotations:
+        checksum/config: 6733181240aa3db87503350771fb19fcaef0707e209928165a9cc7e3e3050781
       labels:
-        app: ethereum-lite-explorer
+        app: lite-explorer
     spec:
       containers:
-      - image: alethio/ethereum-lite-explorer
-        name: ethereum-lite-explorer
-        env: 
-          - name: APP_NODE_URL
-            value: "http://localhost:8545"
-        ports:
-        - containerPort: 80
-      restartPolicy: Always
+        - image: alethio/ethereum-lite-explorer
+          imagePullPolicy: Always
+          name: app
+          ports:
+          - containerPort: 80
+            name: http
+          volumeMounts:
+          - mountPath: /usr/share/nginx/html/config.json
+            name: config
+            subPath: config.json
+      volumes:
+        - configMap:
+            name: lite-explorer
+          name: config

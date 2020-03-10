@@ -1,14 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app: ethereum-lite-explorer-service
-  name: ethereum-lite-explorer-service
+  name: lite-explorer
 spec:
+  type: ClusterIP
   ports:
-  - name: "25000"
-    port: 25000
-    targetPort: 80
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
   selector:
-    app: ethereum-lite-explorer
-
+    app: lite-explorer
