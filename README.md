@@ -130,12 +130,12 @@ If more customization is needed, a full configuration file can be mounted in the
 $ docker run -p 80:80 -v /your-config-dir/config.json:/usr/share/nginx/html/config.json alethio/ethereum-lite-explorer
 ```
 ### Running in Kubernetes
-The default `APP_NODE_URL` is set to `http://localhost:8545` in `.kubernetes/explorer-deployment.yaml`. Change `APP_NODE_URL` to your own URL of a RPC enabled node if needed.
-
 You can deploy the Lite Explorer in Kubernetes using the following steps:
 - `cd .kubernetes`
 - Run `./deploy.sh` to deploy
 - Run `./remove.sh` to remove
+
+The default `APP_NODE_URL` is set to `http://localhost:8545` in `.kubernetes/explorer-deployment.yaml`. Change `APP_NODE_URL` to your own URL of a RPC enabled node if needed.
 
 
 
