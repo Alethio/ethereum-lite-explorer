@@ -135,7 +135,7 @@ You can deploy the Lite Explorer in Kubernetes using the following steps:
 - Run `./deploy.sh` to deploy
 - Run `./remove.sh` to remove
 
-Change `.kubernetes/configmap.yaml` to your needs
+In `.kubernetes/configmap.yaml` you will find the default `config.json` file, this can be adjusted to your needs.
 
 ### Building from source
 Clone the explorer in a folder of your choosing
