@@ -21,6 +21,7 @@ No need for servers, hosting or trusting any third parties to display chain data
     - [Prerequisites](#prerequisites)
     - [Configuration](#configuration)
     - [Running in Docker](#running-in-docker)
+    - [Running in Kubernetes](#running-in-kubernetes)
     - [Building from source](#building-from-source)
         - [Deploying the built assets to production](#deploying-the-built-assets-to-production)
         - [Custom build arguments](#custom-build-arguments)
@@ -128,6 +129,15 @@ If more customization is needed, a full configuration file can be mounted in the
 ```sh
 $ docker run -p 80:80 -v /your-config-dir/config.json:/usr/share/nginx/html/config.json alethio/ethereum-lite-explorer
 ```
+### Running in Kubernetes
+The default `APP_NODE_URL` is set to `http://localhost:8545` in `.kubernetes/explorer-deployment.yaml`. Change `APP_NODE_URL` to your own URL of a RPC enabled node if needed.
+
+You can deploy the Lite Explorer in Kubernetes using the following steps:
+- `cd .kubernetes`
+- Run `./deploy.sh` to deploy
+- Run `./remove.sh` to remove
+
+
 
 ### Building from source
 Clone the explorer in a folder of your choosing

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ethereum-lite-explorer
+  name: ethereum-lite-explorer
+spec:
+  replicas: 1
+  strategy: {}
+  selector:
+    matchLabels:
+      app: ethereum-lite-explorer
+  template:
+    metadata:
+      labels:
+        app: ethereum-lite-explorer
+    spec:
+      containers:
+      - image: alethio/ethereum-lite-explorer
+        name: ethereum-lite-explorer
+        env: 
+          - name: APP_NODE_URL
+            value: "http://localhost:8545"
+        ports:
+        - containerPort: 80
+      restartPolicy: Always
