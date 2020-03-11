@@ -132,10 +132,10 @@ $ docker run -p 80:80 -v /your-config-dir/config.json:/usr/share/nginx/html/conf
 ### Running in Kubernetes
 You can deploy the Lite Explorer in Kubernetes using the following steps:
 - `cd .kubernetes`
-- Run `./deploy.sh` to deploy
+- Run `./deploy.sh` to deploy, uses `config.default.json` as config.
+- Use for example `./deploy.sh ../config.memento.json` to select other config files.
 - Run `./remove.sh` to remove
 
-In `.kubernetes/configmap.yaml` you will find the default `config.json` file, this can be adjusted to your needs.
 
 ### Building from source
 Clone the explorer in a folder of your choosing
