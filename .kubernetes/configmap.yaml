@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: lite-explorer
+data:
+  config.json: |-
+    CONFIG_JSON
