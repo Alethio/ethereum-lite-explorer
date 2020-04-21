@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+## [1.0.0-beta.9] - 2020-04-21
 
 - Update to @alethio/cms@1.0.0-beta.11. Older plugins may need to be updated. See the @alethio/cms changelog for more info.
 - Adds support for new plugin configuration structure, allowing translation strings overrides. See the @alethio/cms readme for more info.
