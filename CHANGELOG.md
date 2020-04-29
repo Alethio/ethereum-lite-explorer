@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2020-04-29
+
+- Update `eth-ibft2` plugin to 2.0.1, fixing usage with `eth-memento`
+
 ## [1.0.0-beta.10] - 2020-04-29
 
 - Update to @alethio/cms@1.0.0-beta.12 (which adds support for plugin data source dependencies)

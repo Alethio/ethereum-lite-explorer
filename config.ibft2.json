@@ -18,7 +18,7 @@
             "nodeUrl": "https://mainnet.infura.io/"
         }
     }, {
-        "uri": "plugin://aleth.io/eth-ibft2?v=2.0.0"
+        "uri": "plugin://aleth.io/eth-ibft2?v=2.0.1"
     }],
 
     "pages": [{
