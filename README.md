@@ -40,6 +40,7 @@ No need for servers, hosting or trusting any third parties to display chain data
     - [Use a custom ETH currency symbol](#use-a-custom-eth-currency-symbol)
     - [Show the transactions per account in account page](#show-the-transactions-per-account-in-account-page)
     - [Override specific text strings (translations)](#override-specific-text-strings-translations)
+    - [Use a custom RPC node authentication method](#use-a-custom-rpc-node-authentication-method)
 
 <!-- /TOC -->
 - [Contributing](CONTRIBUTING.md)
@@ -484,3 +485,9 @@ You can customize texts for each plugin by overriding the corresponding translat
 ```
 
 You can refer to individual translation keys in the core plugins repo. Follow [this link](https://github.com/Alethio/explorer-core-plugins/tree/master/src/app/eth-lite/translation) for the eth-lite plugin translations and [this one](https://github.com/Alethio/explorer-core-plugins/tree/master/src/app/eth-common/translation) for eth-common plugin translations.
+
+### Use a custom RPC node authentication method
+
+If your RPC node requires a custom authentication step (e.g. Besu), the `eth-lite` plugin supports initialization hooks for the purpose of injecting authorization headers into the web3 instance. You will need to create a plugin that handles the authentication steps (e.g. collects credentials via a login form or 3rd party page redirect). The plugin will export a data adapter returning an object that follows the [IAuthStore](https://github.com/Alethio/explorer-core-plugins/blob/master/src/app/eth-lite/IAuthStore.ts) interface definition. The public URI for that adapter is passed to the `eth-lite` plugin config via the [authStoreUri](https://github.com/Alethio/explorer-core-plugins/blob/master/src/app/eth-lite/EthLitePluginConfig.ts#L14) key. This will pause the initialization of the `eth-lite` plugin until the authentication is handled.
+
+Check out this Besu plugin as an example: https://www.npmjs.com/package/@adetante/explorer-besu-plugin

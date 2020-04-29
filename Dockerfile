@@ -13,7 +13,7 @@ RUN npm run build --verbose
 
 RUN acp install \
     @alethio/explorer-plugin-eth-common@4.0.0 \
-    @alethio/explorer-plugin-eth-lite@4.1.0 \
+    @alethio/explorer-plugin-eth-lite@4.2.0 \
     @alethio/explorer-plugin-eth-memento@2.0.2 \
     @alethio/explorer-plugin-eth-ibft2@2.0.0 \
     @alethio/explorer-plugin-3box@1.1.1
