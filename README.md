@@ -30,7 +30,7 @@ No need for servers, hosting or trusting any third parties to display chain data
         - [With Infura](#with-infura)
         - [With Parity Light Client](#with-parity-light-client)
         - [With Ganache](#with-ganache)
-        - [With Pantheon](#with-pantheon)
+        - [With Besu](#with-besu)
     - [Example Deployments](#example-deployments)
         - [surge.sh](#surgesh)
 - [How to](#how-to)
@@ -79,7 +79,7 @@ Please make sure you have the following installed and running properly
     * [An Infura Account](#with-infura)
     * [Parity Light Client](#with-parity-light-client)
     * [Ganache](#with-ganache)
-    * [Pantheon Dev Mode](#with-pantheon) - private chain example
+    * [Besu Dev Mode](#with-besu) - private chain example
 - If not using the pre-built Docker images, you will need an HTTP server for serving the app and it must be deployed at the root of the domain/subdomain.
 
 ### Configuration
@@ -309,25 +309,10 @@ Build and start Lite Explorer
 $ npm run build && npm start
 ```
 
-#### With Pantheon
+#### With Besu
 This is a great way to use a full featured client, and to see how the explorer works with a private network.
 
-First of all, if you do not have it, [download and install Pantheon stable release](https://docs.pantheon.pegasys.tech/en/stable/Installation/Install-Binaries/).
-
-To get started, run a Pantheon node with the HTTP and WebSockets JSON-RPC services enabled, allowing traffic from all hosts and CORS origins:
-
-```sh
-$ pantheon --host-whitelist="*" --rpc-http-cors-origins="*" --rpc-http-enabled --rpc-http-host=0.0.0.0 --rpc-ws-enabled --rpc-ws-host=0.0.0.0
-```
-
-_(Note: using "*" values for host whitelist and CORS origins is not a recommended way to run a production node securely, this configuration is intended for test or developement purpose only. For more information about these options, refer to the [Pantheon CLI reference](https://docs.pantheon.pegasys.tech/en/stable/Reference/Pantheon-CLI-Syntax/))._
-
-After running Pantheon, update the `config.dev.json` file, and set the `nodeUrl` attribute for the `eth-lite` plugin to `http://127.0.0.1:8545`.
-
-Build and start Lite Explorer
-```sh
-$ npm run build && npm start
-```
+Refer to [Besu Light Explorer HowTo](https://besu.hyperledger.org/en/stable/HowTo/Deploy/Lite-Block-Explorer/ ) to configure your node and explorer.
 
 ### Example Deployments
 
