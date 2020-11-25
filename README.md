@@ -137,6 +137,12 @@ You can deploy the Lite Explorer in Kubernetes using the following steps:
 - Use for example `./deploy.sh ../config.memento.json` to select other config files.
 - Run `./remove.sh` to remove
 
+An helm chart is also available in `.kubernetes/charts/ethereum-lite-explorer`.
+
+```shell
+cd .kubernetes/charts
+helm install ethereum-lite-explorer ./ethereum-lite-explorer
+```
 
 ### Building from source
 Clone the explorer in a folder of your choosing

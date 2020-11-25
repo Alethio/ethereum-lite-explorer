@@ -1,0 +1,208 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "ethereum-lite-explorer.fullname" . }}-config
+  labels:
+  {{- include "ethereum-lite-explorer.labels" . | nindent 4 }}
+data:
+  config.json: |
+    {
+      "GOOGLE_ANALYTICS_ID": null,
+      "HOTJAR_ID": null,
+      "SENTRY_ENABLED": false,
+      "pluginsUrl": "plugins",
+      "plugins": [
+      {
+        "uri": "plugin://aleth.io/eth-common?v=4.0.0"
+      },
+      {
+        "uri": "plugin://aleth.io/3box?v=1.1.1",
+        "config": {
+          "ipfsUrlMask": "https://ipfs.infura.io/ipfs/%s"
+        }
+      },
+      {
+        "uri": "plugin://aleth.io/eth-lite?v=4.2.0",
+        "config": {
+          "nodeUrl": "{{ .Values.config.nodeUrl }}"
+        }
+      },
+      {
+        "uri": "plugin://aleth.io/eth-ibft2?v=2.0.1"
+      }
+      ],
+      "pages": [
+      {
+        "def": "page://aleth.io/block",
+        "children": {
+          "sidebar": [
+          {
+            "def": "context://aleth.io/block/list",
+            "children": [
+            {
+              "def": "module://aleth.io/block/list"
+            }
+            ]
+          }
+          ],
+          "content": [
+          {
+            "def": "module://aleth.io/lite/block/details",
+            "pageCritical": true,
+            "children": {
+              "confirmations": [
+              {
+                "def": "module://aleth.io/block/confirmations"
+              }
+              ],
+              "txs": [
+              {
+                "def": "module://aleth.io/lite/block/txs"
+              }
+              ],
+              "extraData": [
+              {
+                "def": "module://aleth.io/eth-ibft2/block/lite/extra-data"
+              }
+              ]
+            }
+          }
+          ]
+        }
+      },
+      {
+        "def": "page://aleth.io/uncle",
+        "children": {
+          "content": [
+          {
+            "def": "module://aleth.io/lite/uncle/details",
+            "pageCritical": true
+          }
+          ]
+        }
+      },
+      {
+        "def": "page://aleth.io/tx",
+        "children": {
+          "sidebar": [
+          {
+            "def": "context://aleth.io/lite/tx/parentBlock",
+            "children": [
+            {
+              "def": "module://aleth.io/tx/list"
+            }
+            ]
+          }
+          ],
+          "content": [
+          {
+            "def": "context://aleth.io/lite/tx/parentBlock",
+            "pageCritical": true,
+            "children": [
+            {
+              "def": "module://aleth.io/lite/tx/details",
+              "children": {
+                "blockConfirmations": [
+                {
+                  "def": "context://aleth.io/lite/tx/parentBlock",
+                  "children": [
+                  {
+                    "def": "module://aleth.io/block/confirmations"
+                  }
+                  ]
+                }
+                ]
+              }
+            }
+            ]
+          }
+          ]
+        }
+      },
+      {
+        "def": "page://aleth.io/account",
+        "children": {
+          "identicon": [
+          {
+            "def": "module://aleth.io/3box/profile",
+            "children": {
+              "fallback": [
+              {
+                "def": "module://aleth.io/account/identicon"
+              }
+              ]
+            }
+          }
+          ],
+          "top": [
+          {
+            "def": "module://aleth.io/lite/account/details",
+            "pageCritical": true
+          }
+          ],
+          "bottom": [
+          {
+            "def": "module://aleth.io/lite/account/contract"
+          }
+          ]
+        }
+      },
+      {
+        "def": "page://aleth.io/dashboard",
+        "children": {
+          "content": [
+          {
+            "def": "module://aleth.io/search"
+          },
+          {
+            "def": "context://aleth.io/dashboard/latestBlockRange",
+            "children": [
+            {
+              "def": "module://aleth.io/dashboard/charts",
+              "children": {
+                "content": [
+                {
+                  "def": "module://aleth.io/dashboard/blocksChart",
+                  "children": {
+                    "children": [
+                    {
+                      "def": "context://aleth.io/block/latest",
+                      "children": [
+                      {
+                        "def": "module://aleth.io/dashboard/latestBlockInfo"
+                      }
+                      ]
+                    }
+                    ]
+                  }
+                }
+                ]
+              }
+            }
+            ]
+          }
+          ]
+        }
+      }
+      ],
+      "rootModules": {
+        "toolbarTop": [
+        {
+          "def": "module://aleth.io/toolbar/search"
+        }
+        ],
+        "toolbarBottom": [
+        {
+          "def": "module://aleth.io/toolbar/feedback"
+        }
+        ],
+        "topbar": [
+        {
+          "def": "module://aleth.io/topbar/search"
+        },
+        {
+          "def": "module://aleth.io/topbar/feedback"
+        }
+        ]
+      }
+    }
