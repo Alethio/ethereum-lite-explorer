@@ -13,7 +13,7 @@
     "@types/morgan": "^1.7.35",
     "@types/opn": "^5.1.0",
     "body-parser": "^1.18.3",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "jsonc-parser": "^2.0.3",
     "morgan": "^1.9.1",
     "open": "^7.0.0",
